@@ -13,10 +13,10 @@ class Living{
 		/*constructor*/
 		Living(string Name);
 
-		// Accessors
+		/*Accessors*/
 		int getLevel() const { return level; }
 
-		// Mutators
+		/*Mutators*/
 		void levelUp() { level++; }
 
 };
