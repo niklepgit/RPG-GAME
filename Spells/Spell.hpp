@@ -13,7 +13,6 @@ class Spell{
 	public:
 		//function to decrease the magicPower from Hero
 		//function to check the dexterity
-
-};
+		//fuck
 
 #endif
