@@ -2,6 +2,8 @@
 #define HERO
 
 #include "../Living.hpp"
+#include "../../Spells/Spell.hpp"
+#include <list>
 
 class Hero:public Living{
 	private:
@@ -11,7 +13,11 @@ class Hero:public Living{
 		int agility;
 		int money;
 		int experience;
-		list<Spell>
+		
+		list<Spell> Spells;
+		list<Weapon> Weapons;
+		list<Armor> Armors;
+
 	public:
 		/*constructor*/
 		Hero(int Name,int Level,int HealthPower,
