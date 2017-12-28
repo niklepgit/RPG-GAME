@@ -1,0 +1,5 @@
+HOW TO DOWNLOAD:
+https://www.cyberciti.biz/faq/linux-install-ncurses-library-headers-on-debian-ubuntu-centos-fedora/
+
+EXAMPLES:
+http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/intro.html#WHATIS
