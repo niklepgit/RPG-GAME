@@ -37,7 +37,7 @@ class Hero:public Living{
 		void updateExperience(int experienceGained) { experience += experienceGained; }
 		void reduceMoney(int moneyLosted) { money -= moneyLosted; }
 		void increaseMoney(int moneyGained) { money += moneyGained; }
-		void increaseAttributes();
+		virtual void increaseAttributes()=0;
 };
 
 #endif

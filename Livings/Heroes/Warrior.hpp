@@ -12,6 +12,9 @@ class Warrior:public Hero{
 			 	 int MagicPower,int Strenght,int Dexterity,
 			     int Agility,int Money,int Experience);
 
+		/*Mutators*/
+		void increaseAttributes();
+
 };
 
 #endif

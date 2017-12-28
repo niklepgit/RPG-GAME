@@ -7,6 +7,8 @@ class Sorcerer:public Hero{
 	private:
 
 	public:
+		/*Mutators*/
+		void increaseAttributes();
 
 };
 

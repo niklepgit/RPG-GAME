@@ -1,5 +1,0 @@
-void increaseAttributes()
-{
-	strength = ;
-	dexterity = ;
-}

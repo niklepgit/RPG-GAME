@@ -7,6 +7,8 @@ class Paladin:public Hero{
 	private:
 
 	public:
+		/*Mutators*/
+		void increaseAttributes();
 
 };
 
