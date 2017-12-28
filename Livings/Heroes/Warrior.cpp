@@ -1,9 +1,8 @@
 #include "Warrior.hpp"
 
-Warrior::Warrior(string Name)
-			   :Living(Name){
-				   	
-}
+/* Constructor */
+Warrior::Warrior(string Name,int Strength = 15,int Dexterity = 8,int Agility = 12)
+			    :Hero(Name,Strength,Dexterity,Agility){}
 
 /* increase attributes */
 void Warrior::increaseAttributes(){

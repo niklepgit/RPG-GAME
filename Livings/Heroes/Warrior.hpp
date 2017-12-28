@@ -8,7 +8,7 @@ class Warrior:public Hero{
 
 	public:
 		/*constructor*/
-		Warrior(string Name);
+		Warrior(string,int,int,int);
 
 		/*Mutators*/
 		void increaseAttributes();

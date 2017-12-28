@@ -20,9 +20,7 @@ class Hero:public Living{
 
 	public:
 		/*constructor*/
-		Hero(int Name,int Level,int HealthPower,
-			 int MagicPower,int Strenght,int Dexterity,
-			 int Agility,int Money,int Experience);
+		Hero(string,int,int,int);
 
 		/*Accessors*/
 		int getMagicPower() const { return magicPower; }

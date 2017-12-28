@@ -7,6 +7,8 @@ class Sorcerer:public Hero{
 	private:
 
 	public:
+		/*Constructor*/
+		Sorcerer(string,int,int,int);
 		/*Mutators*/
 		void increaseAttributes();
 
