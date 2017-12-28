@@ -11,7 +11,7 @@ class Hero:public Living{
 		int agility;
 		int money;
 		int experience;
-
+		list<Spell>
 	public:
 		/*constructor*/
 		Hero(int Name,int Level,int HealthPower,

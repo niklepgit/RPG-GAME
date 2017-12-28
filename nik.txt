@@ -16,4 +16,9 @@ ICESPELL:
 ARMOR:
 
 
+<<<<<<< HEAD
 POTION:blafoo
+=======
+POTION:
+lalala
+>>>>>>> 60a678dc6ffd0502a04f6cb2756328b71de95694
