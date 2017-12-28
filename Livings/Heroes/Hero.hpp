@@ -15,8 +15,15 @@ class Hero:public Living{
 	public:
 		/*constructor*/
 		Hero(int Name,int Level,int HealthPower,
-			 int MagicPower,int Strenght,int Dexterity
-			 ,int Agility,int Money,int Experience);
+			 int MagicPower,int Strenght,int Dexterity,
+			 int Agility,int Money,int Experience);
+
+		/*Accessors*/
+		int getMagicPower() const { return magicPower; }
+		int getDexterity() const { return dexterity; }
+
+		/*Mutators*/
+		void subMagicPower(int magicPowerToSub) { magicPower -= magicPowerToSub; }
 
 };
 
