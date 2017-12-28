@@ -16,4 +16,4 @@ ICESPELL:
 ARMOR:
 
 
-POTION:
+POTION:blafoo
