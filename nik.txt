@@ -5,13 +5,13 @@ SPELL:
 3)accessor για dexterity του ηρωα γιατι το επιπεδο ζημιας που προκαλει το ξορκι εξαρταται και απο αυτο.
 
 FIRESPELL:
-1)accessor/mutator για το ποσο αμυνας του monster επειδη
+1)accessor/mutator για το ποσο αμυνας του monster επειδη -> done
 
 LIGHTINGSPELL:
-1)accessor/mutator για την πιθανοτητα να αποφυγει τη μαχη το τερας
+1)accessor/mutator για την πιθανοτητα να αποφυγει τη μαχη το τερας -> done
 
 ICESPELL:
-1)accessor/mutator για το ευρος ζημιας στην επιθεση
+1)accessor/mutator για το ευρος ζημιας στην επιθεση -> done
 
 ARMOR:
 
