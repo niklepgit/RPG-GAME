@@ -5,7 +5,7 @@
 
 class Dragon:public Monster{
 	private:
-
+	
 	public:
 
 };

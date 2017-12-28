@@ -5,7 +5,10 @@
 
 class Monster:public Living{
 	private:
-	
+		int minDamageRange;
+		int maxDamageRange;
+		int defense;
+		int probability;
 	public:
 };
 
