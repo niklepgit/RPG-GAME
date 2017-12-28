@@ -1,7 +1,7 @@
 #ifndef HERO
 #define HERO
 
-#include "../Living.hpp"
+#include "../Living.hpp" //not sure if this is the right way
 
 class Hero:public Living{
 	private:

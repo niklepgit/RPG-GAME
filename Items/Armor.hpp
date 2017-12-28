@@ -8,6 +8,7 @@ class Armor:public Item{
 		int on;
 		int pososto;
 	public:
-
+		//should somehow use healthPower from class living
+		
 };
 #endif
