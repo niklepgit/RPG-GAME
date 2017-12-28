@@ -23,7 +23,7 @@ class Hero:public Living{
 		int getDexterity() const { return dexterity; }
 
 		/*Mutators*/
-		void subMagicPower(int magicPowerToSub) { magicPower -= magicPowerToSub; }
+		void reduceMagicPower(int magicPowerToSub) { magicPower -= magicPowerToSub; } 	// change sub to reduce just for mutator's name
 
 };
 

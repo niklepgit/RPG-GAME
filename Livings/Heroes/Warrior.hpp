@@ -9,8 +9,8 @@ class Warrior:public Hero{
 	public:
 		/*constructor*/
 		Warrrior(string Name,
-			 	 int MagicPower,int Strenght,int Dexterity
-			    ,int Agility,int Money,int Experience);
+			 	 int MagicPower,int Strenght,int Dexterity,
+			     int Agility,int Money,int Experience);
 
 };
 
