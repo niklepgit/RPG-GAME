@@ -1,7 +1,7 @@
 #ifndef HERO
 #define HERO
 
-#include "../Living.hpp" //not sure if this is the right way
+#include "../Living.hpp"
 
 class Hero:public Living{
 	private:
@@ -20,11 +20,18 @@ class Hero:public Living{
 
 		/*Accessors*/
 		int getMagicPower() const { return magicPower; }
+		int getStrength() const { return strength; }
 		int getDexterity() const { return dexterity; }
+		int getAgility() const { return agility; }
+		int getMoney() const { return money; }
+		int getExperience() const { return experience; }
 
 		/*Mutators*/
 		void reduceMagicPower(int magicPowerToSub) { magicPower -= magicPowerToSub; } 	// change sub to reduce just for mutator's name
-
+		void updateExperience(int experienceGained) { experience += experienceGained; }
+		void reduceMoney(int moneyLosted) { money -= moneyLosted; }
+		void increaseMoney(int moneyGained) { money += moneyGained; }
+		void increaseAttributes();
 };
 
 #endif

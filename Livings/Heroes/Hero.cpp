@@ -1,0 +1,5 @@
+void increaseAttributes()
+{
+	strength = ;
+	dexterity = ;
+}
