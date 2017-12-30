@@ -20,6 +20,9 @@ class Inventory{
 		void printSpells(void);
 		void printWeapons(void);
 		void printArmors(void);
+
+		/*Others*/
+		void checkInventory(void)
 };
 
 #endif
