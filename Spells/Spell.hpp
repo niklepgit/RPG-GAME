@@ -11,6 +11,8 @@ class Spell{
 		int magicPower;
 
 	public:
+		/*Others*/
+		void printSpell(void);
 		//function to decrease the magicPower from Hero
 		//function to check the dexterity
 		//fuck lalala

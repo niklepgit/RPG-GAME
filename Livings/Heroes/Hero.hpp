@@ -3,6 +3,7 @@
 
 #include "../Living.hpp"
 #include "../../Spells/Spell.hpp"
+#include "Inventory.hpp"
 #include <list>
 
 class Hero:public Living{
@@ -14,9 +15,7 @@ class Hero:public Living{
 		int money;
 		int experience;
 		
-		list<Spell> Spells;
-		list<Weapon> Weapons;
-		list<Armor> Armors;
+		Inventory inventory;
 
 	public:
 		/*constructor*/

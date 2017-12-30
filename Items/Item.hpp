@@ -2,12 +2,14 @@
 #define ITEM
 
 class Item{
-	private:
+	protected:
 		string name;
 		int value;
 		int minLevel;
 
 	public:
+		/*Constructor*/
+		Item(string Name,int Value,int MinLevel);
 
 };
 #endif
