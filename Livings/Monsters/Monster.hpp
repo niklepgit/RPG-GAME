@@ -20,6 +20,8 @@ class Monster:public Living{
 		void reduceDefense(int defenseToSub) { defense -= defenseToSub; }
 		void reduceProbability(int probabilityToSub) { probability -= probabilityToSub; }
 		void reduceDamageRange(int maxDamageToSub) { maxDamageRange -= maxDamageToSub; }
+
+		void attackToMonster(int DamageValue);
 };
 
 #endif

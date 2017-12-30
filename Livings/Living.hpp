@@ -18,6 +18,7 @@ class Living{
 
 		/*Mutators*/
 		void levelUp() { level++; }
+		void healthPowerReduce(int number);
 
 };
 

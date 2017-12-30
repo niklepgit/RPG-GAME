@@ -5,9 +5,10 @@ Weapon::Weapon(string Name,int Value,int MinLevel,int DamageValue,
 			               int Hands):Item(Name,Value,MinLevel),
 		          damageValue(DamageValue),hands(Hands),inUse(0){}
 
-void Weapon::WeaponAttack(void){
+/*weaponAttack*/
+void Weapon::weaponAttack(Monster& monster){
 	if(inUse==1){
-		
+		monster.attackToMonster(damageValue);
 	}	
 }
 

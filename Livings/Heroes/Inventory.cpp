@@ -38,24 +38,11 @@ void Inventory::printArmors(void){
 	}
 }
 
-/*printPotions*/
-void Inventory::printPotions(void){
-	int i=0;
-	list<Potion>::iterator it;
-	cout<<"Potions are:"
-	for(it=Potions.begin();it!=Potions.end();it++){ //for every spell
-		cout<<"<------"<<i++<<"------>"<<endl;
-		it->printPotion(); //call the print function for the spell
-		cout<<endl; //leave one line empty
-	}
-}
-
 /*checkInventory*/
 void Inventory::checkInventory(void){
 	printWeapons();
 	printArmors();
 	printSpells();
-	printPotions();
 }
 
 
