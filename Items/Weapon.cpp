@@ -7,8 +7,8 @@ Weapon::Weapon(string Name,int Value,int MinLevel,int DamageValue,
 
 void Weapon::WeaponAttack(void){
 	if(inUse==1){
-
-	}
+		
+	}	
 }
 
 /*printWeapons*/
