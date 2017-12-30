@@ -1,6 +1,8 @@
 #ifndef SPELL
 #define SPELL
 
+#include <string>
+
 class Spell{
 	private:
 		string name;
@@ -11,6 +13,8 @@ class Spell{
 		int magicPower;
 
 	public:
+		/*Constructor*/
+		Spell(string Name,int Value,int MinLevel,int MinDamage,int MaxDamage,int MagicPower);
 		/*Others*/
 		void printSpell(void);
 		//function to decrease the magicPower from Hero

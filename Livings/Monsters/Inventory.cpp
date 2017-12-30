@@ -8,7 +8,7 @@ void Inventory::printSpells(void){
 	list<Spell>::iterator it;
 	cout<<"Spells are:"
 	for(it=Spells.begin();it!=Spells.end();it++){ //for every spell
-		cout<<"<------"<<i++<<"------>"<<endl;v
+		cout<<"<------"<<i++<<"------>"<<endl;
 		it->printSpell(); //call the print function for the spell
 		cout<<endl; //leave one line empty
 	}

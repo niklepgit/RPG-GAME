@@ -2,7 +2,7 @@
 
 /*Constructor*/
 Weapon::Weapon(string Name,int Value,int MinLevel,int DamageValue,
-			               int Hands):Living(Name,Value,MinLevel),
+			               int Hands):Item(Name,Value,MinLevel),
 		          damageValue(DamageValue),hands(Hands),inUse(0){}
 
 void Weapon::WeaponAttack(void){

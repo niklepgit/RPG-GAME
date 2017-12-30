@@ -1,6 +1,8 @@
 #ifndef ITEM
 #define ITEM
 
+#include <string>
+
 class Item{
 	protected:
 		string name;
