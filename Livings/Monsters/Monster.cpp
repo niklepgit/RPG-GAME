@@ -9,3 +9,10 @@ void Monster::attackToMonster(int DamageValue){
 	
 	healthPowerReduce(DamageValue);
 }
+
+/*Constructor*/
+Monster::Monster(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability)
+					Living(Name),minDamageRange(MinDamageRange),maxDamageRange(MaxDamageRange),
+													defense(Defense),probability(Probability){}
+
+

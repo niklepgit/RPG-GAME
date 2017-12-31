@@ -11,7 +11,7 @@ class Potion:public Item{
 	public:
 		/*Constructor*/
 		Potion(string Name,int Value,int MinLevel,string WtIncrease);
-		void usePotion(void);
+		void usePotion(Hero& hero);
 		void printPotion(void);
 		//function that increases a valid data member
 		//in classes Warrior,Sorcerer and Paladin

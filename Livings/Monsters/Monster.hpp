@@ -10,6 +10,9 @@ class Monster:public Living{
 		int defense;
 		int probability;
 	public:
+		/*Constructor*/
+		Monster(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability);
+
 		/*Accessors*/
 		int getDefense() const { return defense; }
 		int getProbability() const { return probability; }
@@ -21,6 +24,7 @@ class Monster:public Living{
 		void reduceProbability(int probabilityToSub) { probability -= probabilityToSub; }
 		void reduceDamageRange(int maxDamageToSub) { maxDamageRange -= maxDamageToSub; }
 
+		/*Others*/
 		void attackToMonster(int DamageValue);
 };
 

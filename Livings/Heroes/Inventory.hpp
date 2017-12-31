@@ -10,6 +10,8 @@ class Inventory{
 		list<Spell> Spells;
 		list<Weapon> Weapons;
 		list<Armor> Armors;
+		list<Potion> Potions;
+
 	public:
 		/*Accessors*/
 		Spell& getSpells(int index);
@@ -20,6 +22,7 @@ class Inventory{
 		void printSpells(void);
 		void printWeapons(void);
 		void printArmors(void);
+		void printPotions(void);
 
 		/*Others*/
 		void checkInventory(void)

@@ -5,15 +5,20 @@ Potion::Potion(string Name,int Value,int MinLevel,string WtIncrease)
 
 /*usePotion*/
 void Potion::usePotion(Hero& hero){
+	if(used==1)
+		return;
+	else
+	{
 	if(wtIncrease=="magicPower")
 		hero.increaseMagicPower(hmtIncrease);
 	else if(wtIncrease=="strength")
-		hero.increaseStreangth(hmtIncrease);
+		hero.increaseStrength(hmtIncrease);
 	else if(wtIncrease=="dexterity")
 		hero.increaseDexterity(hmtIncrease);
 	else if(wtIncrease=="agility")
 		hero.increaseAgility(hmtIncrease);
-
+    }
+	used=1;
 }
 
 /*printPotion*/
