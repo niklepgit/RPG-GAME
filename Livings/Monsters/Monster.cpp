@@ -1,5 +1,10 @@
 #include "Monster.hpp"
 
+/*Constructor*/
+Monster::Monster(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability)
+					Living(Name),minDamageRange(MinDamageRange),maxDamageRange(MaxDamageRange),
+													defense(Defense),probability(Probability){}
+
 /*attackToMonster*/
 void Monster::attackToMonster(int DamageValue){
 	if(DamageValue > defese)
@@ -10,9 +15,7 @@ void Monster::attackToMonster(int DamageValue){
 	healthPowerReduce(DamageValue);
 }
 
-/*Constructor*/
-Monster::Monster(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability)
-					Living(Name),minDamageRange(MinDamageRange),maxDamageRange(MaxDamageRange),
-													defense(Defense),probability(Probability){}
-
-
+/*generateHit*/
+int Monster::generateHit(){
+	return rand()%((maxDamageRange - minDamageRange) + 1) + minDamageRange;
+}

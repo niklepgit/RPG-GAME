@@ -8,5 +8,5 @@ Living::healthPowerReduce(int number){
 	if(number<healthPower)
 		healthPower -= number;
 	else
-		healthPower=0;
+		healthPower = 0;
 }

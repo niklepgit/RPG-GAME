@@ -26,6 +26,7 @@ class Monster:public Living{
 
 		/*Others*/
 		void attackToMonster(int DamageValue);
+		int generateHit();
 };
 
 #endif
