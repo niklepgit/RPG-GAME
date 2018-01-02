@@ -8,6 +8,7 @@ class Living{
 		string name;
 		int level;
 		int healthPower;
+		int healthPowerMax;
 
 	public:
 		/*constructor*/
@@ -17,7 +18,7 @@ class Living{
 		int getLevel() const { return level; }
 
 		/*Mutators*/
-		void levelUp() { level++; }
+		void levelUp();
 		void healthPowerReduce(int number);
 
 };
