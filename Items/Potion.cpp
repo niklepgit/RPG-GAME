@@ -1,7 +1,7 @@
 #include "Potion.hpp"
 
-Potion::Potion(string Name,int Value,int MinLevel,string WtIncrease)
-		 :Item(Name,Value,MinLevel),wtIncrease(WtIncrease),used(0){}7
+Potion::Potion(string Name,int MinLevel,string WtIncrease)
+		 :Item(Name,MinLevel),wtIncrease(WtIncrease),used(0){}
 
 /*usePotion*/
 void Potion::usePotion(Hero& hero){

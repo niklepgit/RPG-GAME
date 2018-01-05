@@ -10,8 +10,8 @@ class Weapon:public Item{
 		int inUse;
 	public:
 		/*Constructor*/
-		Weapon(string Name,int Value,int MinLevel,DamageValue
-				,Hands);
+		Weapon(string Name,int MinLevel);
+		
 		/*Others*/
 		void printWeapon(void);
 		void weaponAttack(void);

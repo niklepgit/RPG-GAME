@@ -10,7 +10,7 @@ class Potion:public Item{
 		int hmtIncrease; //how much to increase
 	public:
 		/*Constructor*/
-		Potion(string Name,int Value,int MinLevel,string WtIncrease);
+		Potion(string Name,int MinLevel,string WtIncrease);
 		void usePotion(Hero& hero);
 		void printPotion(void);
 		//function that increases a valid data member

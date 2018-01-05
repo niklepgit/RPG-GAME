@@ -1,100 +1,112 @@
-Heartbreaker
-Lionheart
-Durandal
-Ascalon
-Ambitious
-Hrunting
-Astral Sword
-Apocalypse
-Slowstrike
-Excalibur
-Ragnarok
-Balmung 
-Largamente
-Gravestone
-Sidewinder
-Nightmare
-Mage Masher
-Nightbringer
-Knight Sword
-Wizard Sword
-Double-Edge
-Razzmatazz
-Deathbringer
-Stunning Steel
-Basilisk Steel
-Poison Steel
-Lullaby Steel
-Muted Steel
-Twilight Steel
-Hunter's Sword
-Flametongue
-Ice Brand
-Lightning Steel
-Force Saber
-Baroque Sword
-Sorcery Sword
-Soldier's Saber
-Rune Steel
-Enchanted Sword
-Fencing Saber
-Slasher
-Nirvana
-Herding Staff
-Arc Arcana
-Abraxas
-Heavenly Axis
-Judgment
-Seraphim Rod
-Rod of Roses
-Nimbus Rod
-Wing Wand
-Wonder Wand
-Laevatein
-Astral Rod
-Chaos Rod
-Power Staff
-Shining Staff
-Faerie Staff
-Magistral Rod
-El Dorado
-Tri-Rod
-Wicked Wand
-Nemesis Rod
-Defender
-Prism Rod
-Mirage Rod
-Healing Rod
-Wind Rod
-Conductor
-Punisher
-Calcite Staff
-Bizarre Staff
-Staff of Thorns
-Reticent Staff
-Darkness Staff
-Monk Staff
-Mage's Staff
-Dual Rod
-Ominous Rod
-Death Wand
-Entangling Rod
-Break Rod
-Belladonna Wand
-Lullaby Rod
-Rod of Silence
-Rod of Darkness
-Rod of Wisdom
-Rod of Fire
-Rod of Ice
-Rod of Lightning
-Rod of Water
-Malleable Staff
-Force Rod
-Ductile Rod
-Sorcery Rod
-Full Metal Rod
-Rune Rod
-Enchanted Rod
-Rod of Striking
-Spiked Rod 
+Heartbreaker		1
+Lionheart			1
+Durandal			1
+Ascalon				1
+Ambitious			1
+Hrunting			1
+Astral-Sword		1
+Magistral-Rod		1
+El-Dorado			1
+Tri-Rod				1
+Wicked-Wand			1
+Nemesis-Rod			1
+
+Apocalypse			2
+Slowstrike			2
+Excalibur			2
+Ragnarok			2	
+Balmung 			2
+Largamente			2
+Gravestone			2
+Defender			2	
+Prism-Rod			2
+Mirage-Rod			2
+Healing-Rod			2
+Wind-Rod			2
+Conductor			2
+Punisher			2
+Calcite-Staff		2
+Bizarre-Staff		2
+Staff-of-Thorns		2
+
+Reticent-Staff		3
+Darkness-Staff		3
+Monk-Staff			3
+Mage's-Staff 		3
+Dual-Rod			3
+Ominous-Rod			3
+Death-Wand			3
+Entangling-Rod		3
+Break-Rod			3
+Sidewinder			3
+Nightmare			3
+Mage-Masher			3
+
+Belladonna-Wand		4
+Lullaby-Rod			4
+Rod-of-Silence		4
+Rod-of-Darkness		4
+Rod-of-Wisdom		4
+Rod-of-Fire			4
+Rod-of-Ice  		4
+Double-Edge			4
+Razzmatazz			4
+Deathbringer		4
+Stunning-Steel		4
+
+Basilisk-Steel		5
+Poison-Steel		5
+Lullaby-Steel		5
+Rod-of-Lightning	5
+Rod-of-Water		5
+Malleable-Staff		5
+Force-Rod			5
+Ductile-Rod			5
+Sorcery-Rod  		5
+Full-Metal-Rod		5
+Rune-Rod			5
+
+Enchanted-Rod 		6
+Rod-of-Striking		6
+Spiked-Rod 			6
+Muted-Steel			6
+Twilight-Steel		6
+Hunter's-Sword      6
+Flametongue			6
+Ice-Brand			6
+
+Lightning-Steel		7
+Force-Saber			7
+Baroque-Sword		7
+Sorcery-Sword		7
+
+Nightbringer		8
+Knight-Sword		8
+Wizard-Sword		8
+Soldier's-Saber		8
+Rune-Steel			8
+Enchanted-Sword		8
+
+Fencing-Saber		9
+Slasher				9	
+Nirvana				9
+Herding-Staff		9
+Arc-Arcana			9
+Abraxas				9
+Heavenly-Axis		9
+			
+Judgment			10
+Seraphim-Rod		10
+Rod-of-Roses		10
+Nimbus-Rod			10
+Wing-Wand			10
+Wonder-Wand			10
+Laevatein			10
+Astral-Rod 			10
+Chaos-Rod			10
+Power-Staff			10
+Shining-Staff		10
+Faerie-Staff		10
+
+
+

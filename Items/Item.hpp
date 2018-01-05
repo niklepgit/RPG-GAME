@@ -11,7 +11,7 @@ class Item{
 
 	public:
 		/*Constructor*/
-		Item(string Name,int Value,int MinLevel);
+		Item(string Name,int MinLevel);
 
 };
 #endif

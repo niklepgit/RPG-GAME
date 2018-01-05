@@ -9,7 +9,7 @@ class Armor:public Item{
 		int inUse;
 	public:
 		/*Constructor*/
-		Armor(string Name,int Value,int MinLevel,int DamageSave);
+		Armor(string Name,int MinLevel);
 		
 		//should somehow use healthPower from class living
 		/*Others*/
