@@ -6,3 +6,6 @@ ncurses.o: ncurses.cpp
 
 Player.o: Player.cpp
 	g++ -c Player.cpp
+
+clean:
+	rm *.o
