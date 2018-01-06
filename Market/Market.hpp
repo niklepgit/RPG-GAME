@@ -1,12 +1,12 @@
-#ifndef INVENTORY
-#define INVENTORY
+#ifndef MARKET
+#define MARKET
 
 #include "Spell.hpp"
 #include "Weapon.hpp"
 #include "Armor.hpp"
 #include "Potion.hpp"
 
-class Inventory{
+class Market{
 	private:
 		list<Spell> Spells;
 		list<Weapon> Weapons;
@@ -26,7 +26,7 @@ class Inventory{
 		void printPotions(void);
 
 		/*Others*/
-		void checkInventory(void)
+		void checkMarket(void)
 };
 
 #endif
