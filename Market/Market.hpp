@@ -1,6 +1,7 @@
 #ifndef MARKET
 #define MARKET
 
+#include <string>
 #include "Spell.hpp"
 #include "Weapon.hpp"
 #include "Armor.hpp"
@@ -16,8 +17,8 @@ class Market{
 	public:
 		/*Accessors*/
 		Spell& getSpells(int index);
-		Weapon& getWeapon(int index);
-		Armors& getArmors(int index);
+		list<Weapon>& getWeapon(int index);
+		list<Armors>& getArmors(int index);
 
 		/*Prints*/
 		void printSpells(void);
@@ -26,7 +27,11 @@ class Market{
 		void printPotions(void);
 
 		/*Others*/
-		void checkMarket(void)
+		void addWeapon(string Name,int MinLevel);
+		void addArmor(string Name,int MinLevel);
+		void addPotion(string Name,int MinLevel,string WtIncrease);
+		void addSpell(string Name,int MinLevel);
+		void checkMarket(void);
 };
 
 #endif

@@ -2,6 +2,30 @@
 #include <iostream>
 using namespace std;
 
+/*addWeapon*/
+void Market::addWeapon(string Name,int MinLevel){
+	Weapon weapon(Name,MinLevel);
+	Weapons.push_back(weapon);
+}
+
+/*addArmor*/
+void Market::addArmor(string Name,int MinLevel){
+	Armor armor(Name,MinLevel);
+	Armors.push_back(armor);
+}
+
+/*addPotion*/
+void Market::addPotion(string Name,int MinLevel,string WtIncrease){
+	Potion potion(Name,MinLevel,WtIncrease);
+	Potions.push_back(potion);
+}
+
+/*addSpell*/
+void Market::addSpell(string Name,int MinLevel){
+	Spell spell(Name,MinLevel);
+	Spells.push_back(spell);
+}
+
 /*printSpells*/
 void Market::printSpells(void){
 	int i=0;

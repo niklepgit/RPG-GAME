@@ -14,7 +14,7 @@ class Spell{
 
 	public:
 		/*Constructor*/
-		Spell(string Name,int Value,int MinLevel,int MinDamage,int MaxDamage,int MagicPower);
+		Spell(string Name,int MinLevel);
 		/*Others*/
 		void printSpell(void);
 		//function to decrease the magicPower from Hero
