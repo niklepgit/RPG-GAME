@@ -83,7 +83,7 @@ void Market::checkMarket(void){
 }
 
 /*menuMarket*/
-void Market::menuMarket(Hero**&heroes,int arraySize){
+void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 	char ch,ch1;
 	printOptions();
 
@@ -95,15 +95,19 @@ void Market::menuMarket(Hero**&heroes,int arraySize){
 				 	heroes[i]->printHero();
 				 }
 				 ch1=getchar();
-				 
+				 //call buy
 				 break;
-		case '2':
+		case '2':cout<<"For which Hero you want to sell?"<<endl;
+				 for(i=0;i<numberOfHeroes;i++){
+				 	cout<<i+1<<":"<<endl;
+				 	heroes[i]->printHero();
+				 }
+				 ch1=getchar();
 				 break;
 
 		case 'q':return;
 				 
 	}
-
 }
 
 /*Sell*/

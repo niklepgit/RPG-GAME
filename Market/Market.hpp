@@ -32,6 +32,8 @@ class Market{
 		void addPotion(string Name,int MinLevel,string WtIncrease);
 		void addSpell(string Name,int MinLevel);
 		void checkMarket(void);
+		void menuMarket(Hero**&heroes,int arraySize);
+		void printOptions(void);
 };
 
 #endif
