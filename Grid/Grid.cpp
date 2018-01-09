@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include <termios.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -12,6 +14,9 @@ Grid::Grid(){
 	/*Needed to take terminal's dimensions*/
 	struct winsize w;
     ioctl(0, TIOCGWINSZ, &w);
+
+    xMax = w.ws_row;
+    yMax = w.ws_col;
 
     /*Allocate memory for grid*/
     map = new char*[w.ws_row];
@@ -61,10 +66,11 @@ Grid::Grid(){
 }
 
 void Grid::mvUp(){
-	int y2 = yLoc - 1;
-	if (map[xLoc][y2] == ' '){
-		map[xLoc][yLoc] == ' ';
-		map[xLoc][y2] = 'h';
+	int x2 = xLoc - 1;
+	if (map[x2][yLoc] == ' '){
+		map[xLoc][yLoc] = ' ';
+		map[x2][yLoc] = 'h';
+		xLoc = x2;
 	}
 }
 
@@ -72,29 +78,32 @@ void Grid::mvDown(){
 	
 	int x2 = xLoc + 1;
 	if (map[x2][yLoc] == ' '){
-		map[xLoc][yLoc] == ' ';
+		map[xLoc][yLoc] = ' ';
 		map[x2][yLoc] = 'h';
+		xLoc = x2;
 	}
 }
 
 void Grid::mvRight(){
 	int y2 = yLoc + 1;
 	if (map[xLoc][y2] == ' '){
-		map[xLoc][yLoc] == ' ';
+		map[xLoc][yLoc] = ' ';
 		map[xLoc][y2] = 'h';
+		yLoc = y2;
 	}
 }
 
 void Grid::mvLeft(){
-	int x2 = xLoc - 1;
-	if (map[x2][yLoc] == ' '){
-		map[xLoc][yLoc] == ' ';
-		map[x2][yLoc] = 'h';
+	int y2 = yLoc - 1;
+	if (map[xLoc][y2] == ' '){
+		map[xLoc][yLoc] = ' ';
+		map[xLoc][y2] = 'h';
+		yLoc = y2;
 	}
 }
 
 char Grid::getmv(){
-	char choice = getchar();
+	char choice = getchar_silent();
 	switch(choice)
 	{
 		case 'w':
@@ -117,17 +126,31 @@ char Grid::getmv(){
 
 /*displayMap*/
 void Grid::displayMap(){
-	//ClearScreen();
-	struct winsize w;
-    ioctl(0, TIOCGWINSZ, &w);
-	for (int x = 0; x < w.ws_row; ++x){
-		for (int y = 0; y < w.ws_col; ++y)
+	clearScreen();
+	for (int x = 0; x < xMax; ++x){
+		for (int y = 0; y < yMax; ++y)
 			cout << map[x][y];
 		cout << endl;
 	}
 }
 
-void Grid::ClearScreen()
-    {
-    cout << string( 100, '\n' );
-    }
+void Grid::clearScreen(){
+	cout << string( 25, '\n' );
+}
+
+int Grid::getchar_silent(){  /*I took it ready*/
+	int ch;
+	struct termios oldt,newt;
+
+	tcgetattr(STDIN_FILENO,&oldt);
+
+	newt = oldt;
+	newt.c_lflag &= ~( ICANON | ECHO );
+
+	tcsetattr(STDIN_FILENO,TCSANOW,&newt);
+
+	ch = getchar();
+	tcsetattr(STDIN_FILENO,TCSANOW,&oldt);
+
+	return ch;	
+}

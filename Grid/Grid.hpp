@@ -7,6 +7,8 @@ private:
 	char **map;
 	int xLoc;
 	int yLoc;
+	int xMax;
+	int yMax;
 
 public:
 	/*Constructor*/
@@ -23,7 +25,10 @@ public:
 	char getmv();
 
 	/*ClearScreen*/
-	void ClearScreen();
+	void clearScreen();
+
+	/*getchar without enter*/
+	int getchar_silent();
 };
 
 #endif
