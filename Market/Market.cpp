@@ -81,3 +81,38 @@ void Market::checkMarket(void){
 	printSpells();
 	printPotions();
 }
+
+/*menuMarket*/
+void Market::menuMarket(Hero**&heroes,int arraySize){
+	char ch,ch1;
+	printOptions();
+
+	ch=getchar();
+	switch(ch){
+		case '1':cout<<"For which Hero you want to buy?"<<endl;
+				 for(i=0;i<numberOfHeroes;i++){
+				 	cout<<i+1<<":"<<endl;
+				 	heroes[i]->printHero();
+				 }
+				 ch1=getchar();
+				 
+				 break;
+		case '2':
+				 break;
+
+		case 'q':return;
+				 
+	}
+
+}
+
+/*Sell*/
+void Market::Sell(Hero& hero)
+
+/*printOptions*/
+void Market::printOptions(void){
+	cout<<"Options:"<<endl
+		<<"1)Buy"<<endl
+		<<"2)Sell"<<endl<<endl;
+	cout<<"Press 1,2 or q to exit"<<endl;
+}

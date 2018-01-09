@@ -55,7 +55,7 @@ Spell::Spell(string Name,int MinLevel,)
 				minDamage=rand()%(95-90+1)+90;
 			    maxDamage=rand()%(100-95+1)+95;
 			    magicPower=rand()%(100-90+1)+90;
-			   break;
+			    break;
 	}	
 
 }
