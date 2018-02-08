@@ -1,13 +1,14 @@
 #ifndef MARKET
 #define MARKET
 
-#include <iostream>
-#include <list>
 #include <string>
 #include "Spell.hpp"
 #include "Weapon.hpp"
 #include "Armor.hpp"
 #include "Potion.hpp"
+#include <list>
+#include <iostream>
+
 using namespace std;
 
 class Market{
@@ -21,7 +22,7 @@ class Market{
 		/*Accessors*/
 		Spell& getSpells(int index);
 		list<Weapon>& getWeapon(int index);
-		list<Armors>& getArmors(int index);
+		list<Armor>& getArmors(int index);
 
 		/*Prints*/
 		void printSpells(void);
@@ -35,7 +36,7 @@ class Market{
 		void addPotion(string Name,int MinLevel,string WtIncrease);
 		void addSpell(string Name,int MinLevel);
 		void checkMarket(void);
-		void menuMarket(Hero**&heroes,int arraySize);
+		//void menuMarket(Hero**&heroes,int arraySize);
 		void printOptions(void);
 };
 

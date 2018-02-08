@@ -80,7 +80,7 @@ void Market::checkMarket(void){
 	printPotions();
 }
 
-/*menuMarket*/
+/*menuMarket
 void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 	char ch,ch1;
 	printOptions();
@@ -107,10 +107,11 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 				 
 	}
 }
+*/
 
-/*Sell*/
+/*Sell
 void Market::Sell(Hero& hero)
-
+*/
 /*printOptions*/
 void Market::printOptions(void){
 	cout<<"Options:"<<endl

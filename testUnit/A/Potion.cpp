@@ -26,10 +26,9 @@ Potion::Potion(string Name,int MinLevel,string WtIncrease)
 		case 10:hmtIncrease=rand()%(100-90+1)+90;
 			   break;
 	}	
-
 }
 
-/*usePotion*/
+/*usePotion
 void Potion::usePotion(Hero& hero){
 	if(used==1)
 		return;
@@ -46,6 +45,7 @@ void Potion::usePotion(Hero& hero){
     }
 	used=1;
 }
+*/
 
 /*printPotion*/
 void Potion::printPotion(void){

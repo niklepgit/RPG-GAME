@@ -30,13 +30,13 @@ Weapon::Weapon(string Name,int MinLevel):Item(Name,MinLevel),
 
 }
 
-/*weaponAttack*/
+/*weaponAttack
 void Weapon::weaponAttack(Monster& monster){
 	if(inUse==1){
 		monster.attackToMonster(damageValue);
 	}	
 }
-
+*/
 /*printWeapon*/
 void Weapon::printWeapon(void){
 	cout<<"Name:"<<name<<endl;

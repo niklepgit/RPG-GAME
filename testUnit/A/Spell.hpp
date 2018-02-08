@@ -1,7 +1,8 @@
 #ifndef SPELL
 #define SPELL
-
+#include <iostream>
 #include <string>
+using namespace std;
 
 class Spell{
 	private:
@@ -17,6 +18,7 @@ class Spell{
 		Spell(string Name,int MinLevel);
 		/*Others*/
 		void printSpell(void);
+		
 		//function to decrease the magicPower from Hero
 		//function to check the dexterity
 		//fuck lalala

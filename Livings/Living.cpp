@@ -16,6 +16,7 @@ void Living::healthPowerReduce(int healthPowerToReduce){
 /*healthPowerIncrease*/
 void Living::healthPowerIncrease(int healthPowerToIncrease){
 	if (healthPowerToIncrease > currHealthPower){
+		//healthPowerMax sto curr stin if
 		currHealthPower = healthPowerMax;
 		return;
 	}
