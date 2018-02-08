@@ -18,7 +18,7 @@ class Spell{
 		Spell(string Name,int MinLevel);
 		/*Others*/
 		void printSpell(void);
-		
+		int getValue() {return value;}
 		//function to decrease the magicPower from Hero
 		//function to check the dexterity
 		//fuck lalala

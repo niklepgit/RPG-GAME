@@ -83,42 +83,56 @@ void Market::checkMarket(void){
 
 /*menuMarket*/
 void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
-	char ch,ch1;
+	int ch;
 	printOptionsForMenu();
 	int i;
 	cin>>ch;
 	switch(ch){
-		case '1':cout<<"For which Hero you want to buy?"<<endl;
+		case 1:cout<<"For which Hero you want to buy?"<<endl;
 				 for(i=0;i<numberOfHeroes;i++){
 				 	cout<<i+1<<":"<<endl;
 				 	heroes[i]->printHero();
 				 }
-				 cin>>ch1;
+				 cin>>ch;
 				 //call buy
 				 break;
-		case '2':cout<<"For which Hero you want to sell?"<<endl;
+		case 2:cout<<"For which Hero you want to sell?"<<endl;
 				 for(i=0;i<numberOfHeroes;i++){
 				 	cout<<i+1<<":"<<endl;
 				 	heroes[i]->printHero();
 				 }
-				 cin>>ch1;
-				 Sell(*heroes[ch1]);
+				 cin>>ch;
+				 Sell(*heroes[ch-1]); //attentioooon
 				 break;
 
 		case 'q':return;
 				 
 	}
 }
+/*Buy
+void Market::Buy(Hero&hero){
+	int ch;
+	cout<<"What do you want to buy?"<<endl;
+	printOptionsForSelling();
+	cin>>ch;
+	switch(ch){
+		case 1:printWeapons();
+				break;
+		case 2:printArmors();
+				break;
+	}
+}
+*/
 
 /*Sell*/
 void Market::Sell(Hero& hero){
-	char ch,ch1;
+	int ch,ch1;
 	cout<<"What do you want to sell?"<<endl;
 	printOptionsForSelling();
 	cin>>ch;
 	int Money;
 	switch(ch){
-		case '1':hero.inventory.printWeapons();
+		case 1:hero.inventory.printWeapons();
 				cout<<"Which weapon you want to sell?"<<endl;
 				cout<<"press q to quit"<<endl;
 				cin>>ch1;
@@ -127,7 +141,7 @@ void Market::Sell(Hero& hero){
 				hero.inventory.deleteWeapon(ch1,Money);
 				hero.increaseMoney(Money/2);
 				break;
-		case '2':hero.inventory.printArmors();
+		case 2:hero.inventory.printArmors();
 				cout<<"Which armor you want to sell?"<<endl;
 				cout<<"press q to quit"<<endl;
 				cin>>ch1;
@@ -136,7 +150,7 @@ void Market::Sell(Hero& hero){
 				hero.inventory.deleteArmor(ch1,Money);
 				hero.increaseMoney(Money/2);
 				break;
-		case '3':hero.inventory.printPotions();
+		case 3:hero.inventory.printPotions();
 				cout<<"Which Potion you want to sell?"<<endl;
 				cout<<"press q to quit"<<endl;
 				cin>>ch1;
@@ -145,7 +159,7 @@ void Market::Sell(Hero& hero){
 				hero.inventory.deletePotion(ch1,Money);
 				hero.increaseMoney(Money/2);
 				break;
-		case '4':hero.inventory.printSpells();
+		case 4:hero.inventory.printSpells();
 				cout<<"Which spell you want to sell?"<<endl;
 				cout<<"press q to quit"<<endl;
 				cin>>ch1;
@@ -155,7 +169,7 @@ void Market::Sell(Hero& hero){
 				hero.increaseMoney(Money/2);
 				break;
 		case 'q':return;		
-	}
+	}	
 }
 
 /*printOptions*/
