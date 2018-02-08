@@ -8,6 +8,8 @@
 #include "Weapon.hpp"
 #include "Armor.hpp"
 #include "Potion.hpp"
+#include "Hero.hpp"
+
 using namespace std;
 
 class Market{
@@ -36,7 +38,9 @@ class Market{
 		void addSpell(string Name,int MinLevel);
 		void checkMarket(void);
 		void menuMarket(Hero**&heroes,int arraySize);
-		void printOptions(void);
+		void printOptionsForMenu(void);
+		void printOptionsForSelling(void);
+		void Sell(Hero& hero);
 };
 
 #endif

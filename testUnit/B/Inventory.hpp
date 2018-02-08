@@ -7,7 +7,6 @@
 #include "Potion.hpp"
 #include <list>
 using namespace std;
-
 class Inventory{
 	private:
 		list<Spell> Spells;

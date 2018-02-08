@@ -1,10 +1,12 @@
 #ifndef HERO
 #define HERO
 
-#include "../Living.hpp"
-#include "../../Spells/Spell.hpp"
+#include "Living.hpp"
+//#include "../../Spells/Spell.hpp"
 #include "Inventory.hpp"
 #include <list>
+#include <iostream>
+using namespace std;
 
 class Hero:public Living{
 	private:
@@ -41,7 +43,7 @@ class Hero:public Living{
 		void icreaseStrenght(int strengthToIncrease) { strength += strengthToIncrease; }
 		void increaseDexterity(int dexterityToIncrease) { dexterity += dexterityToIncrease; }
 		void increaseAgility(int agilityToIncrease) { agility += agilityToIncrease; }
-		virtual void increaseAttributes()=0;
+		//virtual void increaseAttributes()=0;
 };
 
 #endif

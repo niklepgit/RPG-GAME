@@ -8,6 +8,8 @@
 #include "Weapon.hpp"
 #include "Armor.hpp"
 #include "Potion.hpp"
+#include "Hero.hpp"
+
 using namespace std;
 
 class Market{

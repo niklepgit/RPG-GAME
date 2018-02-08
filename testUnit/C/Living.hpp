@@ -2,13 +2,13 @@
 #define LIVING
 
 #include <string>
-
+using namespace std;
 class Living{
 	protected:
 		string name;
 		int level;
 		int currHealthPower;
-		int healthPowerMax;
+		int maxHealthPower;
 
 	public:
 		/*constructor*/
