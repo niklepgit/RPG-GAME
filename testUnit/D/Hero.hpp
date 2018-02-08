@@ -1,9 +1,8 @@
 #ifndef HERO
 #define HERO
 
-#include "../Living.hpp"
-#include "../../Spells/Spell.hpp"
-#include "Inventory.hpp"
+#include "Living.hpp"
+//#include "Inventory.hpp"
 #include <list>
 
 class Hero:public Living{
@@ -16,7 +15,7 @@ class Hero:public Living{
 		int money;
 		int experience;
 		
-		Inventory inventory;
+		//Inventory inventory;
 
 	public:
 		/*constructor*/
@@ -30,6 +29,7 @@ class Hero:public Living{
 		int getMoney() const { return money; }
 		int getExperience() const { return experience; }
 		void printHero() const;
+		void printSkills() const;
 
 		/*Mutators*/
 		void levelUp();
@@ -38,7 +38,7 @@ class Hero:public Living{
 		void reduceMoney(int moneyLosted) { money -= moneyLosted; }
 		void increaseMoney(int moneyGained) { money += moneyGained; }
 		void increaseMagicPower(int);
-		void icreaseStrenght(int strengthToIncrease) { strength += strengthToIncrease; }
+		void increaseStrength(int strengthToIncrease) { strength += strengthToIncrease; }
 		void increaseDexterity(int dexterityToIncrease) { dexterity += dexterityToIncrease; }
 		void increaseAgility(int agilityToIncrease) { agility += agilityToIncrease; }
 		virtual void increaseAttributes()=0;

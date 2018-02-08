@@ -12,6 +12,12 @@ void Hero::printHero()const{
 		 << "MP: " << currMagicPower << "/" << maxMagicPower << endl;
 }
 
+void Hero::printSkills()const{
+	cout << "Strength: " << getStrength() << endl
+		 << "Dexterity: " << getDexterity() << endl
+		 << "Agility: " << getAgility() << endl;
+}
+
 void Hero::increaseMagicPower(int magicPowerToIncrease){
 	if (currMagicPower + magicPowerToIncrease > maxMagicPower){
 		currMagicPower = maxMagicPower;
@@ -26,4 +32,5 @@ void Hero::levelUp(){
 	maxMagicPower += 10;
 	setCurrHealthPower();
 	currMagicPower = maxMagicPower;
+	increaseAttributes();
 }

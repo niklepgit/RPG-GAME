@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <cstdio>
 #include "Spell.hpp"
 #include "Weapon.hpp"
 #include "Armor.hpp"

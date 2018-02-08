@@ -1,6 +1,7 @@
 #ifndef SPELL
 #define SPELL
 #include <iostream>
+#include <cstdlib>
 #include <string>
 using namespace std;
 
