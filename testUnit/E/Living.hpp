@@ -2,6 +2,9 @@
 #define LIVING
 
 #include <string>
+#include <iostream>
+#include <cstdlib>
+using namespace std;
 
 class Living{
 	protected:
@@ -22,6 +25,7 @@ class Living{
 		void healthPowerIncrease(int);
 		void setMaxHealthPower();
 		void setCurrHealthPower();
+		virtual void increaseAttributes()=0;
 };
 
 #endif
