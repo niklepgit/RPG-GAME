@@ -13,6 +13,6 @@ class Item{
 	public:
 		/*Constructor*/
 		Item(string Name,int MinLevel);
-
+		int getValue() {return value;}
 };
 #endif

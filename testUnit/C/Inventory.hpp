@@ -26,6 +26,12 @@ class Inventory{
 		void printArmors(void);
 		void printPotions(void);
 
+		/*delete*/
+		void deleteWeapon(int number,int&Money);
+		void deleteArmor(int number,int&Money);
+		void deletePotion(int number,int&Money);
+		void deleteSpell(int number,int&Money);
+
 		/*Others*/
 		void checkInventory(void);
 

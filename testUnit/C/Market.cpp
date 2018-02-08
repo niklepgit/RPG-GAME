@@ -1,4 +1,5 @@
 #include "Market.hpp"
+#include <cstdlib>
 
 /*addWeapon*/
 void Market::addWeapon(string Name,int MinLevel){
@@ -85,14 +86,14 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 	char ch,ch1;
 	printOptionsForMenu();
 	int i;
-	ch=getchar();
+	cin>>ch;
 	switch(ch){
 		case '1':cout<<"For which Hero you want to buy?"<<endl;
 				 for(i=0;i<numberOfHeroes;i++){
 				 	cout<<i+1<<":"<<endl;
 				 	heroes[i]->printHero();
 				 }
-				 ch1=getchar();
+				 cin>>ch1;
 				 //call buy
 				 break;
 		case '2':cout<<"For which Hero you want to sell?"<<endl;
@@ -100,9 +101,8 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 				 	cout<<i+1<<":"<<endl;
 				 	heroes[i]->printHero();
 				 }
-				 ch1=getchar();
-				 //call sell
-				 Sell(*heroes[atoi(ch1)]);
+				 cin>>ch1;
+				 Sell(*heroes[ch1]);
 				 break;
 
 		case 'q':return;
@@ -112,18 +112,47 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 
 /*Sell*/
 void Market::Sell(Hero& hero){
-	char ch;
+	char ch,ch1;
 	cout<<"What do you want to sell?"<<endl;
 	printOptionsForSelling();
-	ch=getchar();
+	cin>>ch;
+	int Money;
 	switch(ch){
 		case '1':hero.inventory.printWeapons();
+				cout<<"Which weapon you want to sell?"<<endl;
+				cout<<"press q to quit"<<endl;
+				cin>>ch1;
+				if(ch1=='q')
+					return;
+				hero.inventory.deleteWeapon(ch1,Money);
+				hero.increaseMoney(Money/2);
 				break;
 		case '2':hero.inventory.printArmors();
+				cout<<"Which armor you want to sell?"<<endl;
+				cout<<"press q to quit"<<endl;
+				cin>>ch1;
+				if(ch1=='q')
+					return;
+				hero.inventory.deleteArmor(ch1,Money);
+				hero.increaseMoney(Money/2);
 				break;
 		case '3':hero.inventory.printPotions();
+				cout<<"Which Potion you want to sell?"<<endl;
+				cout<<"press q to quit"<<endl;
+				cin>>ch1;
+				if(ch1=='q')
+					return;
+				hero.inventory.deletePotion(ch1,Money);
+				hero.increaseMoney(Money/2);
 				break;
 		case '4':hero.inventory.printSpells();
+				cout<<"Which spell you want to sell?"<<endl;
+				cout<<"press q to quit"<<endl;
+				cin>>ch1;
+				if(ch1=='q')
+					return;
+				hero.inventory.deleteSpell(ch1,Money);
+				hero.increaseMoney(Money/2);
 				break;
 		case 'q':return;		
 	}

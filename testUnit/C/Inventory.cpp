@@ -2,6 +2,65 @@
 #include <iostream>
 using namespace std;
 
+/*deleteArmor*/
+void Inventory::deleteArmor(int number,int&Money){
+	list<Armor>::iterator it;
+	int counter=1;
+	for(it=Armors.begin();it!=Armors.end();it++){
+		if(counter==number){
+			Money=it->getValue();
+			it=Armors.erase(it);
+			it--;
+			break;
+		}
+		counter++;
+	}
+}
+
+/*deleteSpell*/
+void Inventory::deleteSpell(int number,int&Money){
+	list<Spell>::iterator it;
+	int counter=1;
+	for(it=Spells.begin();it!=Spells.end();it++){
+		if(counter==number){
+			Money=it->getValue();
+			it=Spells.erase(it);
+			it--;
+			break;
+		}
+		counter++;
+	}
+}
+/*deleteWeapon*/
+void Inventory::deleteWeapon(int number,int&Money){
+	list<Weapon>::iterator it;
+	int counter=1;
+	for(it=Weapons.begin();it!=Weapons.end();it++){
+		if(counter==number){
+			Money=it->getValue();
+			it=Weapons.erase(it);
+			it--;
+			break;
+		}
+		counter++;
+	}
+}
+
+/*deletePotion*/
+void Inventory::deletePotion(int number,int&Money){
+	list<Potion>::iterator it;
+	int counter=1;
+	for(it=Potions.begin();it!=Potions.end();it++){
+		if(counter==number){
+			Money=it->getValue();
+			it=Potions.erase(it);
+			it--;
+			break;
+		}
+		counter++;
+	}
+}
+
 /*printSpells*/
 void Inventory::printSpells(void){
 	int i=0;
