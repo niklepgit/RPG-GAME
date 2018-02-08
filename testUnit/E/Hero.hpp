@@ -1,9 +1,8 @@
 #ifndef HERO
 #define HERO
 
-#include "../Living.hpp"
-#include "../../Spells/Spell.hpp"
-#include "Inventory.hpp"
+#include "Living.hpp"
+//#include "Inventory.hpp"
 #include <list>
 
 class Hero:public Living{
@@ -16,7 +15,7 @@ class Hero:public Living{
 		int money;
 		int experience;
 		
-		Inventory inventory;
+		//Inventory inventory;
 
 	public:
 		/*constructor*/
