@@ -1,3 +1,4 @@
+
 #include "Armor.hpp"
 
 /*Constructor*/

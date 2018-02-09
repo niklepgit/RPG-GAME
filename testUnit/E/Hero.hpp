@@ -2,7 +2,7 @@
 #define HERO
 
 #include "Living.hpp"
-//#include "Inventory.hpp"
+#include "Inventory.hpp"
 #include <list>
 
 class Hero:public Living{
@@ -14,8 +14,8 @@ class Hero:public Living{
 		int agility;
 		int money;
 		int experience;
-		
-		//Inventory inventory;
+	public:
+		Inventory inventory;
 
 	public:
 		/*constructor*/
@@ -41,7 +41,7 @@ class Hero:public Living{
 		void increaseStrength(int strengthToIncrease) { strength += strengthToIncrease; }
 		void increaseDexterity(int dexterityToIncrease) { dexterity += dexterityToIncrease; }
 		void increaseAgility(int agilityToIncrease) { agility += agilityToIncrease; }
-		virtual void increaseAttributes()=0;
+		virtual void increaseAttributes(){}
 };
 
 #endif
