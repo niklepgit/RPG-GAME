@@ -9,10 +9,9 @@ class Monster:public Living{
 		int maxDamageRange;
 		int defense;
 		int probability;
-		int level;
 	public:
 		/*Constructor*/
-		Monster(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability);
+		Monster(string Name,int Level);
 
 		/*Accessors*/
 		int getDefense() const { return defense; }

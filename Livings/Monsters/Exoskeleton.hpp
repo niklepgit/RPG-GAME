@@ -8,8 +8,10 @@ class Exoskeleton:public Monster{
 
 	public:
 		/*Constructor*/
-		Exoskeleton(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability)
-						   :Monster(Name,MinDamageRange,MaxDamageRange,Defense,Probability){}
+		Exoskeleton(string Name,int Level)
+				   :Monster(Name,Level){
+	    defense += 5;
+		}
 
 };
 

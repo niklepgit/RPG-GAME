@@ -8,8 +8,10 @@ class Spirit:public Monster{
 
 	public:
 		/*Constructor*/
-		Spirit(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability)
-						   :Monster(Name,MinDamageRange,MaxDamageRange,Defense,Probability){}
+		Spirit(string Name,int Level)
+			:Monster(Name,Level){
+		probability += 5;		
+		}
 };
 
 #endif

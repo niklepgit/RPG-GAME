@@ -8,8 +8,10 @@ class Dragon:public Monster{
 	
 	public:
 		/*Constructor*/
-		Dragon(string Name,int MinDamageRange,int MaxDamageRange,int Defense,int Probability)
-						   :Monster(Name,MinDamageRange,MaxDamageRange,Defense,Probability){}
+		Dragon(string Name,int Level)
+			 :Monster(Name,Level){
+		maxDamageRange += 5;	 	
+		}
 
 };
 
