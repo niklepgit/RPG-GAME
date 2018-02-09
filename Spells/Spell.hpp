@@ -11,6 +11,7 @@ class Spell{
 		int minDamage;
 		int maxDamage;
 		int magicPower;
+		int inUse;
 
 	public:
 		/*Constructor*/
@@ -18,6 +19,7 @@ class Spell{
 		/*Others*/
 		void printSpell(void);
 		int getValue() {return value;}
+		void useSpell();
 		//function to decrease the magicPower from Hero
 		//function to check the dexterity
 		//fuck lalala
