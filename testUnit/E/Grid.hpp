@@ -29,6 +29,9 @@ public:
 
 	/*getchar without enter*/
 	int getchar_silent();
+
+	/*nextToMarket*/
+	int nextToMarket();
 };
 
 #endif
