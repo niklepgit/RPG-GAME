@@ -154,3 +154,10 @@ int Grid::getchar_silent(){  /*I took it ready*/
 
 	return ch;	
 }
+
+/*nextToMarket*/
+int Grid::nextToMarket(){
+	if ((map[xLoc-1][yLoc] == 'M') || (map[xLoc][yLoc-1] == 'M') || (map[xLoc+1][yLoc] == 'M') || (map[xLoc][yLoc+1] == 'M'))
+		return 1;
+	return 0;
+}

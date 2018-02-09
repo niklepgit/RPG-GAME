@@ -15,7 +15,7 @@ void Hero::printHero()const{
 void Hero::printSkills()const{
 	cout << "Strength: " << getStrength() << endl
 		 << "Dexterity: " << getDexterity() << endl
-		 << "Agility: " << getAgility() << endl;
+		 << "Agility: " << getAgility() << endl << endl;
 }
 
 void Hero::increaseMagicPower(int magicPowerToIncrease){
