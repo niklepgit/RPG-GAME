@@ -107,3 +107,6 @@ Chaos-Rod			10
 Power-Staff			10
 Shining-Staff		10
 Faerie-Staff		10
+
+
+
