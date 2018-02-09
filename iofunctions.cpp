@@ -1,4 +1,4 @@
-#include "iofunctions.cpp"
+#include "iofunctions.hpp"
 #include <iostream>
 
 using namespace std;

@@ -17,6 +17,7 @@ Grid::Grid(){
 
     xMax = w.ws_row;
     yMax = w.ws_col;
+    cout << xMax << ' ' << yMax << endl;
 
     /*Allocate memory for grid*/
     map = new char*[w.ws_row];
