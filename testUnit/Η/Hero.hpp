@@ -17,6 +17,9 @@ class Hero:public Living{
 		int money;
 		int experience;
 	public:
+		Weapon *Rhand;
+		Weapon *Lhand;
+		Armor *MyArmor;
 		Inventory inventory;
 
 	public:
@@ -33,6 +36,7 @@ class Hero:public Living{
 		void printHero() const;
 		void printSkills() const;
 
+
 		/*Mutators*/
 		void levelUp();
 		void reduceMagicPower(int magicPowerToSub) { currMagicPower -= magicPowerToSub; }
@@ -44,6 +48,9 @@ class Hero:public Living{
 		void increaseDexterity(int dexterityToIncrease) { dexterity += dexterityToIncrease; }
 		void increaseAgility(int agilityToIncrease) { agility += agilityToIncrease; }
 		virtual void increaseAttributes(){}
+
+		void weaponEquip(int position);
+		void armorEquip(int position);
 };
 
 #endif

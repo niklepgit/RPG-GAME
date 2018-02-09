@@ -2,7 +2,7 @@
 
 /*Constructor*/
 Weapon::Weapon(string Name,int MinLevel):Item(Name,MinLevel),
-		       hands(rand()%(2-1+1)+1),inUse(0){
+		       hands(rand()%(2-1+1)+1){
 
 		switch(MinLevel){
 

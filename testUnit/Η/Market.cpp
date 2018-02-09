@@ -252,8 +252,8 @@ void Market::Sell(Hero& hero){
 				cin>>ch1;
 				if(ch1=='q')
 					return;
-				hero.inventory.deleteWeapon(ch1,Money);
-				hero.reduceMoney(Money);
+				hero.inventory.deleteWeapon(ch1,Money,hero);
+				hero.increaseMoney(Money/2);
 				break;
 		case 2:hero.inventory.printArmors();
 				cout<<"Which armor you want to sell?"<<endl;
@@ -262,7 +262,8 @@ void Market::Sell(Hero& hero){
 				if(ch1=='q')
 					return;
 				hero.inventory.deleteArmor(ch1,Money);
-				hero.reduceMoney(Money);
+				hero.MyArmor=nullptr;
+				hero.increaseMoney(Money/2);
 				break;
 		case 3:hero.inventory.printPotions();
 				cout<<"Which Potion you want to sell?"<<endl;
@@ -271,7 +272,7 @@ void Market::Sell(Hero& hero){
 				if(ch1=='q')
 					return;
 				hero.inventory.deletePotion(ch1,Money);
-				hero.reduceMoney(Money);
+				hero.increaseMoney(Money/2);
 				break;
 		case 4:hero.inventory.printSpells();
 				cout<<"Which spell you want to sell?"<<endl;
@@ -280,7 +281,7 @@ void Market::Sell(Hero& hero){
 				if(ch1=='q')
 					return;
 				hero.inventory.deleteSpell(ch1,Money);
-				hero.reduceMoney(Money);
+				hero.increaseMoney(Money/2);
 				break;
 		case 0:return;		
 	}	

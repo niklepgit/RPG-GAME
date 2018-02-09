@@ -139,19 +139,19 @@ Grid* g = new Grid;
 				cout << "For which hero you want to see inventory?" << endl;
 				switch(getchar()){
 					case '1':
-						Heroes[0]->inventory.checkInventory();
+						Heroes[0]->inventory.checkInventory(*Heroes[0]);
 						getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
 					case '2':
-						Heroes[1]->inventory.checkInventory();
+						Heroes[1]->inventory.checkInventory(*Heroes[1]);
 						getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
 					case '3':
-						Heroes[2]->inventory.checkInventory();
+						Heroes[2]->inventory.checkInventory(*Heroes[2]);
 						getchar();
 						cout << "Press enter to continue";
 						getchar();

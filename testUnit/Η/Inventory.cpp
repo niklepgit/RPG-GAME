@@ -1,4 +1,5 @@
 #include "Inventory.hpp"
+#include "Hero.hpp"
 #include <iostream>
 using namespace std;
 
@@ -32,11 +33,15 @@ void Inventory::deleteSpell(int number,int&Money){
 	}
 }
 /*deleteWeapon*/
-void Inventory::deleteWeapon(int number,int&Money){
+void Inventory::deleteWeapon(int number,int&Money,Hero& hero){
 	list<Weapon>::iterator it;
 	int counter=1;
 	for(it=Weapons.begin();it!=Weapons.end();it++){
 		if(counter==number){
+			if(hero.Lhand==&(*it))
+				hero.Lhand=nullptr;
+			if(hero.Rhand==&(*it))
+				hero.Rhand=nullptr;
 			Money=it->getValue();
 			it=Weapons.erase(it);
 			it--;
@@ -110,11 +115,43 @@ void Inventory::printPotions(void){
 }
 
 /*checkInventory*/
-void Inventory::checkInventory(void){
-	printWeapons();
-	printArmors();
-	printSpells();
-	printPotions();
+void Inventory::checkInventory(Hero&hero){
+	int ch,ch1;
+
+	cout<<"What do you want to see?"<<endl
+		<<"1)Weapons"<<endl
+		<<"2)Armors"<<endl
+		<<"3)Potions"<<endl
+		<<"4)Spells"<<endl;
+		cin>>ch;
+	switch(ch){
+		case 1:printWeapons();
+			   cout<<"If you  want to equip give weapon's number else 0 to exit."<<endl;
+			   cin>>ch1;
+			   if(ch1==0)
+			    break;
+			   hero.weaponEquip(ch1);
+			   break;
+		case 2:printArmors();
+			   cout<<"If you  want to equip give armor's number else 0 to exit."<<endl;
+			   cin>>ch1;
+			   if(ch1==0)
+			   	break;
+			   hero.armorEquip(ch1);
+			   break;
+		case 3:printPotions();
+			   cout<<"If you want to use a Potion give it's number else 0 to exit."<<endl;
+			   cin>>ch1;
+			   if(ch1==0)
+			   	break;
+			   //call use potion
+			   break;
+	    case 4:printSpells();
+	    	   break;
+	    default:cout<<"Wrong option try again."<<endl;
+	    //check if you have to use break;
+	}
+
 }
 
 

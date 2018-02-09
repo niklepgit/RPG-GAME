@@ -6,6 +6,8 @@
 #include "Armor.hpp"
 #include "Potion.hpp"
 
+class Hero;
+
 /*
 #include "../../Spells/Spell.hpp"
 #include "../../Items/Weapon.hpp"
@@ -16,7 +18,7 @@
 #include <list>
 using namespace std;
 class Inventory{
-	private:
+	public:
 		list<Spell> Spells;
 		list<Weapon> Weapons;
 		list<Armor> Armors;
@@ -35,13 +37,13 @@ class Inventory{
 		void printPotions(void);
 
 		/*delete*/
-		void deleteWeapon(int number,int&Money);
+		void deleteWeapon(int number,int&Money,Hero&hero);
 		void deleteArmor(int number,int&Money);
 		void deletePotion(int number,int&Money);
 		void deleteSpell(int number,int&Money);
 
 		/*Others*/
-		void checkInventory(void);
+		void checkInventory(Hero& hero);
 
 		void addWeapon(Weapon weapon);
 		void addArmor(Armor armor);
