@@ -10,7 +10,6 @@ El-Dorado			1
 Tri-Rod				1
 Wicked-Wand			1
 Nemesis-Rod			1
-
 Apocalypse			2
 Slowstrike			2
 Excalibur			2
@@ -28,7 +27,6 @@ Punisher			2
 Calcite-Staff		2
 Bizarre-Staff		2
 Staff-of-Thorns		2
-
 Reticent-Staff		3
 Darkness-Staff		3
 Monk-Staff			3
@@ -41,7 +39,6 @@ Break-Rod			3
 Sidewinder			3
 Nightmare			3
 Mage-Masher			3
-
 Belladonna-Wand		4
 Lullaby-Rod			4
 Rod-of-Silence		4
@@ -53,7 +50,6 @@ Double-Edge			4
 Razzmatazz			4
 Deathbringer		4
 Stunning-Steel		4
-
 Basilisk-Steel		5
 Poison-Steel		5
 Lullaby-Steel		5
@@ -65,7 +61,6 @@ Ductile-Rod			5
 Sorcery-Rod  		5
 Full-Metal-Rod		5
 Rune-Rod			5
-
 Enchanted-Rod 		6
 Rod-of-Striking		6
 Spiked-Rod 			6
@@ -74,27 +69,23 @@ Twilight-Steel		6
 Hunter's-Sword      6
 Flametongue			6
 Ice-Brand			6
-
 Lightning-Steel		7
 Force-Saber			7
 Baroque-Sword		7
 Sorcery-Sword		7
-
 Nightbringer		8
 Knight-Sword		8
 Wizard-Sword		8
 Soldier's-Saber		8
 Rune-Steel			8
 Enchanted-Sword		8
-
 Fencing-Saber		9
 Slasher				9	
 Nirvana				9
 Herding-Staff		9
 Arc-Arcana			9
 Abraxas				9
-Heavenly-Axis		9
-			
+Heavenly-Axis		9	
 Judgment			10
 Seraphim-Rod		10
 Rod-of-Roses		10

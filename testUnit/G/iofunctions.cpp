@@ -1,16 +1,13 @@
 #include "iofunctions.hpp"
-#include <iostream>
-
-using namespace std;
 
 /*read_weapon*/
 void readWeapon(int& stop,fstream& weapons_txt,string& Name,int& MinLevel){
 
 	weapons_txt>>Name;
 	weapons_txt>>MinLevel;
-
-	if(weapons_txt.eof())
+	if(weapons_txt.eof()){
 		stop=1;
+	}
 }
 
 /*read_armor*/
