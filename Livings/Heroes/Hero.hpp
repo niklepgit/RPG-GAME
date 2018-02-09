@@ -15,7 +15,7 @@ class Hero:public Living{
 		int agility;
 		int money;
 		int experience;
-		
+	public:
 		Inventory inventory;
 
 	public:

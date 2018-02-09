@@ -2,7 +2,7 @@
 
 /*Constructor*/
 Spell::Spell(string Name,int MinLevel)
-		:name(Name),minLevel(MinLevel){
+		:name(Name),minLevel(MinLevel),inUse(0){
 
 	switch(MinLevel){
 
@@ -68,4 +68,9 @@ void Spell::printSpell(void){
 	cout<<"MinDamage:"<<minDamage<<endl;
 	cout<<"MaxDamage:"<<maxDamage<<endl;
 	cout<<"MagicPower:"<<magicPower<<endl;
+}
+
+/*useSpell*/
+void Spell::useSpell(Hero&hero){
+	hero.reduceMagicPower(magicPower);
 }
