@@ -35,10 +35,17 @@ class Inventory{
 		/*Others*/
 		void checkInventory(void);
 
+		void addWeapon(Weapon weapon);
+		void addArmor(Armor armor);
+		void addPotion(Potion potion);
+		void addSpell(Spell spell);
+
+		/*
 		void addWeapon(string Name,int MinLevel);
 		void addArmor(string Name,int MinLevel);
 		void addPotion(string Name,int MinLevel,string WtIncrease);
 		void addSpell(string Name,int MinLevel);
+		*/
 };
 
 #endif

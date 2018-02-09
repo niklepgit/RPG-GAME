@@ -41,6 +41,11 @@ class Market{
 		void printOptionsForMenu(void);
 		void printOptionsForSelling(void);
 		void Sell(Hero& hero);
+		void Buy(Hero&hero);
+		Armor buyArmor(int position,int& Money);
+		Weapon buyWeapon(int position,int& Money);
+		Potion buyPotion(int position,int& Money);
+		Spell buySpell(int position,int& Money);
 };
 
 #endif

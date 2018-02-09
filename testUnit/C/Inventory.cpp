@@ -117,26 +117,49 @@ void Inventory::checkInventory(void){
 	printPotions();
 }
 
+
 /*addWeapon*/
+void Inventory::addWeapon(Weapon weapon){
+	Weapons.push_back(weapon);
+}
+
+/*addArmor*/
+void Inventory::addArmor(Armor armor){
+	Armors.push_back(armor);
+}
+
+/*addPotion*/
+void Inventory::addPotion(Potion potion){
+	Potions.push_back(potion);
+}
+
+/*addSpell*/
+void Inventory::addSpell(Spell spell){
+	Spells.push_back(spell);
+}
+
+
+/*addWeapon
 void Inventory::addWeapon(string Name,int MinLevel){
 	Weapon weapon(Name,MinLevel);
 	Weapons.push_back(weapon);
 }
 
-/*addArmor*/
+/*addArmor
 void Inventory::addArmor(string Name,int MinLevel){
 	Armor armor(Name,MinLevel);
 	Armors.push_back(armor);
 }
 
-/*addPotion*/
+/*addPotion
 void Inventory::addPotion(string Name,int MinLevel,string WtIncrease){
 	Potion potion(Name,MinLevel,WtIncrease);
 	Potions.push_back(potion);
 }
 
-/*addSpell*/
+/*addSpell
 void Inventory::addSpell(string Name,int MinLevel){
 	Spell spell(Name,MinLevel);
 	Spells.push_back(spell);
 }
+*/
