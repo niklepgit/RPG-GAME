@@ -1,5 +1,5 @@
 #include "Spell.hpp"
-
+#include "Hero.hpp"
 
 /*Constructor*/
 Spell::Spell(string Name,int MinLevel)
@@ -71,8 +71,17 @@ void Spell::printSpell(void){
 	cout<<"MagicPower:"<<magicPower<<endl;
 }
 
-/*useSpell
-void Spell::useSpell(Hero&hero){
+/*castSpell*/
+void Spell::castSpell(Hero&hero){
 	hero.reduceMagicPower(magicPower);
 }
-*/
+
+
+/*generateHit*/
+int Spell::generateHit(int Dexterity){
+	int hit;
+	if((hit=rand()%((maxDamage - minDamage) + 1) + minDamage+Dexterity)>maxDamage)
+		return maxDamage;
+	else
+		return hit;
+}

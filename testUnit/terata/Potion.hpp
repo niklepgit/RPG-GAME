@@ -2,6 +2,7 @@
 #define POTION
 
 #include "Item.hpp"
+class Hero;
 
 class Potion:public Item{
 	private:
@@ -11,7 +12,7 @@ class Potion:public Item{
 	public:
 		/*Constructor*/
 		Potion(string Name,int MinLevel,string WtIncrease);
-		//void usePotion(Hero& hero);
+		void usePotion(Hero& hero);
 		void printPotion(void);
 		//function that increases a valid data member
 		//in classes Warrior,Sorcerer and Paladin

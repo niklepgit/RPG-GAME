@@ -27,10 +27,20 @@ void Living::healthPowerIncrease(int healthPowerToIncrease){
 	currHealthPower += healthPowerToIncrease;
 }
 
+/*setMaxHealthPower*/
 void Living::setMaxHealthPower(){
 	maxHealthPower += 10;
 }
 
+/*setCurrHealthPower*/
 void Living::setCurrHealthPower(){
 	currHealthPower = maxHealthPower;
+}
+
+/*regenerateHealthPowerAfterRound*/
+void Living::regenerateHealthPowerAfterRound(int round){
+	if(currHealthPower+round*2<maxHealthPower)
+		currHealthPower += round*2;
+	else
+		currHealthPower = maxHealthPower; //attention
 }

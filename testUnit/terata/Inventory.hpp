@@ -43,7 +43,7 @@ class Inventory{
 		void deleteSpell(int number,int&Money);
 
 		/*Others*/
-		int checkInventory(Hero& hero);
+		int checkInventory(Hero& hero,int inBattle);
 
 		void addWeapon(Weapon weapon);
 		void addArmor(Armor armor);

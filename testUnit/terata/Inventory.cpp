@@ -115,7 +115,7 @@ void Inventory::printPotions(void){
 }
 
 /*checkInventory*/
-int Inventory::checkInventory(Hero&hero){
+int Inventory::checkInventory(Hero&hero,int inBattle){
 	int ch,ch1;
 
 	cout<<"What do you want to see?"<<endl
@@ -144,15 +144,18 @@ int Inventory::checkInventory(Hero&hero){
 			   cin>>ch1;
 			   if(ch1==0)
 			   	break;
-			   //call use potion
+			   hero.findAndUsePotion(ch1); //find and use Potion
 			   return 1;
 		case 4:printSpells();
-			   cout<<"If you want to cast a Spell give it's number else 0 to exit."<<endl;
-			   cin>>ch1;
-			   if(ch1==0)
-			   	break;
-			   //cast spell
-	    	   return 1;
+			   if(inBattle){
+				   cout<<"If you want to cast a Spell give it's number else 0 to exit."<<endl;
+				   cin>>ch1;
+				   if(ch1==0)
+				   		break;
+				   //cast spell
+				   hero.spellEquip(ch1);
+				}
+	    	   break;
 	    default:cout<<"Wrong option try again."<<endl;
 	    //check if you have to use break;
 	}

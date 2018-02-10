@@ -28,6 +28,7 @@ class Living{
 		void healthPowerIncrease(int);
 		void setMaxHealthPower();
 		void setCurrHealthPower();
+		void regenerateHealthPowerAfterRound(int round);
 };
 
 #endif

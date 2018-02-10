@@ -1,9 +1,11 @@
 #include "Hero.hpp"
+#include "Potion.hpp"
 
 /* Constructor */
 Hero::Hero(string Name,int Strength,int Dexterity,int Agility)
 		  :Living(Name),strength(Strength),dexterity(Dexterity),
-		  agility(Agility),currMagicPower(100),maxMagicPower(100),money(0),experience(0),Lhand(nullptr),Rhand(nullptr),MyArmor(nullptr){}
+		  agility(Agility),currMagicPower(100),maxMagicPower(100),money(0),experience(0),Lhand(nullptr),
+		  Rhand(nullptr),MyArmor(nullptr),MySpell(nullptr){}
 
 /*printHero*/
 void Hero::printHero()const{
@@ -87,11 +89,40 @@ void Hero::weaponEquip(int position){
 	}
 }
 
+/*findPotion*/
+void Hero::findAndUsePotion(int position){
+	list<Potion>::iterator it;
+	int counter=1;
+	for(it=inventory.Potions.begin();it!=inventory.Potions.end();it++){
+		if(counter==position){
+			it->usePotion(*this);
+			it=inventory.Potions.erase(it);
+			it--;
+			return;
+		}
+		counter++;
+	}
+}
+
+/*spellEquip*/
+void Hero::spellEquip(int position){
+	list<Spell>::iterator it;
+	int counter=1;
+	for(it=inventory.Spells.begin();it!=inventory.Spells.end();it++){
+		if(counter==position){
+			MySpell=&(*it);
+			return;
+		}
+		counter++;
+	}
+}
+
+
+
 /*armorEquip*/
 void Hero::armorEquip(int position){
 	list<Armor>::iterator it;
 	int counter=1;
-	int Hands;
 	for(it=inventory.Armors.begin();it!=inventory.Armors.end();it++){
 		if(counter==position){
 			MyArmor=&(*it);
@@ -123,4 +154,12 @@ void Hero::reduceMoneyAfterLosing(void){
 /*regenerateHealthPowerAfterLosing*/
 void Hero::regenerateHealthPowerAfterLosing(void){
 	currHealthPower = maxHealthPower/2; //almost the half
+}
+
+/*regenerateMagicPowerAfterRound*/
+void Hero::regenerateMagicPowerAfterRound(int round){
+	if(currMagicPower+round*2<maxMagicPower)
+		currMagicPower += round*2;
+	else
+		currMagicPower = maxMagicPower; //attention
 }

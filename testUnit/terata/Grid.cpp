@@ -123,7 +123,7 @@ char Grid::getmv(){
 			break;	
 	}
 	if(choice=='w' || choice=='s'|| choice=='a'|| choice=='d')
-		if (rand()%100 < 10)
+		if (rand()%100 < 5)
 			choice = 'b';
 	return choice;
 }

@@ -21,6 +21,7 @@ class Hero:public Living{
 		Weapon *Rhand;
 		Weapon *Lhand;
 		Armor *MyArmor;
+		Spell *MySpell;
 		Inventory inventory;
 
 	public:
@@ -55,6 +56,10 @@ class Hero:public Living{
 		void attackToHero(int DamageValue);
 		void weaponEquip(int position);
 		void armorEquip(int position);
+		void regenerateMagicPowerAfterRound(int round);
+
+		void findAndUsePotion(int position);
+		void spellEquip(int position);
 };
 
 #endif

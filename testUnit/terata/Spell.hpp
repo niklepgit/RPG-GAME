@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 using namespace std;
+class Hero;
 
 class Spell{
 	private:
@@ -21,7 +22,12 @@ class Spell{
 		/*Others*/
 		void printSpell(void);
 		int getValue() {return value;}
-		//void useSpell();
+		int generateHit(int Dexterity);
+
+		void castSpell(Hero& hero);
+		virtual void castFireSpell(){};
+		virtual void castIceSpell(){};
+		virtual void castLightingSpell(){};
 		//function to decrease the magicPower from Hero
 		//function to check the dexterity
 		//fuck lalala

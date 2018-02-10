@@ -42,7 +42,8 @@ int heroesAreDead(Hero**&heroes,int NumberOfHereos);
 void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes);
 void destroyMonsters(Monster**& monsters,int NumberOfHeroes);
 void heroesAfterLosing(Hero**& heroes,int NumberOfHeroes);
-
+void heroesAfterRound(Hero**&heroes,int NumberOfHeroes,int round);
+void monstersAfterRound(Monster**&monsters,int NumberOfHeroes,int round);
 
 int main(void){
 
@@ -127,6 +128,7 @@ int main(void){
 /*Grid*/
 Grid* g = new Grid;
 	char keyInput;
+	int inBattle=0;
 	do {
 
 		g->displayMap();
@@ -150,19 +152,19 @@ Grid* g = new Grid;
 				cout << "For which hero you want to see inventory?" << endl;
 				switch(getchar()){
 					case '1':
-						Heroes[0]->inventory.checkInventory(*Heroes[0]);
+						Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
 						getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
 					case '2':
-						Heroes[1]->inventory.checkInventory(*Heroes[1]);
+						Heroes[1]->inventory.checkInventory(*Heroes[1],inBattle);
 						getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
 					case '3':
-						Heroes[2]->inventory.checkInventory(*Heroes[2]);
+						Heroes[2]->inventory.checkInventory(*Heroes[2],inBattle);
 						getchar();
 						cout << "Press enter to continue";
 						getchar();
@@ -196,9 +198,11 @@ Grid* g = new Grid;
 					int i;
 					int check; //check if the user used a Potion or casted a Spell in inventory
 					int counter=0; //counter for the rounds
+					inBattle=1;
 					displayStats(Heroes,Monsters,numberOfHeroes);
 					do{
 						counter++;
+						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;
 						for(i=0;i<numberOfHeroes;i++){
 							//print options
 							cout<<"For hero "<<i+1<<":"<<endl;
@@ -208,7 +212,7 @@ Grid* g = new Grid;
 							cin>>option;
 							switch(option){
 								case 1:
-									    check=Heroes[i]->inventory.checkInventory(*Heroes[i]); //checkInventory for the current hero
+									    check=Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
 										getchar();
 										cout << "Press enter to continue";
 										getchar();
@@ -223,7 +227,10 @@ Grid* g = new Grid;
 							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero 
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
+						//monstersAfterRound(Monsters,numberOfHeroes,counter);
+						//heroesAfterRound(Heroes,numberOfHeroes,counter);
 					}while(monstersAreDead(Monsters,numberOfHeroes) && heroesAreDead(Heroes,numberOfHeroes)); //while all heroes or all monsters die
+					inBattle=0;
 					getchar();
 					getchar();
 
@@ -253,6 +260,24 @@ Grid* g = new Grid;
 	spells_txt.close();
 
 	return 0;
+}
+
+
+/*heroesAfterRound*/
+void heroesAfterRound(Hero**&heroes,int NumberOfHeroes,int round){
+	for(int i=0;i<NumberOfHeroes;i++){
+		if(heroes[i]->getCurrHealthPower()!=0){
+			heroes[i]->regenerateHealthPowerAfterRound(round);
+			heroes[i]->regenerateMagicPowerAfterRound(round);
+		}
+	}
+}
+
+/*monstersAfterRound*/
+void monstersAfterRound(Monster**&monsters,int NumberOfHeroes,int round){
+	for(int i=0;i<NumberOfHeroes;i++){
+		monsters[i]->regenerateHealthPowerAfterRound(round);
+	}
 }
 
 /*destroyMonsters*/
@@ -317,8 +342,28 @@ void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 		else
 			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength());
 		
-	}
+}
 
+
+/*attackWithSpell
+void attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes){
+	int option;
+		cout<<" to Monster: (give a number between 1-"<<NumberOfHeroes<<")"<<endl;
+		cin>>option;
+
+		//checking for existing Monster
+		while(option<1 && option>NumberOfHeroes){
+			cout<<"Wrong input please give a number between 1-"<<NumberOfHeroes<<")"<<endl;	
+			cin>>option;
+		}
+		//checking for alive Monster
+		while(monsters[option-1]->getCurrHealthPower()==0){
+			cout<<"This monster has no life. Choose another one."<<endl;
+			cin>>option;
+		}
+		monsters[option-1]->attackToMonster(hero.MySpell->generateHit()); 	
+}
+*/
 
 /*getAverageLevelOfHeroes*/
 int getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes){
