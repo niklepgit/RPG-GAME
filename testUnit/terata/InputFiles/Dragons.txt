@@ -1,5 +1,5 @@
 Aquamentus
-Arctic Wyvern
+Arctic-Wyvern
 Arokh
 Ash
 Bahamoot
@@ -8,35 +8,35 @@ Bik
 Aeralfos
 Argorok
 Blizzaurus
-Bomber Dragon
-Bone Dragon
-Cael Cyndar
+Bomber-Dragon
+Bone-Dragon
+Cael-Cyndar
 Spyro
 Cynder
 Dogadon
 Draconians
 Dragon
 Dracula
-Dracula Duck
+Dracula-Duck
 Drago
 Dragonache
-Dragon Kremling
-Dragon Man
+Dragon-Kremling
+Dragon-Man
 Draic Kin
 Drogoth
 Flicker
 Flamewing
-Fire Dragon
-Ender Dragon
+Fire-Dragon
+Ender-Dragon
 Fangora
 Gildiss
 Gleeok
 Gobblegut
-Great Dragon
+Great-Dragon
 Greed
-Grim Matchstick
+Grim-Matchstick
 Hewdraw
-Jake Long
+Jake-Long
 Landia
 Lizard Man
 Mecha Dragon

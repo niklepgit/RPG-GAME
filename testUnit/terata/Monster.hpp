@@ -6,7 +6,7 @@
 
 
 class Monster:public Living{
-	private:
+	protected:
 		int minDamageRange;
 		int maxDamageRange;
 		int defense;
@@ -27,7 +27,7 @@ class Monster:public Living{
 		void reduceDamageRange(int maxDamageToSub) { maxDamageRange -= maxDamageToSub; }
 
 		/*Others*/
-		//void attackToMonster(int DamageValue);
+		void attackToMonster(int DamageValue);
 		int generateHit();
 };
 

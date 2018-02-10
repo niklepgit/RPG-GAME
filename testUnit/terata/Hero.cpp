@@ -11,8 +11,16 @@ void Hero::printHero()const{
 		 << "Experience: "<< experience << endl
 		 << "HP: " << currHealthPower << "/" << maxHealthPower << endl
 		 << "MP: " << currMagicPower << "/" << maxMagicPower << endl
-		 << "Money: " << money << endl;
-		 
+		 << "Money: " << money << endl
+		 << "Strength: " << getStrength() << endl //na bgalw tis sinartisis
+		 << "Dexterity: " << getDexterity() << endl
+		 << "Agility: " << getAgility() << endl << endl;
+
+	if(MyArmor!=nullptr){
+		cout<<"Armor: "<<endl;
+		MyArmor->printArmor();
+	}
+	cout<<endl;
 	if(Lhand==Rhand && Rhand!=nullptr){
 			cout << "Both hands use:" << endl; 
 			Rhand->printWeapon();
@@ -28,12 +36,7 @@ void Hero::printHero()const{
 		cout << "Right hand uses:" << endl;
 	    Rhand->printWeapon();
 	}
-}
-
-void Hero::printSkills()const{
-	cout << "Strength: " << getStrength() << endl
-		 << "Dexterity: " << getDexterity() << endl
-		 << "Agility: " << getAgility() << endl << endl;
+	cout<<endl;
 }
 
 void Hero::increaseMagicPower(int magicPowerToIncrease){

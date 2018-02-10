@@ -14,6 +14,7 @@ class Weapon:public Item{
 		/*Others*/
 		void printWeapon(void);
 		int getHands() {return hands;}
+		int getDamageValue() { return damageValue; }
 		//void weaponAttack(void);
 };
 

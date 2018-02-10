@@ -14,5 +14,6 @@ class Armor:public Item{
 		//should somehow use healthPower from class living
 		/*Others*/
 		void printArmor(void);
+		int getDamageSave(void) {return damageSave;}
 };
 #endif

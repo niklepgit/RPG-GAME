@@ -27,14 +27,14 @@ class Hero:public Living{
 		Hero(string,int,int,int);
 
 		/*Accessors*/
-		int getMagicPower() const { return currMagicPower; }
+		int getCurrMagicPower() const { return currMagicPower; }
+		int getMaxMagicPower() const { return maxMagicPower; }
 		int getStrength() const { return strength; }
 		int getDexterity() const { return dexterity; }
 		int getAgility() const { return agility; }
 		int getMoney() const { return money; }
 		int getExperience() const { return experience; }
 		void printHero() const;
-		void printSkills() const;
 
 
 		/*Mutators*/

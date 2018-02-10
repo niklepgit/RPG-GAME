@@ -10,6 +10,10 @@
 #include "Market.hpp"
 #include "Spell.hpp"
 #include "Grid.hpp"
+#include "Monster.hpp"
+#include "Dragon.hpp"
+#include "Spirit.hpp"
+#include "Exoskeleton.hpp"
 
 /*
 #include "./Items/Weapon.hpp"
@@ -30,6 +34,9 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
+
+int getAverageLevelOfHeroes(int NumberOfHeroes,Hero**& heroes); //forward decleration
+void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes);
 
 int main(void){
 
@@ -127,10 +134,8 @@ Grid* g = new Grid;
 				break;
 			case 'p':
 				g->clearScreen();
-				for (int i = 0; i < numberOfHeroes; ++i){
+				for (int i = 0; i < numberOfHeroes; ++i)
 					Heroes[i]->printHero();
-					Heroes[i]->printSkills();
-				}
 				cout << "Press enter to continue...";
 				getchar();
 				break;
@@ -160,9 +165,56 @@ Grid* g = new Grid;
 						break;
 				}
 				break;
+			case 'b':{
+					//g->clearScreen();
+					int levelOfMonsters=getAverageLevelOfHeroes(numberOfHeroes,Heroes);
+					Monster** Monsters=new Monster*[numberOfHeroes];
+					int randomMonster;
+					for(int j=0;j<numberOfHeroes;j++){
+						randomMonster = rand()%3;
+						switch(randomMonster){
+							case 0:
+								Monsters[j] = new Dragon("Dragon",levelOfMonsters); 
+								break;
+							case 1:
+								Monsters[j] = new Spirit("Spirit",levelOfMonsters);
+								break;
+							case 2:
+								Monsters[j] = new Exoskeleton("Exoskeleton",levelOfMonsters);
+								break;
+							default:break;
+						}
+					}
+					//call battle function
+					int option;
+					displayStats(Heroes,Monsters,numberOfHeroes);
+					do{
+						for(int i=0;i<NumberOfHeroes;i++){
+						//print options
+
+							cin>>option;
+							switch(option){
+								case 1:
+									    Heroes[i]->inventory.checkInventory(*Heroes[i]);
+										getchar();
+										cout << "Press enter to continue";
+										getchar();
+								case 2: cout<<"Attack of Hero "<<i+1;
+										attack(*Heroes[i],Monsters,numberOfHeroes);
+							}
+						}
+						for(){
+							
+						}	
+						displayStats(Heroes,Monsters,numberOfHeroes);
+					}while(1);
+					getchar();
+					break;
+				
+				}
 			default:
 				break;
-		};
+		} //;
 		g->clearScreen();
 	} while (keyInput != 'q');	
 
@@ -174,3 +226,68 @@ Grid* g = new Grid;
 
 	return 0;
 }
+
+/*attack*/
+void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
+	int option;
+		cout<<" to Monster: (give a number between 1-"<<NumberOfHeroes<<")"<<endl;
+		cin>>option;
+
+		//checking for existing Monster
+		while(option<1 && option>NumberOfHeroes){
+			cout<<"Wrong input please give a number between 1-"<<NumberOfHeroes<<")"<<endl;	
+			cin>>option;
+		}
+		//checking for alive Monster
+		while(monsters[option-1]->getCurrHealthPower()==0){
+			cout<<"This monster has no life. Choose another one."<<endl;
+			cin>>option;
+		}
+
+		if(hero.Lhand==hero.Rhand && hero.Rhand!=nullptr)
+			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength()); 
+		else if(hero.Lhand==nullptr && hero.Rhand==nullptr)
+			monsters[option-1]->attackToMonster(hero.getStrength());
+		else if(hero.Rhand==nullptr)
+			monsters[option-1]->attackToMonster(hero.Lhand->getDamageValue()+hero.getStrength());
+		else
+			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength());
+	}
+}
+
+
+/*getAverageLevelOfHeroes*/
+int getAverageLevelOfHeroes(int NumberOfHeroes,Hero**& heroes){
+	int averageLevel=0;
+	for(int i=0;i<NumberOfHeroes;i++){
+		averageLevel += heroes[i]->getLevel();
+	}
+	return averageLevel/NumberOfHeroes;
+}
+
+//void battle(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){}
+void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
+	for(int i=0;i<NumberOfHeroes;i++){
+		cout << "Name: "<< heroes[i]->getName(); cout<<'\t'<<'\t'<<"Name: "<< monsters[i]->getName(); cout<<endl;
+		cout << "Level: "<< heroes[i]->getLevel(); cout<<'\t'<<'\t'<< "Level: "<< monsters[i]->getLevel(); cout<<endl;
+			 //<< "Experience: "<< experience << cout<<'\t'<<'\t'<<
+		cout << "HP: "<<heroes[i]->getCurrHealthPower(); cout<< "/"<< heroes[i]->getMaxHealthPower(); cout<<'\t'<<'\t'<<"HP: "<< monsters[i]->getCurrHealthPower(); cout<< "/"<<monsters[i]->getMaxHealthPower(); cout<<endl;
+		cout << "MP: "<< heroes[i]->getCurrMagicPower(); cout<< "/"<<heroes[i]->getMaxMagicPower(); cout<<'\t'<<'\t'<<"DamageRange: "<< monsters[i]->getMinDamageRange(); cout<< "-"<< monsters[i]->getMaxDamageRange(); cout<<endl;
+		cout << "Dexterity: "<<heroes[i]->getDexterity(); cout<<'\t'<<'\t'<<"Probability: "<< monsters[i]->getProbability(); cout<<endl;
+		cout << "Agility: "<< heroes[i]->getAgility(); cout<<'\t'<<'\t'<<"Defense: "<<monsters[i]->getDefense(); cout<<endl;
+		cout << "Strength: "<< heroes[i]->getStrength(); cout<< endl; // cout<<'\t'<<'\t'<<
+		
+		if(heroes[i]->MyArmor!=nullptr)
+			cout << "Armor: " << heroes[i]->MyArmor->getDamageSave();cout<<endl;
+		
+		if(heroes[i]->Lhand==heroes[i]->Rhand && heroes[i]->Rhand!=nullptr)
+			cout << "Weapon's damage: " << heroes[i]->Rhand->getDamageValue()<<endl<<endl; 
+		else if(heroes[i]->Lhand==nullptr && heroes[i]->Rhand==nullptr)
+			cout << "Both hands are empty." << endl<<endl;
+		else if(heroes[i]->Rhand==nullptr)
+			cout << "Left hand->weapon's damage:"<<heroes[i]->Rhand->getDamageValue()<<endl<<endl;
+		else
+			cout << "Right hand->weapon's damage:"<<heroes[i]->Rhand->getDamageValue()<<endl<<endl;
+	}
+}
+//void endOfBattle(){}

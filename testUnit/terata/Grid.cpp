@@ -122,6 +122,9 @@ char Grid::getmv(){
 		default:
 			break;	
 	}
+	if(choice=='w' || choice=='s'|| choice=='a'|| choice=='d')
+		if (rand()%100 < 1)
+			choice = 'b';
 	return choice;
 }
 

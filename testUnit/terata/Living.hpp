@@ -19,6 +19,9 @@ class Living{
 
 		/*Accessors*/
 		int getLevel() const { return level; }
+		string getName() const { return name; }
+		int getCurrHealthPower() const { return currHealthPower; }
+		int getMaxHealthPower() const { return maxHealthPower; }
 
 		/*Mutators*/
 		void healthPowerReduce(int);

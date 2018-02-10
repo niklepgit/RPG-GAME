@@ -59,7 +59,7 @@ Monster::Monster(string Name,int Level)
 
 }
 
-/*attackToMonster
+/*attackToMonster*/
 void Monster::attackToMonster(int DamageValue){
 	if(DamageValue > defese)
 		DamageValue -= defense;
@@ -69,7 +69,7 @@ void Monster::attackToMonster(int DamageValue){
 	}
 	healthPowerReduce(DamageValue);
 }
-*/
+
 /*generateHit*/
 int Monster::generateHit(){
 	return rand()%((maxDamageRange - minDamageRange) + 1) + minDamageRange;
