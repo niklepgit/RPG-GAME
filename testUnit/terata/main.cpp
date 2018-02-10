@@ -194,22 +194,26 @@ Grid* g = new Grid;
 					//call battle function
 					int option;
 					int i;
+					int check; //check if the user used a Potion or casted a Spell in inventory
 					int counter=0; //counter for the rounds
 					displayStats(Heroes,Monsters,numberOfHeroes);
 					do{
 						counter++;
 						for(i=0;i<numberOfHeroes;i++){
 							//print options
+							cout<<"For hero "<<i+1<<":"<<endl;
 							cout<<"If you want to check the inventory press 1"<<endl;
 							cout<<"If you want to start the Attack press 2"<<endl;
 
 							cin>>option;
 							switch(option){
 								case 1:
-									    Heroes[i]->inventory.checkInventory(*Heroes[i]); //checkInventory for the current hero
+									    check=Heroes[i]->inventory.checkInventory(*Heroes[i]); //checkInventory for the current hero
 										getchar();
 										cout << "Press enter to continue";
 										getchar();
+										if(check)
+											break;
 								case 2: cout<<"Attack of Hero "<<i+1;
 										attack(*Heroes[i],Monsters,numberOfHeroes); //attack with the current hero
 							}
