@@ -35,8 +35,14 @@
 #include <iostream>
 using namespace std;
 
-int getAverageLevelOfHeroes(int NumberOfHeroes,Hero**& heroes); //forward decleration
+int getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes); //forward decleration
 void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes);
+int monstersAreDead(Monster**&monsters,int NumberOfHeroes);
+int heroesAreDead(Hero**&heroes,int NumberOfHereos);
+void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes);
+void destroyMonsters(Monster**& monsters,int NumberOfHeroes);
+void heroesAfterLosing(Hero**& heroes,int NumberOfHeroes);
+
 
 int main(void){
 
@@ -167,7 +173,7 @@ Grid* g = new Grid;
 				break;
 			case 'b':{
 					//g->clearScreen();
-					int levelOfMonsters=getAverageLevelOfHeroes(numberOfHeroes,Heroes);
+					int levelOfMonsters=getAverageLevelOfHeroes(Heroes,numberOfHeroes);
 					Monster** Monsters=new Monster*[numberOfHeroes];
 					int randomMonster;
 					for(int j=0;j<numberOfHeroes;j++){
@@ -187,28 +193,46 @@ Grid* g = new Grid;
 					}
 					//call battle function
 					int option;
+					int i;
+					int counter=0; //counter for the rounds
 					displayStats(Heroes,Monsters,numberOfHeroes);
 					do{
-						for(int i=0;i<NumberOfHeroes;i++){
-						//print options
+						counter++;
+						for(i=0;i<numberOfHeroes;i++){
+							//print options
+							cout<<"If you want to check the inventory press 1"<<endl;
+							cout<<"If you want to start the Attack press 2"<<endl;
 
 							cin>>option;
 							switch(option){
 								case 1:
-									    Heroes[i]->inventory.checkInventory(*Heroes[i]);
+									    Heroes[i]->inventory.checkInventory(*Heroes[i]); //checkInventory for the current hero
 										getchar();
 										cout << "Press enter to continue";
 										getchar();
 								case 2: cout<<"Attack of Hero "<<i+1;
-										attack(*Heroes[i],Monsters,numberOfHeroes);
+										attack(*Heroes[i],Monsters,numberOfHeroes); //attack with the current hero
 							}
 						}
-						for(){
-							
+						for(i=0;i<numberOfHeroes;i++){
+							int whoToHit=rand()%numberOfHeroes; //generate a random number between 0-2 to choose the hero
+							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero 
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
-					}while(1);
+					}while(monstersAreDead(Monsters,numberOfHeroes) && heroesAreDead(Heroes,numberOfHeroes)); //while all heroes or all monsters die
 					getchar();
+					getchar();
+
+					if(!heroesAreDead(Heroes,numberOfHeroes)){
+						heroesAfterLosing(Heroes,numberOfHeroes);
+					}
+					if(!monstersAreDead(Monsters,numberOfHeroes)){
+						cout<<"The heroes won!!!!"<<endl;
+						cout<<"Press enter to continue...!!"<<endl;
+						getchar();
+					}
+
+					destroyMonsters(Monsters,numberOfHeroes);
 					break;
 				
 				}
@@ -227,6 +251,42 @@ Grid* g = new Grid;
 	return 0;
 }
 
+/*destroyMonsters*/
+void destroyMonsters(Monster**& monsters,int NumberOfHeroes){
+	for(int i=0;i<NumberOfHeroes;i++){
+		delete monsters[i];
+		monsters[i]=nullptr;
+	}
+	delete monsters;
+	monsters=nullptr;
+}
+
+/*heroesAfterLosing*/
+void heroesAfterLosing(Hero**& heroes,int NumberOfHeroes){
+	for(int i=0;i<NumberOfHeroes;i++){
+		heroes[i]->reduceMoneyAfterLosing();
+		if(heroes[i]->getCurrHealthPower()==0)
+			heroes[i]->regenerateHealthPowerAfterLosing();
+	}
+}
+
+/*monstersAreDead*/
+int monstersAreDead(Monster**&monsters,int NumberOfHeroes){
+	int life=0;
+	for(int i=0;i<NumberOfHeroes;i++){ //for every monster
+		life += monsters[i]->getCurrHealthPower(); //add the health
+	}
+	return life; //return 0 if all monsters are dead else != 0
+}
+/*heroesAreDead*/
+int heroesAreDead(Hero**&heroes,int NumberOfHeroes){
+	int life=0;
+	for(int i=0;i<NumberOfHeroes;i++){ //for every monster
+		life += heroes[i]->getCurrHealthPower(); //add the health
+	}
+	return life; //return 0 if all monsters are dead else != 0
+}
+
 /*attack*/
 void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 	int option;
@@ -243,21 +303,21 @@ void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 			cout<<"This monster has no life. Choose another one."<<endl;
 			cin>>option;
 		}
-
+		
 		if(hero.Lhand==hero.Rhand && hero.Rhand!=nullptr)
 			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength()); 
-		else if(hero.Lhand==nullptr && hero.Rhand==nullptr)
+		else if(hero.Lhand==nullptr && hero.Rhand==nullptr)			
 			monsters[option-1]->attackToMonster(hero.getStrength());
 		else if(hero.Rhand==nullptr)
-			monsters[option-1]->attackToMonster(hero.Lhand->getDamageValue()+hero.getStrength());
+			monsters[option-1]->attackToMonster(hero.Lhand->getDamageValue()+hero.getStrength());	
 		else
 			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength());
+		
 	}
-}
 
 
 /*getAverageLevelOfHeroes*/
-int getAverageLevelOfHeroes(int NumberOfHeroes,Hero**& heroes){
+int getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes){
 	int averageLevel=0;
 	for(int i=0;i<NumberOfHeroes;i++){
 		averageLevel += heroes[i]->getLevel();
@@ -285,7 +345,7 @@ void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 		else if(heroes[i]->Lhand==nullptr && heroes[i]->Rhand==nullptr)
 			cout << "Both hands are empty." << endl<<endl;
 		else if(heroes[i]->Rhand==nullptr)
-			cout << "Left hand->weapon's damage:"<<heroes[i]->Rhand->getDamageValue()<<endl<<endl;
+			cout << "Left hand->weapon's damage:"<<heroes[i]->Lhand->getDamageValue()<<endl<<endl;
 		else
 			cout << "Right hand->weapon's damage:"<<heroes[i]->Rhand->getDamageValue()<<endl<<endl;
 	}

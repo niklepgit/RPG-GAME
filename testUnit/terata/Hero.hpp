@@ -16,6 +16,7 @@ class Hero:public Living{
 		int agility;
 		int money;
 		int experience;
+	
 	public:
 		Weapon *Rhand;
 		Weapon *Lhand;
@@ -49,6 +50,9 @@ class Hero:public Living{
 		void increaseAgility(int agilityToIncrease) { agility += agilityToIncrease; }
 		virtual void increaseAttributes(){}
 
+		void regenerateHealthPowerAfterLosing(void);
+		void reduceMoneyAfterLosing(void);
+		void attackToHero(int DamageValue);
 		void weaponEquip(int position);
 		void armorEquip(int position);
 };

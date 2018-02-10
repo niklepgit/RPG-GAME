@@ -61,7 +61,7 @@ Monster::Monster(string Name,int Level)
 
 /*attackToMonster*/
 void Monster::attackToMonster(int DamageValue){
-	if(DamageValue > defese)
+	if(DamageValue > defense)
 		DamageValue -= defense;
 	else{
 		defense-= DamageValue;

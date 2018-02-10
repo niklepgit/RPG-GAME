@@ -5,6 +5,7 @@ Hero::Hero(string Name,int Strength,int Dexterity,int Agility)
 		  :Living(Name),strength(Strength),dexterity(Dexterity),
 		  agility(Agility),currMagicPower(100),maxMagicPower(100),money(0),experience(0),Lhand(nullptr),Rhand(nullptr),MyArmor(nullptr){}
 
+/*printHero*/
 void Hero::printHero()const{
 	cout << "Name: " << name << endl
 		 << "Level: " << level << endl
@@ -39,6 +40,7 @@ void Hero::printHero()const{
 	cout<<endl;
 }
 
+/*increaseMagicPower*/
 void Hero::increaseMagicPower(int magicPowerToIncrease){
 	if (currMagicPower + magicPowerToIncrease > maxMagicPower){
 		currMagicPower = maxMagicPower;
@@ -47,6 +49,7 @@ void Hero::increaseMagicPower(int magicPowerToIncrease){
 	currMagicPower += magicPowerToIncrease;
 }
 
+/*levelUp*/
 void Hero::levelUp(){
 	level++;
 	setMaxHealthPower();
@@ -55,24 +58,28 @@ void Hero::levelUp(){
 	currMagicPower = maxMagicPower;
 	increaseAttributes();
 }
+
 /*weaponEquip*/
 void Hero::weaponEquip(int position){
 	list<Weapon>::iterator it;
 	int counter=1;
 	int Hands;
-	for(it=inventory.Weapons.begin();it!=inventory.Weapons.end();it++){
-		if(counter==position){
-			Hands=it->getHands();
-			if(Hands==2)
-				Lhand=Rhand=&(*it);
-			else
-				if(Lhand==nullptr)
+	for(it=inventory.Weapons.begin();it!=inventory.Weapons.end();it++){ //for evey weapon 
+		if(counter==position){ //if you find the weapon the hero want to equip
+			Hands=it->getHands(); //get how many hands it requires
+			if(Hands==1) //if the weapon uses 1 hand
+				if(Lhand==&(*it) || Rhand==&(*it)) //if the hero has it already in his hand
+					return;	//don't equip it again..exit
+			if(Hands==2) //if it requires 2 hands
+				Lhand=Rhand=&(*it); 
+			else //if it requires 1 hand
+				if(Lhand==nullptr) //if left is empty put it there
 					Lhand=&(*it);
-				else if(Rhand==nullptr)
+				else if(Rhand==nullptr) //if right is empty put it there
 					Rhand=&(*it);
-				else{
-					Rhand=&(*it);
-					Lhand=nullptr;
+				else{ //if the weapon requires 1 hand but the hero uses a weapon with his 2 hands
+					Lhand=nullptr; //throw the weapon
+					Rhand=&(*it); //take weapon in the right hand
 				}
 			return;
 		}
@@ -92,4 +99,28 @@ void Hero::armorEquip(int position){
 		}
 		counter++;
 	}
+}
+
+/*attackToHero*/
+void Hero::attackToHero(int DamageValue){
+	if(MyArmor==nullptr)
+		healthPowerReduce(DamageValue);
+	else 
+		if(DamageValue > MyArmor->getDamageSave())
+		DamageValue -= MyArmor->getDamageSave();
+	else{
+		//MyArmor->getDamageSave()-= DamageValue; //should armor get destroyed?
+		return;
+	}
+	healthPowerReduce(DamageValue);
+}
+
+/*reduceMoneyAfterLosing*/
+void Hero::reduceMoneyAfterLosing(void){
+	money = money/2; //almost the half 
+}
+
+/*regenerateHealthPowerAfterLosing*/
+void Hero::regenerateHealthPowerAfterLosing(void){
+	currHealthPower = maxHealthPower/2; //almost the half
 }
