@@ -10,9 +10,10 @@ Hero::Hero(string Name,int Strength,int Dexterity,int Agility)
 /*printHero*/
 void Hero::printHero()const{
 	cout << "Name: " << name << endl
-		 << "Level: " << level << endl
-		 << "Experience: "<< experience << "/" << experienceToLevelUp << endl
-		 << "HP: " << currHealthPower << "/" << maxHealthPower << endl
+		 << "Level: " << level << endl;
+	if (level < 10)
+		cout << "Experience: " << experience << "/" << experienceToLevelUp << endl;
+	cout << "HP: " << currHealthPower << "/" << maxHealthPower << endl
 		 << "MP: " << currMagicPower << "/" << maxMagicPower << endl
 		 << "Money: " << money << endl
 		 << "Strength: " << getStrength() << endl //na bgalw tis sinartisis
@@ -20,7 +21,7 @@ void Hero::printHero()const{
 		 << "Agility: " << getAgility() << endl << endl;
 
 	if(MyArmor!=nullptr){
-		cout<<"Armor: "<<endl;
+		cout << "Armor: " << endl;
 		MyArmor->printArmor();
 	}
 	cout<<endl;
@@ -54,10 +55,6 @@ void Hero::increaseMagicPower(int magicPowerToIncrease){
 /*levelUp*/
 void Hero::levelUp(){
 	level++;
-	setMaxHealthPower();
-	maxMagicPower += 10;
-	setCurrHealthPower();
-	currMagicPower = maxMagicPower;
 	increaseAttributes();
 	experienceToLevelUp+=level*8;
 }

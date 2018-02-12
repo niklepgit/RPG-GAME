@@ -6,9 +6,9 @@ Warrior::Warrior(string Name)
 
 /* increase attributes */
 void Warrior::increaseAttributes(){
-	increaseStrength(getLevel()*5); 
-	increaseDexterity(getLevel()*3); 
-	increaseAgility(getLevel()*5);
+	increaseStrength(getLevel()*2); 
+	increaseDexterity(getLevel()*1); 
+	increaseAgility(getLevel()*2);
 }
 
 	

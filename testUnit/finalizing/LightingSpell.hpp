@@ -11,7 +11,7 @@ class LightingSpell:public Spell{
 		/*castSpell*/
 		void castSpell(Monster& monster){
 			monster.undoSpellProbability=monster.getProbability();
-			if(monster.getProbability()-monster.getProbability()/2 >0)
+			if(monster.getProbability()-monster.getProbability()/2 > 0)
 				monster.reduceProbability(monster.getProbability()-monster.getProbability()/2);
 			else
 				monster.reduceProbability(monster.getProbability());

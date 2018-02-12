@@ -6,7 +6,7 @@ Living::Living(string Name)
 
 /*Constructor for Monsters*/
 Living::Living(string Name,int Level)
-			  :name(Name),level(Level),maxHealthPower(100+Level*10),currHealthPower(100+Level*10){}
+			  :name(Name),level(Level),maxHealthPower(100),currHealthPower(100){}
 
 /*healthPowerReduce*/
 void Living::healthPowerReduce(int healthPowerToReduce){
@@ -27,11 +27,11 @@ void Living::healthPowerIncrease(int healthPowerToIncrease){
 	currHealthPower += healthPowerToIncrease;
 }
 
-/*setMaxHealthPower*/
+/*setMaxHealthPower
 void Living::setMaxHealthPower(){
 	maxHealthPower += 10;
 }
-
+*/
 /*setCurrHealthPower*/
 void Living::setCurrHealthPower(){
 	currHealthPower = maxHealthPower;

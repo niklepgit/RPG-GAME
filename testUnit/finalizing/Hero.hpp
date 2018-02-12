@@ -5,6 +5,7 @@
 #include "Living.hpp"
 #include "Inventory.hpp"
 #include <list>
+#include <cstddef>
 using namespace std;
 
 class Hero:public Living{
