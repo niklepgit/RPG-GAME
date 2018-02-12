@@ -4,9 +4,9 @@
 /* Constructor */
 Hero::Hero(string Name,int Strength,int Dexterity,int Agility)
 		  :Living(Name),strength(Strength),dexterity(Dexterity),
-		  agility(Agility),currMagicPower(100),maxMagicPower(100),money(0),experience(0),experienceToLevelUp(10),
+		  agility(Agility),currMagicPower(100),maxMagicPower(100),money(10),experience(0),experienceToLevelUp(10),
 		  Lhand(nullptr),Rhand(nullptr),MyArmor(nullptr),MySpell(nullptr){}
-
+	
 /*printHero*/
 void Hero::printHero()const{
 	cout << "Name: " << name << endl
