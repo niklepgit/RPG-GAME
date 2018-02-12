@@ -114,10 +114,21 @@ int main(void){
 			<<"1)Warrior, 2)Paladin, 3)Sorcerer"<<endl;
 		cin>>nameOfHero;	
 		cin>>typeOfHero;
-		while(typeOfHero!=1 && typeOfHero!=2 && typeOfHero!=3){
-			cout<<"Give a valid number (1-3). Please try again."<<endl;
-			cin>>typeOfHero;
+		while((typeOfHero!=1 && typeOfHero!=2 && typeOfHero!=3)|| cin.fail()){
+			if(cin.fail()){ // or if(!cin)
+			    // user didn't input a number
+			    cin.clear(); // reset failbit
+			    cin.ignore(100, '\n'); //skip bad input
+				cout<<"Give a valid number (1-3). Please try again."<<endl;
+				cin>>typeOfHero;	
+			}
+			else
+				{
+				cout<<"Give a valid number (1-3). Please try again."<<endl;
+				cin>>typeOfHero;
+				}
 		}
+		
 		switch(typeOfHero){
 			case 1:Heroes[i]=new Warrior(nameOfHero);
 				   break;

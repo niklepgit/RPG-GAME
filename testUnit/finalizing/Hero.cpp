@@ -25,20 +25,29 @@ void Hero::printHero()const{
 		MyArmor->printArmor();
 	}
 	cout<<endl;
+
 	if(Lhand==Rhand && Rhand!=nullptr){
 			cout << "Both hands use:" << endl; 
 			Rhand->printWeapon();
 	}
 	else if(Lhand==nullptr && Rhand==nullptr)
 			cout << "Both hands are empty" << endl;
+	else if(Lhand!=nullptr && Rhand!=nullptr){
+		cout << "Right hand uses:" << endl;
+	    Rhand->printWeapon();
+	    cout<<endl;
+	    cout << "Left hand uses:" << endl;
+	    Lhand->printWeapon();
+	}
 	else if(Rhand==nullptr){
 			cout << "Right hand is empty." << endl;
 		  	cout << "Left hand uses:" << endl; 
 		  	Lhand->printWeapon();
 	}	
 	else{
-		cout << "Right hand uses:" << endl;
-	    Rhand->printWeapon();
+		cout << "Left hand is empty." << endl;
+		cout << "Right hand uses:" << endl; 
+		Rhand->printWeapon();
 	}
 	cout<<endl;
 }
