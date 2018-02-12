@@ -91,10 +91,21 @@ int main(void){
 	cout<<"How many heroes you want to have?"<<endl
 		<<"give a number between 1-3"<<endl;
 	cin>>numberOfHeroes;
-	while(numberOfHeroes!=1 && numberOfHeroes!=2 && numberOfHeroes!=3){
-			cout<<"Give a valid number (1-3). Please try again."<<endl;
-			cin>>numberOfHeroes;
+	while((numberOfHeroes!=1 && numberOfHeroes!=2 && numberOfHeroes!=3) || cin.fail()){
+			if(cin.fail()){ // or if(!cin)
+			    // user didn't input a number
+			    cin.clear(); // reset failbit
+			    cin.ignore(100, '\n'); //skip bad input
+				cout<<"Give a valid number (1-3). Please try again."<<endl;
+				cin>>numberOfHeroes;	
+			}
+			else
+				{
+				cout<<"Give a valid number (1-3). Please try again."<<endl;
+				cin>>numberOfHeroes;
+				}
 		}
+								
 
 /*UI for creation of heroes*/
 	Hero**Heroes=new Hero*[numberOfHeroes];
@@ -218,10 +229,22 @@ Grid* g = new Grid;
 
 							 
 							cin>>option;
-							while(option!=1 && option!=2){
-								cout<<"Give a valid option."<<endl;
-								cin>>option;
-							}
+				
+							while((option!=1 && option!=2)|| cin.fail()){
+								if(cin.fail()){ // or if(!cin)
+								    // user didn't input a number
+								    cin.clear(); // reset failbit
+								    cin.ignore(100, '\n'); //skip bad input
+									cout<<"Give a valid option."<<endl;
+								    cin>>option;
+								}
+								else
+									{
+									cout<<"Give a valid option."<<endl;
+								    cin>>option;
+									}
+							}		
+							
 							getOutOfdoWhileLoop=0;
 							do{
 
@@ -246,9 +269,19 @@ Grid* g = new Grid;
 														cout<<"If you want to check the inventory press 1"<<endl;
 														cout<<"If you want to start the Attack press 2"<<endl;
 														cin>>option;
-														while(option!=1 && option!=2){
-															cout<<"Give a valid option."<<endl;
-															cin>>option;
+														while((option!=1 && option!=2)|| cin.fail()){
+															if(cin.fail()){ // or if(!cin)
+															    // user didn't input a number
+															    cin.clear(); // reset failbit
+															    cin.ignore(100, '\n'); //skip bad input
+																cout<<"Give a valid option."<<endl;
+															    cin>>option;
+															}
+															else
+																{
+																cout<<"Give a valid option."<<endl;
+															    cin>>option;
+																}
 														}
 														Heroes[i]->MySpell=nullptr;	
 														break;
