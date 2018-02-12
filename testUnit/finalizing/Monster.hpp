@@ -11,6 +11,7 @@ class Monster:public Living{
 		int maxDamageRange;
 		int defense;
 		int probability;
+		int maxProbability;
 
 	public:
 		int undoSpellDamageRange;
@@ -24,6 +25,7 @@ class Monster:public Living{
 		/*Accessors*/
 		int getDefense() const { return defense; }
 		int getProbability() const { return probability; }
+		int getMaxProbability() const { return maxProbability; }
 		int getMinDamageRange() const { return minDamageRange; }
 		int getMaxDamageRange() const { return maxDamageRange; }
 

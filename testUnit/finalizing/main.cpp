@@ -100,11 +100,11 @@ int main(void){
 				cin>>numberOfHeroes;	
 			}
 			else
-				{
-				cout<<"Give a valid number (1-3). Please try again."<<endl;
-				cin>>numberOfHeroes;
-				}
-		}
+			{
+			cout<<"Give a valid number (1-3). Please try again."<<endl;
+			cin>>numberOfHeroes;
+			}
+	}
 								
 
 /*UI for creation of heroes*/
@@ -128,7 +128,7 @@ int main(void){
 		}
 	}
 
-	Heroes[0]->increaseMoney(100000);
+	Heroes[0]->increaseMoney(100000);/////////////////////////
 	//Heroes[1]->increaseMoney(100000);
 
 /*Grid*/
@@ -247,7 +247,7 @@ Grid* g = new Grid;
 							
 							getOutOfdoWhileLoop=0;
 							do{
-
+								/*HEROES' TURN*/
 								switch(option){
 									case 1:
 										    check=Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
@@ -258,11 +258,11 @@ Grid* g = new Grid;
 												getOutOfdoWhileLoop=1;
 												break;
 											}
-									case 2: cout<<"Attack of Hero "<<i+1;
+									case 2: cout<<"Attack of Hero "<< i+1 << endl;
 											if(Heroes[i]->MySpell!=nullptr){
-												cout<<"Mpika edw"<<endl;///////////
+												cout<<"Mpika edw"<<endl;///////////////////////
 												if(!Heroes[i]->MySpell->getInUse(i)){
-													cout<<"MPika ki edww"<<endl;//////////
+													cout<<"MPika ki edww"<<endl;////////////////////////
 													returnFromAttackWithSpell=attackWithSpell(*Heroes[i],Monsters,numberOfHeroes,monsterHitWithSpell,i,whichMonsterWasHit);
 													if(returnFromAttackWithSpell==0){
 														cout<<"For hero "<<i+1<<":"<<endl;
@@ -285,7 +285,7 @@ Grid* g = new Grid;
 														}
 														Heroes[i]->MySpell=nullptr;	
 														break;
-													}
+													} else if (returnFromAttackWithSpell == -1) { break; }
 													checkLifeOfSpell[i]=counter+returnFromAttackWithSpell;
 												}
 											}
@@ -300,12 +300,15 @@ Grid* g = new Grid;
 
 						if(!monstersAreDead(Monsters,numberOfHeroes))
 							break;
-						
+						/*MONSTERS' TURN*/
 						for(i=0;i<numberOfHeroes;i++){
 							int whoToHit=rand()%numberOfHeroes; //generate a random number between 0-2 to choose the hero
-							if(Heroes[whoToHit]->getAgility()>(rand()%(100-40+1)+40))
-								Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero 
-						
+							/*probability(agility) for hero to avoid an attack from a monster*/
+							if(((double) Heroes[whoToHit]->getAgility()/Heroes[whoToHit]->getMaxAgility())>((double) rand() / (RAND_MAX))){
+								cout << "Hero avoid the attack!" << endl;
+								continue;	// next monster please...
+							}
+							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
 						//monstersAfterRound(Monsters,numberOfHeroes,counter);
@@ -452,7 +455,11 @@ void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 			}
 		}
 
-		if(monsters[option-1]->getProbability())
+		/*Probability for monster to avoid a spell attack from hero*/
+		if(((double) monsters[option-1]->getProbability()/monsters[option-1]->getMaxProbability())>((double) rand() / RAND_MAX)){
+			cout << "Monster avoid the attack!" << endl;
+			return;
+		}
 
 		if(hero.Lhand==hero.Rhand && hero.Rhand!=nullptr)
 			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength()); 
@@ -498,6 +505,14 @@ int attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const&
 				}
 			}
 		}
+
+		/*Probability for monster to avoid a spell attack from hero*/
+		if(((double) monsters[option-1]->getProbability()/monsters[option-1]->getMaxProbability())>((double) rand() / RAND_MAX)){
+			cout << "Monster avoid the attack!" << endl;
+			hero.MySpell->setInUse0(whoHitTheMonster);
+			return -1;
+		}
+
 		whichMonsterWasHit[whoHitTheMonster]=option-1;
 		monsterHitWithSpell[option-1]=1;
 		//monsters[option-1]->attackToMonster(100);

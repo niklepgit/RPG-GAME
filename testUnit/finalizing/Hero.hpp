@@ -1,7 +1,6 @@
 #ifndef HERO
 #define HERO
 
-//#include "../Living.hpp"
 #include "Living.hpp"
 #include "Inventory.hpp"
 #include <list>
@@ -15,6 +14,7 @@ class Hero:public Living{
 		int strength;
 		int dexterity;
 		int agility;
+		int maxAgility;
 		int money;
 		int experience;
 		int experienceToLevelUp;
@@ -28,7 +28,7 @@ class Hero:public Living{
 
 	public:
 		/*constructor*/
-		Hero(string,int,int,int);
+		Hero(string,int,int,int,int);
 
 		/*Accessors*/
 		int getCurrMagicPower() const { return currMagicPower; }
@@ -36,6 +36,7 @@ class Hero:public Living{
 		int getStrength() const { return strength; }
 		int getDexterity() const { return dexterity; }
 		int getAgility() const { return agility; }
+		int getMaxAgility() const { return maxAgility; }
 		int getMoney() const { return money; }
 		int getExperience() const { return experience; }
 		void printHero() const;

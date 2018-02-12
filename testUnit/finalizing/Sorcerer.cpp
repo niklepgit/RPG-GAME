@@ -2,7 +2,7 @@
 
 /* Constructor */
 Sorcerer::Sorcerer(string Name)
-				:Hero(Name,8,15,12){}
+				:Hero(Name,8,15,12,240){}
 
 /* increase attributes */
 void Sorcerer::increaseAttributes(){
