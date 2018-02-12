@@ -4,6 +4,8 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <cstdio>
+#include <cstddef>
 #include "LightingSpell.hpp"
 #include "FireSpell.hpp"
 #include "IceSpell.hpp"

@@ -6,7 +6,7 @@ Paladin::Paladin(string Name)
 
 /* increase attributes */
 void Paladin::increaseAttributes(){
-	increaseStrength(getLevel()*5); 
-	increaseDexterity(getLevel()*5); 
-	increaseAgility(getLevel()*3);
+	increaseStrength(getLevel()*2); 
+	increaseDexterity(getLevel()*2); 
+	increaseAgility(getLevel()*1);
 }

@@ -18,6 +18,7 @@
 #include "iofunctions.hpp"
 #include <fstream>
 #include <iostream>
+#include <cstddef>
 using namespace std;
 
 int getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes); //forward decleration
@@ -356,7 +357,10 @@ void endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&ch
 			if(heroes[i]->MySpell->getInUse(i))
 				if(counter==checkLifeOfSpell[i]){
 					cout<<"End of spell for hero "<<i<<endl;/////////////////////
-					heroes[i]->MySpell->undoSpell(*monsters[monsterHitWithSpell[whichMonsterWasHit[i]]]);
+					if (monsterHitWithSpell[whichMonsterWasHit[i]]==1){
+						heroes[i]->MySpell->undoSpell(*monsters[whichMonsterWasHit[i]]);
+						monsterHitWithSpell[whichMonsterWasHit[i]] = 0;
+					}
 					heroes[i]->MySpell->setInUse0(i);
 					heroes[i]->MySpell=nullptr;
 				}
@@ -367,9 +371,11 @@ void endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&ch
 void heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
 	for(int i=0;i<NumberOfHeroes;i++){
 		heroes[i]->increaseMoney(heroes[i]->getLevel()*2+NumberOfHeroes*2);
-		heroes[i]->increaseExperience(heroes[i]->getLevel()*3+NumberOfHeroes*3);
-		if(heroes[i]->checkIfLevelUp())
-			heroes[i]->levelUp();
+		if (heroes[i]->getLevel() < 10){				// otan ftasei level 10 no more experience kai mhn elegxeis kan gia level up
+			heroes[i]->increaseExperience(heroes[i]->getLevel()*3+NumberOfHeroes*3);
+			if(heroes[i]->checkIfLevelUp())
+				heroes[i]->levelUp();
+		}
 	}
 
 }
@@ -486,8 +492,10 @@ int attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const&
 			else if(monsterHitWithSpell[option-1]!=0){
 				cout<<"The monster you chose has already been hit by a spell, please choose another one or press 0 to exit attack with spell."<<endl;
 				cin>>option;
-				if(option==0)
+				if(option==0){
+					hero.MySpell->setInUse0(whoHitTheMonster);
 					return 0;
+				}
 			}
 		}
 		whichMonsterWasHit[whoHitTheMonster]=option-1;
