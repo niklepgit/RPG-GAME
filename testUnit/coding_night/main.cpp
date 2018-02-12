@@ -46,6 +46,7 @@ void heroesAfterRound(Hero**&heroes,int NumberOfHeroes,int round);
 void monstersAfterRound(Monster**&monsters,int NumberOfHeroes,int round);
 int attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const& monsterHitWithSpell,int whoHitTheMonster);
 void endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&checkLifeOfSpell,int*const&monsterHitWithSpell,int counter);
+void heroesAfterWinning(Hero**& heroes,int NumberOfHeroes);
 
 int main(void){
 
@@ -104,6 +105,10 @@ int main(void){
 	cout<<"How many heroes you want to have?"<<endl
 		<<"give a number between 1-3"<<endl;
 	cin>>numberOfHeroes;
+	while(numberOfHeroes!=1 && numberOfHeroes!=2 && numberOfHeroes!=3){
+			cout<<"Give a valid number (1-3). Please try again."<<endl;
+			cin>>numberOfHeroes;
+		}
 
 /*UI for creation of heroes*/
 	Hero**Heroes=new Hero*[numberOfHeroes];
@@ -112,6 +117,10 @@ int main(void){
 			<<"1)Warrior, 2)Paladin, 3)Sorcerer"<<endl;
 		cin>>nameOfHero;	
 		cin>>typeOfHero;
+		while(typeOfHero!=1 && typeOfHero!=2 && typeOfHero!=3){
+			cout<<"Give a valid number (1-3). Please try again."<<endl;
+			cin>>typeOfHero;
+		}
 		switch(typeOfHero){
 			case 1:Heroes[i]=new Warrior(nameOfHero);
 				   break;
@@ -119,9 +128,6 @@ int main(void){
 				   break;
 			case 3:Heroes[i]=new Sorcerer(nameOfHero);
 				   break;
-			default:cout<<"Wrong value for type of Hero, please give a new one"<<endl;
-					i--;
-					break;
 		}
 	}
 
@@ -132,10 +138,11 @@ int main(void){
 Grid* g = new Grid;
 	char keyInput;
 	int inBattle=0;
+	int battle=0;
 	do {
 
 		g->displayMap();
-		keyInput = g->getmv();
+		keyInput = g->getmv(battle);
 		switch(keyInput){
 			case 'm':
 				if (!g->nextToMarket())
@@ -177,7 +184,8 @@ Grid* g = new Grid;
 				}
 				break;
 			case 'b':{
-					//g->clearScreen();
+					if(!battle)
+						break;
 					int levelOfMonsters=getAverageLevelOfHeroes(Heroes,numberOfHeroes);
 					Monster** Monsters=new Monster*[numberOfHeroes];
 					int randomMonster;
@@ -219,6 +227,10 @@ Grid* g = new Grid;
 							cout<<"If you want to start the Attack press 2"<<endl;
 
 							cin>>option;
+							while(option!=1 && option!=2){
+								cout<<"Give a valid option."<<endl;
+								cin>>option;
+							}
 							switch(option){
 								case 1:
 									    check=Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
@@ -239,9 +251,15 @@ Grid* g = new Grid;
 											attack(*Heroes[i],Monsters,numberOfHeroes); //attack with the current hero
 							}
 						}
+
+						if(!monstersAreDead(Monsters,numberOfHeroes))
+							break;
+						
 						for(i=0;i<numberOfHeroes;i++){
 							int whoToHit=rand()%numberOfHeroes; //generate a random number between 0-2 to choose the hero
+							if(Heroes[whoToHit]->getAgility()>(rand()%(100-40+1)+40))
 							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero 
+						
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
 						//monstersAfterRound(Monsters,numberOfHeroes,counter);
@@ -254,22 +272,28 @@ Grid* g = new Grid;
 					getchar();
 
 					if(!heroesAreDead(Heroes,numberOfHeroes)){
+						cout<<"The monsters won!!!!"<<endl;
+						cout<<"Press enter to continue...!!"<<endl;
+						getchar();
 						heroesAfterLosing(Heroes,numberOfHeroes);
 					}
 					if(!monstersAreDead(Monsters,numberOfHeroes)){
 						cout<<"The heroes won!!!!"<<endl;
 						cout<<"Press enter to continue...!!"<<endl;
 						getchar();
+						heroesAfterWinning(Heroes,numberOfHeroes);
+
 					}
 
 					destroyMonsters(Monsters,numberOfHeroes);
+					battle=0;
 					break;
-				
 				}
 			default:
 				break;
 		} //;
 		g->clearScreen();
+
 	} while (keyInput != 'q');	
 
 	/*close files*/
@@ -293,6 +317,16 @@ void endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&ch
 				}
 			
 	}
+}
+/*heroesAfterWinning*/
+void heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
+	for(int i=0;i<NumberOfHeroes;i++){
+		heroes[i]->increaseMoney(heroes[i]->getLevel()*2+NumberOfHeroes*2);
+		heroes[i]->increaseExperience(heroes[i]->getLevel()*3+NumberOfHeroes*3);
+		if(heroes[i]->checkIfLevelUp())
+			heroes[i]->levelUp();
+	}
+
 }
 
 /*heroesAfterRound*/
@@ -405,8 +439,8 @@ int attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const&
 		}
 
 		monsterHitWithSpell[whoHitTheMonster]=option-1;
-		monsters[option-1]->attackToMonster(100);
-		//monsters[option-1]->attackToMonster(hero.MySpell->generateHit(hero.getDexterity()));  
+		//monsters[option-1]->attackToMonster(100);
+		monsters[option-1]->attackToMonster(hero.MySpell->generateHit(hero.getDexterity()));  
 		hero.MySpell->castSpell(*monsters[option-1]);
 		return hero.MySpell->getImpactForNRounds();	
 }
