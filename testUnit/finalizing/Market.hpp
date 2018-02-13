@@ -24,6 +24,9 @@ class Market{
 		list<Potion> Potions;
 
 	public:
+		/*Destructor*/
+		~Market();
+		
 		/*Accessors*/
 		Spell& getSpells(int index);
 		list<Weapon>& getWeapon(int index);

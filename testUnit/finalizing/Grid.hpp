@@ -14,6 +14,9 @@ public:
 	/*Constructor*/
 	Grid();
 
+	/*Destructor*/
+	~Grid();
+
 	/*DisplayMap*/
 	void displayMap();
 

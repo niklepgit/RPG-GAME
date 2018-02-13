@@ -356,6 +356,17 @@ Grid* g = new Grid;
 
 	} while (keyInput != 'q');	
 
+	/*memory frees*/
+	/*delete heroes*/
+	for (int i = 0; i < numberOfHeroes; ++i)
+		delete Heroes[i];
+	delete[] Heroes;
+	/*delete market*/
+	delete market;
+	/*delete grid*/
+	delete g;
+
+
 	/*close files*/
 	weapons_txt.close();
 	armors_txt.close();

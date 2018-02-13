@@ -66,6 +66,14 @@ Grid::Grid(){
 		}
 }
 
+/*Destructor*/
+Grid::~Grid(){
+	for (int i = 0; i < xMax; i++)
+		delete map[i];
+	delete[] map;
+}
+
+/*mvUp*/
 void Grid::mvUp(){
 	int x2 = xLoc - 1;
 	if (map[x2][yLoc] == ' '){
@@ -75,6 +83,7 @@ void Grid::mvUp(){
 	}
 }
 
+/*mvDown*/
 void Grid::mvDown(){
 	
 	int x2 = xLoc + 1;
@@ -85,6 +94,7 @@ void Grid::mvDown(){
 	}
 }
 
+/*mvRight*/
 void Grid::mvRight(){
 	int y2 = yLoc + 1;
 	if (map[xLoc][y2] == ' '){
@@ -94,6 +104,7 @@ void Grid::mvRight(){
 	}
 }
 
+/*mvLeft*/
 void Grid::mvLeft(){
 	int y2 = yLoc - 1;
 	if (map[xLoc][y2] == ' '){
@@ -103,6 +114,7 @@ void Grid::mvLeft(){
 	}
 }
 
+/*getmv*/
 char Grid::getmv(int& battle){
 	char choice = getchar_silent();
 	switch(choice)
@@ -140,10 +152,12 @@ void Grid::displayMap(){
 	}
 }
 
+/*clearScreen*/
 void Grid::clearScreen(){
 	cout << string( 25, '\n' );
 }
 
+/*getchar_silent*/
 int Grid::getchar_silent(){  /*I took it ready*/
 	int ch;
 	struct termios oldt,newt;

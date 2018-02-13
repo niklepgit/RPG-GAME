@@ -21,6 +21,10 @@ class Spell{
 	public:
 		/*Constructor*/
 		Spell(string Name,int MinLevel);
+
+		/*Destructor*/
+		~Spell();
+		
 		/*Others*/
 		void printSpell(void);
 		virtual void printTypeOfSpell()=0;

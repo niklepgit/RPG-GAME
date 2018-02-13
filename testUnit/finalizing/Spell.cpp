@@ -76,6 +76,11 @@ Spell::Spell(string Name,int MinLevel)
 
 }
 
+/*Destructor*/
+Spell::~Spell(){
+	delete[] inUse;
+}
+
 /*printSpell*/
 void Spell::printSpell(void){
 	cout<<"Name:"<<name<<endl;

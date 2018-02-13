@@ -1,6 +1,16 @@
 #include "Market.hpp"
 #include <cstdlib>
 
+/*Destructor*/
+Market::~Market(){
+	list<Spell*>::iterator it;
+	for(it = Spells.begin(); it != Spells.end(); it++){
+			delete (*it);
+			it = Spells.erase(it);
+			it--;
+	}
+}
+
 /*addWeapon*/
 void Market::addWeapon(string Name,int MinLevel){
 	Weapon weapon(Name,MinLevel);
@@ -35,6 +45,7 @@ void Market::addSpell(string Name,int MinLevel){
 				break;
 	}
 }
+
 
 /*printSpells*/
 void Market::printSpells(void){
