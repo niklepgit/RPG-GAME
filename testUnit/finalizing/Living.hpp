@@ -27,9 +27,11 @@ class Living{
 		/*Mutators*/
 		void healthPowerReduce(int);
 		void healthPowerIncrease(int);
-		void setMaxHealthPower();
 		void setCurrHealthPower();
 		void regenerateHealthPowerAfterRound(int round);
+
+		/*Check if hero/monster is alive*/
+		int isAlive(){ return (currHealthPower>0); }
 };
 
 #endif

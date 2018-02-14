@@ -27,11 +27,6 @@ void Living::healthPowerIncrease(int healthPowerToIncrease){
 	currHealthPower += healthPowerToIncrease;
 }
 
-/*setMaxHealthPower
-void Living::setMaxHealthPower(){
-	maxHealthPower += 10;
-}
-*/
 /*setCurrHealthPower*/
 void Living::setCurrHealthPower(){
 	currHealthPower = maxHealthPower;

@@ -223,6 +223,7 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 				 
 	}
 }
+
 /*Buy*/
 void Market::Buy(Hero&hero){
 	int ch,ch1;

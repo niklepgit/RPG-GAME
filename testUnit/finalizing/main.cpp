@@ -233,8 +233,14 @@ Grid* g = new Grid;
 					do{
 						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;
 						for(i=0;i<numberOfHeroes;i++){
+							/*if hero is alive*/
+							if (!Heroes[i]->isAlive()){
+								cout << "Hero " << i+1 << " is dead." << endl;
+								continue;
+							}
+
 							//print options
-							cout<<"For hero "<<i+1<<":"<<endl;
+							cout<<"For hero " << i+1 << ":"<<endl;
 							cout<<"If you want to check the inventory press 1"<<endl;
 							cout<<"If you want to start the Attack press 2"<<endl;
 
@@ -269,30 +275,29 @@ Grid* g = new Grid;
 												getOutOfdoWhileLoop=1;
 												break;
 											}
-									case 2: cout<<"Attack of Hero "<< i+1 << endl;
+									case 2: cout << "Attack of Hero " << i+1 << endl;
 											if(Heroes[i]->MySpell!=nullptr){
-												cout<<"Mpika edw"<<endl;///////////////////////
+												cout << "Mpika edw" << endl;///////////////////////
 												if(!Heroes[i]->MySpell->getInUse(i)){
-													cout<<"MPika ki edww"<<endl;////////////////////////
+													cout << "MPika ki edww" << endl;////////////////////////
 													returnFromAttackWithSpell=attackWithSpell(*Heroes[i],Monsters,numberOfHeroes,monsterHitWithSpell,i,whichMonsterWasHit);
 													if(returnFromAttackWithSpell==0){
-														cout<<"For hero "<<i+1<<":"<<endl;
-														cout<<"If you want to check the inventory press 1"<<endl;
-														cout<<"If you want to start the Attack press 2"<<endl;
-														cin>>option;
+														cout << "For hero " << i+1 << ":" << endl;
+														cout << "If you want to check the inventory press 1" << endl;
+														cout << "If you want to start the Attack press 2" << endl;
+														cin >> option;
 														while((option!=1 && option!=2)|| cin.fail()){
 															if(cin.fail()){ // or if(!cin)
 															    // user didn't input a number
 															    cin.clear(); // reset failbit
 															    cin.ignore(100, '\n'); //skip bad input
-																cout<<"Give a valid option."<<endl;
-															    cin>>option;
+																cout << "Give a valid option." << endl;
+															    cin >> option;
 															}
-															else
-																{
-																cout<<"Give a valid option."<<endl;
-															    cin>>option;
-																}
+															else{
+																cout << "Give a valid option." << endl;
+															    cin >> option;
+															}
 														}
 														Heroes[i]->MySpell=nullptr;	
 														break;
@@ -316,7 +321,7 @@ Grid* g = new Grid;
 							int whoToHit=rand()%numberOfHeroes; //generate a random number between 0-2 to choose the hero
 							/*probability(agility) for hero to avoid an attack from a monster*/
 							if(((double) Heroes[whoToHit]->getAgility()/Heroes[whoToHit]->getMaxAgility())>((double) rand() / (RAND_MAX))){
-								cout << "Hero avoid the attack!" << endl;
+								cout << "Hero " << whoToHit+1 << " avoid the attack!" << endl;
 								continue;	// next monster please...
 							}
 							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero
@@ -331,18 +336,20 @@ Grid* g = new Grid;
 					getchar();
 					getchar();
 
+					/*heroesAreDead returns life of heroes (if it is 0, monsters won)*/
 					if(!heroesAreDead(Heroes,numberOfHeroes)){
 						cout<<"The monsters won!!!!"<<endl;
 						cout<<"Press enter to continue...!!"<<endl;
 						getchar();
 						heroesAfterLosing(Heroes,numberOfHeroes);
 					}
+
+					/*monstersAreDead returns life of monsters (if it is 0, heroes won)*/
 					if(!monstersAreDead(Monsters,numberOfHeroes)){
 						cout<<"The heroes won!!!!"<<endl;
 						cout<<"Press enter to continue...!!"<<endl;
 						getchar();
 						heroesAfterWinning(Heroes,numberOfHeroes);
-
 					}
 
 					destroyMonsters(Monsters,numberOfHeroes);
@@ -477,9 +484,9 @@ void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 			}
 		}
 
-		/*Probability for monster to avoid a spell attack from hero*/
+		/*Probability for monster to avoid a normal attack from hero*/
 		if(((double) monsters[option-1]->getProbability()/monsters[option-1]->getMaxProbability())>((double) rand() / RAND_MAX)){
-			cout << "Monster avoid the attack!" << endl;
+			cout << "Monster " << option << " avoid the attack!" << endl;
 			return;
 		}
 
@@ -530,7 +537,7 @@ int attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const&
 
 		/*Probability for monster to avoid a spell attack from hero*/
 		if(((double) monsters[option-1]->getProbability()/monsters[option-1]->getMaxProbability())>((double) rand() / RAND_MAX)){
-			cout << "Monster avoid the attack!" << endl;
+			cout << "Monster " << option << " avoid the attack!" << endl;
 			hero.MySpell->setInUse0(whoHitTheMonster);
 			return -1;
 		}
@@ -558,7 +565,6 @@ void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 	for(int i=0;i<NumberOfHeroes;i++){
 		cout << "Name: "<< heroes[i]->getName(); cout<<'\t'<<'\t'<<"Name: "<< monsters[i]->getName(); cout<<endl;
 		cout << "Level: "<< heroes[i]->getLevel(); cout<<'\t'<<'\t'<< "Level: "<< monsters[i]->getLevel(); cout<<endl;
-			 //<< "Experience: "<< experience << cout<<'\t'<<'\t'<<
 		cout << "HP: "<<heroes[i]->getCurrHealthPower(); cout<< "/"<< heroes[i]->getMaxHealthPower(); cout<<'\t'<<'\t'<<"HP: "<< monsters[i]->getCurrHealthPower(); cout<< "/"<<monsters[i]->getMaxHealthPower(); cout<<endl;
 		cout << "MP: "<< heroes[i]->getCurrMagicPower(); cout<< "/"<<heroes[i]->getMaxMagicPower(); cout<<'\t'<<'\t'<<"DamageRange: "<< monsters[i]->getMinDamageRange(); cout<< "-"<< monsters[i]->getMaxDamageRange(); cout<<endl;
 		cout << "Dexterity: "<<heroes[i]->getDexterity(); cout<<'\t'<<'\t'<<"Probability: "<< monsters[i]->getProbability(); cout<<endl;
@@ -578,4 +584,3 @@ void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 			cout << "Right hand->weapon's damage:"<<heroes[i]->Rhand->getDamageValue()<<endl<<endl;
 	}
 }
-//void endOfBattle(){}
