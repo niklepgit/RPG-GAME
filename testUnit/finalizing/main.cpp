@@ -499,6 +499,8 @@ void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength()); 
 		else if(hero.Lhand==nullptr && hero.Rhand==nullptr)			
 			monsters[option-1]->attackToMonster(hero.getStrength());
+		else if (hero.Lhand!=nullptr && hero.Rhand!=nullptr)
+			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.Lhand->getDamageValue()+hero.getStrength());
 		else if(hero.Rhand==nullptr)
 			monsters[option-1]->attackToMonster(hero.Lhand->getDamageValue()+hero.getStrength());	
 		else
