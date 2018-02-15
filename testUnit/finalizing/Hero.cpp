@@ -69,12 +69,6 @@ void Hero::levelUp(){
 }
 
 int Hero::checkIfLevelUp(){
-/*
-	if(experience>=experienceToLevelUp)
-		return 1;
-	else
-		return 0;
-*/
 	return (experience>=experienceToLevelUp);
 }
 
@@ -175,12 +169,6 @@ void Hero::regenerateHealthPowerAfterLosing(void){
 
 /*regenerateMagicPowerAfterRound*/
 void Hero::regenerateMagicPowerAfterRound(int round){
-/*
-	if(currMagicPower+round*2<maxMagicPower)
-		currMagicPower += round*2;
-	else
-		currMagicPower = maxMagicPower; //attention
-*/
 	currMagicPower += rand()%10;
 	if (currMagicPower > maxMagicPower)
 		currMagicPower = maxMagicPower;

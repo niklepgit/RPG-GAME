@@ -327,8 +327,10 @@ Grid* g = new Grid;
 							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
+						
 						monstersAfterRound(Monsters,numberOfHeroes,counter);
 						heroesAfterRound(Heroes,numberOfHeroes,counter);
+						
 						counter++;
 						endOfSpell(Heroes,Monsters,numberOfHeroes,checkLifeOfSpell,monsterHitWithSpell,counter,whichMonsterWasHit);
 					}while(monstersAreDead(Monsters,numberOfHeroes) && heroesAreDead(Heroes,numberOfHeroes)); //while all heroes or all monsters die

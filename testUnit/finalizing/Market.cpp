@@ -122,6 +122,7 @@ Weapon Market::buyWeapon(int position,int& Money,int LevelOfHero,int& bought){
 		}
 		counter++;
 	}
+	cout << "den ekana return" << endl;
 }
 
 /*buyArmor*/
