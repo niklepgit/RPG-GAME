@@ -166,24 +166,28 @@ Grid* g = new Grid;
 				getchar();
 				break;
 			case 'i':
+				int returnOfCheckInventory;
 				g->clearScreen();
 				cout << "For which hero you want to see inventory?" << endl;
 				switch(getchar()){
 					case '1':
-						Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
-						getchar();
+						returnOfCheckInventory=Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
+						if(returnOfCheckInventory!=2)
+							getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
 					case '2':
-						Heroes[1]->inventory.checkInventory(*Heroes[1],inBattle);
-						getchar();
+						returnOfCheckInventory=Heroes[1]->inventory.checkInventory(*Heroes[1],inBattle);
+						if(returnOfCheckInventory!=2)
+							getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
 					case '3':
-						Heroes[2]->inventory.checkInventory(*Heroes[2],inBattle);
-						getchar();
+						returnOfCheckInventory=Heroes[2]->inventory.checkInventory(*Heroes[2],inBattle);
+						if(returnOfCheckInventory!=2)
+							getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
@@ -268,7 +272,8 @@ Grid* g = new Grid;
 								switch(option){
 									case 1:
 										    check=Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
-											getchar();
+											if(check!=2)
+												getchar();
 											cout << "Press enter to continue";
 											getchar();
 											if(check){
@@ -277,9 +282,7 @@ Grid* g = new Grid;
 											}
 									case 2: cout << "Attack of Hero " << i+1 << endl;
 											if(Heroes[i]->MySpell!=nullptr){
-												cout << "Mpika edw" << endl;///////////////////////
 												if(!Heroes[i]->MySpell->getInUse(i)){
-													cout << "MPika ki edww" << endl;////////////////////////
 													returnFromAttackWithSpell=attackWithSpell(*Heroes[i],Monsters,numberOfHeroes,monsterHitWithSpell,i,whichMonsterWasHit);
 													if(returnFromAttackWithSpell==0){
 														cout << "For hero " << i+1 << ":" << endl;

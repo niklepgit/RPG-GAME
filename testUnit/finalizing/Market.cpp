@@ -200,9 +200,19 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 				 	heroes[i]->printHero();
 				 }
 				 cin>>ch;
-				while(ch<1 || ch>numberOfHeroes){
-					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-					cin>>ch;
+				while(ch<1 || ch>numberOfHeroes || cin.fail()){	
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
+					else
+					{
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
 				}
 				 Buy(*heroes[ch-1]);
 				 break;
@@ -212,9 +222,19 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 				 	heroes[i]->printHero();
 				 }
 				 cin>>ch;
-				 while(ch<1 || ch>numberOfHeroes){
-					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-					cin>>ch;
+				while(ch<1 || ch>numberOfHeroes || cin.fail()){		
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
+					else
+					{
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
 				}
 				 Sell(*heroes[ch-1]); //attentioooon
 				 break;
@@ -329,7 +349,15 @@ void Market::Buy(Hero&hero){
 				hero.reduceMoney(Money);
 				break;
 				}
-		case 0:return;		
+		case 0: if(cin.fail()){
+					cout<<"skata"<<endl;
+					cin.clear(); // reset failbit
+			   		cin.ignore(100, '\n'); //skip bad input
+				}
+				cin.ignore(100, '\n');	
+				return;		
+		default:cin.ignore(100, '\n');
+				return;
 	}	
 }
 

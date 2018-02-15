@@ -160,7 +160,17 @@ int Inventory::checkInventory(Hero&hero,int inBattle){
 				   	cout<<"You can't use a spell right now."<<endl;
 				}
 	    	   break;
-	    default:cout<<"Wrong option try again."<<endl;
+	    default:
+	    		if(cin.fail()){
+					cin.clear(); // reset failbit
+			   		cin.ignore(100, '\n'); //skip bad input
+	    			cout<<"Wrong option."<<endl;
+	    			return 2;
+				}
+
+	    		cin.ignore(100, '\n');
+	    		cout<<"Wrong option."<<endl;
+	    		return 2;
 	    //check if you have to use break;
 	}
 	return 0;
