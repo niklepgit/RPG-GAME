@@ -34,8 +34,13 @@ void Living::setCurrHealthPower(){
 
 /*regenerateHealthPowerAfterRound*/
 void Living::regenerateHealthPowerAfterRound(int round){
+/*
 	if(currHealthPower+round*2<maxHealthPower)
 		currHealthPower += round*2;
 	else
 		currHealthPower = maxHealthPower; //attention
+*/
+	currHealthPower += rand()%10;
+	if (currHealthPower > maxHealthPower)
+		currHealthPower = maxHealthPower;
 }

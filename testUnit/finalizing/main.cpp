@@ -169,6 +169,7 @@ Grid* g = new Grid;
 				int returnOfCheckInventory;
 				g->clearScreen();
 				cout << "For which hero you want to see inventory?" << endl;
+				//////////////////////////////////////////////// CHECK ///////////////////////////////////////////////////////
 				switch(getchar()){
 					case '1':
 						returnOfCheckInventory=Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
@@ -259,11 +260,10 @@ Grid* g = new Grid;
 									cout<<"Give a valid option."<<endl;
 								    cin>>option;
 								}
-								else
-									{
+								else{	
 									cout<<"Give a valid option."<<endl;
 								    cin>>option;
-									}
+								}
 							}		
 							
 							getOutOfdoWhileLoop=0;
@@ -330,8 +330,8 @@ Grid* g = new Grid;
 							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
-						//monstersAfterRound(Monsters,numberOfHeroes,counter);
-						//heroesAfterRound(Heroes,numberOfHeroes,counter);
+						monstersAfterRound(Monsters,numberOfHeroes,counter);
+						heroesAfterRound(Heroes,numberOfHeroes,counter);
 						counter++;
 						endOfSpell(Heroes,Monsters,numberOfHeroes,checkLifeOfSpell,monsterHitWithSpell,counter,whichMonsterWasHit);
 					}while(monstersAreDead(Monsters,numberOfHeroes) && heroesAreDead(Heroes,numberOfHeroes)); //while all heroes or all monsters die
@@ -361,7 +361,7 @@ Grid* g = new Grid;
 				}
 			default:
 				break;
-		} //;
+		}
 		g->clearScreen();
 
 	} while (keyInput != 'q');	
