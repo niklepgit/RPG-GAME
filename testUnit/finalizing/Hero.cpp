@@ -4,7 +4,7 @@
 /* Constructor */
 Hero::Hero(string Name,int Strength,int Dexterity,int Agility,int MaxAgility)
 		  :Living(Name),strength(Strength),dexterity(Dexterity),
-		  agility(Agility),maxAgility(MaxAgility),currMagicPower(100),maxMagicPower(100),money(10),experience(0),
+		  agility(Agility),maxAgility(MaxAgility),currMagicPower(100),maxMagicPower(100),money(25),experience(0),
 		  experienceToLevelUp(10),Lhand(nullptr),Rhand(nullptr),MyArmor(nullptr),MySpell(nullptr){}
 	
 /*printHero*/

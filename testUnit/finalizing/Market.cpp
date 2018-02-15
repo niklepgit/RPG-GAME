@@ -198,87 +198,93 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 	int i;
 	cin>>ch;
 	switch(ch){
-		case 1:cout<<"For which Hero you want to buy?"<<endl;
-				 for(i=0;i<numberOfHeroes;i++){
-				 	cout<<i+1<<":"<<endl;
-				 	heroes[i]->printHero();
-				 }
-				 cin>>ch;
-				while(ch<1 || ch>numberOfHeroes || cin.fail()){	
-					if(cin.fail()){ // or if(!cin)
-					    // user didn't input a number
-					    cin.clear(); // reset failbit
-					    cin.ignore(100, '\n'); //skip bad input
-						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-						cin>>ch;
-					}
-					else
-					{
-						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-						cin>>ch;
-					}
+		case 1:
+			cout<<"For which Hero you want to buy?"<<endl;
+			for(i=0;i<numberOfHeroes;i++){
+		 	    cout<<i+1<<":"<<endl;
+		 	    heroes[i]->printHero();
+			}
+		    cin>>ch;
+			while(ch<1 || ch>numberOfHeroes || cin.fail()){	
+				if(cin.fail()){ // or if(!cin)
+				    // user didn't input a number
+				    cin.clear(); // reset failbit
+				    cin.ignore(100, '\n'); //skip bad input
+					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+					cin>>ch;
 				}
-				 Buy(*heroes[ch-1]);
-				 break;
-		case 2:cout<<"For which Hero you want to sell?"<<endl;
-				 for(i=0;i<numberOfHeroes;i++){
-				 	cout<<i+1<<":"<<endl;
-				 	heroes[i]->printHero();
-				 }
-				 cin>>ch;
-				while(ch<1 || ch>numberOfHeroes || cin.fail()){		
-					if(cin.fail()){ // or if(!cin)
-					    // user didn't input a number
-					    cin.clear(); // reset failbit
-					    cin.ignore(100, '\n'); //skip bad input
-						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-						cin>>ch;
-					}
-					else
-					{
-						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-						cin>>ch;
-					}
+				else{
+					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+					cin>>ch;
 				}
-				 Sell(*heroes[ch-1]); //attentioooon
-				 break;
+			}
+		    Buy(*heroes[ch-1]);
+		    break;
+		case 2:
+			cout<<"For which Hero you want to sell?"<<endl;
+			for(i=0;i<numberOfHeroes;i++){
+		 	    cout<<i+1<<":"<<endl;
+		 	    heroes[i]->printHero();
+			}
+		    cin>>ch;
+			while(ch<1 || ch>numberOfHeroes || cin.fail()){	
+				if(cin.fail()){ // or if(!cin)
+				    // user didn't input a number
+				    cin.clear(); // reset failbit
+				    cin.ignore(100, '\n'); //skip bad input
+					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+					cin>>ch;
+				}
+				else{
+					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+					cin>>ch;
+				}
+			}
+			Sell(*heroes[ch-1]); //attentioooon
+			break;
 
-		case 0:return;
-				 
+		default:
+			if(cin.fail()){
+				cin.clear(); // reset failbit
+		   		cin.ignore(100, '\n'); //skip bad input
+			}
+			cin.ignore(100, '\n');	
+			break;				 
 	}
 }
 
 /*Buy*/
 void Market::Buy(Hero&hero){
-	int ch,ch1;
+	int ch, ch1;
 	cout<<"What do you want to buy?"<<endl;
 	printOptionsForSelling();
-	cin>>ch;
+	cin >> ch;
 	int Money;
 	int bought;
 	switch(ch){
 		case 1:{
 				this->printWeapons();
-				cout<<"Which weapon you want to buy?"<<endl;
-				cout<<"press q to quit"<<endl;
-				cin>>ch1;
-				if(ch1=='q')
+				cout << "Which weapon you want to buy?" << endl;
+				cout << "(Press 0 to quit)" << endl;
+				cin >> ch1;
+				cout << ch1 << endl;
+				if(ch1 == 0)
 					return;
 				while(ch1<1 || ch1>WEAPONS || cin.fail()){
 					if(cin.fail()){ // or if(!cin)
 					    // user didn't input a number
 					    cin.clear(); // reset failbit
 					    cin.ignore(100, '\n'); //skip bad input
-						cout<<"Give a valid number. Please try again."<<endl;
-						cin>>ch1;	
+						cout << "Give a valid number. Please try again." << endl;
+						cin >> ch1;	
 					}
 					else
 					{
-					cout<<"Give a valid number. Please try again."<<endl;
-					cin>>ch1;
+					cout << "Give a valid number. Please try again." << endl;
+					cin >> ch1;
 					}
 				}
-				Weapon weapon=buyWeapon(ch1,Money,hero.getLevel(),bought);
+				Weapon weapon = buyWeapon(ch1, Money, hero.getLevel(), bought);
 				if(!bought){
 					cout<<"You are not in the appropriate level to buy this yet."<<endl;
 					getchar();
@@ -409,14 +415,13 @@ void Market::Buy(Hero&hero){
 				hero.reduceMoney(Money);
 				break;
 				}
-		case 0: if(cin.fail()){
-					cin.clear(); // reset failbit
-			   		cin.ignore(100, '\n'); //skip bad input
-				}
-				cin.ignore(100, '\n');	
-				return;		
-		default:cin.ignore(100, '\n');
-				return;
+		default:
+			if(cin.fail()){
+				cin.clear(); // reset failbit
+		   		cin.ignore(100, '\n'); //skip bad input
+			}
+			cin.ignore(100, '\n');	
+			break;		
 	}	
 }
 
@@ -466,7 +471,14 @@ void Market::Sell(Hero& hero){
 				hero.inventory.deleteSpell(ch1,Money);
 				hero.increaseMoney(Money/2);
 				break;
-		case 0:return;		
+		default:
+			if(cin.fail()){
+				cin.clear(); // reset failbit
+		   		cin.ignore(100, '\n'); //skip bad input
+			}
+			cin.ignore(100, '\n');	
+			break;
+
 	}	
 }
 
@@ -475,7 +487,7 @@ void Market::printOptionsForMenu(void){
 	cout<<"Options:"<<endl
 		<<"1)Buy"<<endl
 		<<"2)Sell"<<endl<<endl;
-	cout<<"Press 1,2 or 0 to exit"<<endl;
+	cout<<"Press 1,2 or anything else to exit"<<endl;
 }
 
 /*printOptionsForSelling*/
@@ -485,5 +497,5 @@ void Market::printOptionsForSelling(void){
 		<<"2)Armors"<<endl
 		<<"3)Potions"<<endl
 		<<"4)Spells"<<endl<<endl;
-	cout<<"Press 1,2,3,4 or 0 to exit"<<endl;
+	cout<<"Press 1,2,3,4 or anything else to exit"<<endl;
 }

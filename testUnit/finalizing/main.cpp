@@ -122,11 +122,10 @@ int main(void){
 				cout<<"Give a valid number (1-3). Please try again."<<endl;
 				cin>>typeOfHero;	
 			}
-			else
-				{
+			else{
 				cout<<"Give a valid number (1-3). Please try again."<<endl;
 				cin>>typeOfHero;
-				}
+			}
 		}
 		
 		switch(typeOfHero){
@@ -138,9 +137,6 @@ int main(void){
 				   break;
 		}
 	}
-
-	Heroes[0]->increaseMoney(100000);/////////////////////////
-	//Heroes[1]->increaseMoney(100000);
 
 /*Grid*/
 Grid* g = new Grid;
@@ -167,25 +163,42 @@ Grid* g = new Grid;
 				break;
 			case 'i':
 				int returnOfCheckInventory;
+				int choice;
 				g->clearScreen();
 				cout << "For which hero you want to see inventory?" << endl;
+				for (int i = 0; i < numberOfHeroes; ++i)
+					Heroes[i]->printHero();
 				//////////////////////////////////////////////// CHECK ///////////////////////////////////////////////////////
-				switch(getchar()){
-					case '1':
-						returnOfCheckInventory=Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
+				cin >> choice;
+				while(choice < 0 || choice > numberOfHeroes || cin.fail()){
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout << "Give a valid number (1-" << numberOfHeroes << "). Please try again." << endl;
+						cin >> choice;	
+					}
+					else{
+						cout << "Give a valid number (1-" << numberOfHeroes << "). Please try again." << endl;
+						cin >> choice;
+					}
+				}
+				switch(choice){
+					case 1:
+						returnOfCheckInventory = Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
 						if(returnOfCheckInventory!=2)
 							getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
-					case '2':
+					case 2:
 						returnOfCheckInventory=Heroes[1]->inventory.checkInventory(*Heroes[1],inBattle);
 						if(returnOfCheckInventory!=2)
 							getchar();
 						cout << "Press enter to continue";
 						getchar();
 						break;
-					case '3':
+					case 3:
 						returnOfCheckInventory=Heroes[2]->inventory.checkInventory(*Heroes[2],inBattle);
 						if(returnOfCheckInventory!=2)
 							getchar();
@@ -199,20 +212,20 @@ Grid* g = new Grid;
 			case 'b':{
 					if(!battle)
 						break;
-					int levelOfMonsters=getAverageLevelOfHeroes(Heroes,numberOfHeroes);
-					Monster** Monsters=new Monster*[numberOfHeroes];
+					int levelOfMonsters = getAverageLevelOfHeroes(Heroes, numberOfHeroes);
+					Monster** Monsters = new Monster*[numberOfHeroes];
 					int randomMonster;
-					for(int j=0;j<numberOfHeroes;j++){
+					for(int j = 0; j < numberOfHeroes; j++){
 						randomMonster = rand()%3;
 						switch(randomMonster){
 							case 0:
-								Monsters[j] = new Dragon("Dragon",levelOfMonsters); 
+								Monsters[j] = new Dragon("Dragon", levelOfMonsters); 
 								break;
 							case 1:
-								Monsters[j] = new Spirit("Spirit",levelOfMonsters);
+								Monsters[j] = new Spirit("Spirit", levelOfMonsters);
 								break;
 							case 2:
-								Monsters[j] = new Exoskeleton("Exoskeleton",levelOfMonsters);
+								Monsters[j] = new Exoskeleton("Exoskeleton", levelOfMonsters);
 								break;
 							default:break;
 						}
@@ -248,11 +261,10 @@ Grid* g = new Grid;
 							cout<<"For hero " << i+1 << ":"<<endl;
 							cout<<"If you want to check the inventory press 1"<<endl;
 							cout<<"If you want to start the Attack press 2"<<endl;
-
 							 
 							cin>>option;
 				
-							while((option!=1 && option!=2)|| cin.fail()){
+							while((option!=1 && option!=2) || cin.fail()){
 								if(cin.fail()){ // or if(!cin)
 								    // user didn't input a number
 								    cin.clear(); // reset failbit
@@ -407,7 +419,7 @@ void endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&ch
 /*heroesAfterWinning*/
 void heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
 	for(int i=0;i<NumberOfHeroes;i++){
-		heroes[i]->increaseMoney(heroes[i]->getLevel()*2+NumberOfHeroes*2);
+		heroes[i]->increaseMoney(heroes[i]->getLevel()*4+NumberOfHeroes*2);
 		if (heroes[i]->getLevel() < 10){				// otan ftasei level 10 no more experience kai mhn elegxeis kan gia level up
 			heroes[i]->increaseExperience(heroes[i]->getLevel()*3+NumberOfHeroes*3);
 			if(heroes[i]->checkIfLevelUp())
@@ -567,7 +579,7 @@ int getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes){
 	return averageLevel/NumberOfHeroes;
 }
 
-//void battle(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){}
+/*displayStats*/
 void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 	for(int i=0;i<NumberOfHeroes;i++){
 		cout << "Name: "<< heroes[i]->getName(); cout<<'\t'<<'\t'<<"Name: "<< monsters[i]->getName(); cout<<endl;
@@ -585,6 +597,10 @@ void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 			cout << "Weapon's damage: " << heroes[i]->Rhand->getDamageValue()<<endl<<endl; 
 		else if(heroes[i]->Lhand==nullptr && heroes[i]->Rhand==nullptr)
 			cout << "Both hands are empty." << endl<<endl;
+		else if(heroes[i]->Lhand!=nullptr && heroes[i]->Rhand!=nullptr){
+			cout << "Right hand->weapon's damage:"<<heroes[i]->Rhand->getDamageValue()<<endl<<endl;
+			cout << "Left hand->weapon's damage:"<<heroes[i]->Lhand->getDamageValue()<<endl<<endl;
+		}
 		else if(heroes[i]->Rhand==nullptr)
 			cout << "Left hand->weapon's damage:"<<heroes[i]->Lhand->getDamageValue()<<endl<<endl;
 		else
