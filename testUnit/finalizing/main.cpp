@@ -168,6 +168,7 @@ Grid* g = new Grid;
 			case 'i':
 				g->clearScreen();
 				cout << "For which hero you want to see inventory?" << endl;
+				//////////////////////////////////////////////// CHECK ///////////////////////////////////////////////////////
 				switch(getchar()){
 					case '1':
 						Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
@@ -255,11 +256,10 @@ Grid* g = new Grid;
 									cout<<"Give a valid option."<<endl;
 								    cin>>option;
 								}
-								else
-									{
+								else{	
 									cout<<"Give a valid option."<<endl;
 								    cin>>option;
-									}
+								}
 							}		
 							
 							getOutOfdoWhileLoop=0;
@@ -358,7 +358,7 @@ Grid* g = new Grid;
 				}
 			default:
 				break;
-		} //;
+		}
 		g->clearScreen();
 
 	} while (keyInput != 'q');	
