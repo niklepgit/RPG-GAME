@@ -1,5 +1,9 @@
 #include "Market.hpp"
 #include <cstdlib>
+#define WEAPONS 100
+#define ARMORS 80
+#define POTIONS 73
+#define SPELLS 89
 
 /*Destructor*/
 Market::~Market(){
@@ -201,9 +205,19 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 				 	heroes[i]->printHero();
 				 }
 				 cin>>ch;
-				while(ch<1 || ch>numberOfHeroes){
-					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-					cin>>ch;
+				while(ch<1 || ch>numberOfHeroes || cin.fail()){	
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
+					else
+					{
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
 				}
 				 Buy(*heroes[ch-1]);
 				 break;
@@ -213,9 +227,19 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 				 	heroes[i]->printHero();
 				 }
 				 cin>>ch;
-				 while(ch<1 || ch>numberOfHeroes){
-					cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
-					cin>>ch;
+				while(ch<1 || ch>numberOfHeroes || cin.fail()){		
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
+					else
+					{
+						cout<<"Give a valid number (1-"<<numberOfHeroes<<"). Please try again."<<endl;
+						cin>>ch;
+					}
 				}
 				 Sell(*heroes[ch-1]); //attentioooon
 				 break;
@@ -241,6 +265,20 @@ void Market::Buy(Hero&hero){
 				cin>>ch1;
 				if(ch1=='q')
 					return;
+				while(ch1<1 || ch1>WEAPONS || cin.fail()){
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number. Please try again."<<endl;
+						cin>>ch1;	
+					}
+					else
+					{
+					cout<<"Give a valid number. Please try again."<<endl;
+					cin>>ch1;
+					}
+				}
 				Weapon weapon=buyWeapon(ch1,Money,hero.getLevel(),bought);
 				if(!bought){
 					cout<<"You are not in the appropriate level to buy this yet."<<endl;
@@ -257,7 +295,7 @@ void Market::Buy(Hero&hero){
 				hero.inventory.addWeapon(weapon);
 				hero.reduceMoney(Money);
 				break;
-				}
+			}
 		case 2:{
 				this->printArmors();
 				cout<<"Which armor you want to buy?"<<endl;
@@ -265,6 +303,20 @@ void Market::Buy(Hero&hero){
 				cin>>ch1;
 				if(ch1=='q')
 					return;
+				while(ch1<1 || ch1>ARMORS || cin.fail()){
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number. Please try again."<<endl;
+						cin>>ch1;	
+					}
+					else
+					{
+					cout<<"Give a valid number. Please try again."<<endl;
+					cin>>ch1;
+					}
+				}
 				Armor armor=buyArmor(ch1,Money,hero.getLevel(),bought);
 				if(!bought){
 					cout<<"You are not in the appropriate level to buy this yet."<<endl;
@@ -289,6 +341,20 @@ void Market::Buy(Hero&hero){
 				cin>>ch1;
 				if(ch1=='q')
 					return;
+				while(ch1<1 || ch1>POTIONS || cin.fail()){
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number. Please try again."<<endl;
+						cin>>ch1;	
+					}
+					else
+					{
+					cout<<"Give a valid number. Please try again."<<endl;
+					cin>>ch1;
+					}
+				}
 				Potion potion=buyPotion(ch1,Money,hero.getLevel(),bought);
 				if(!bought){
 					cout<<"You are not in the appropriate level to buy this yet."<<endl;
@@ -313,6 +379,20 @@ void Market::Buy(Hero&hero){
 				cin>>ch1;
 				if(ch1=='q')
 					return;
+				while(ch1<1 || ch1>SPELLS || cin.fail()){
+					if(cin.fail()){ // or if(!cin)
+					    // user didn't input a number
+					    cin.clear(); // reset failbit
+					    cin.ignore(100, '\n'); //skip bad input
+						cout<<"Give a valid number. Please try again."<<endl;
+						cin>>ch1;	
+					}
+					else
+					{
+					cout<<"Give a valid number. Please try again."<<endl;
+					cin>>ch1;
+					}
+				}
 				Spell *spell=buySpell(ch1,Money,hero.getLevel(),bought);
 				if(!bought){
 					cout<<"You are not in the appropriate level to buy this yet."<<endl;
@@ -330,7 +410,14 @@ void Market::Buy(Hero&hero){
 				hero.reduceMoney(Money);
 				break;
 				}
-		case 0:return;		
+		case 0: if(cin.fail()){
+					cin.clear(); // reset failbit
+			   		cin.ignore(100, '\n'); //skip bad input
+				}
+				cin.ignore(100, '\n');	
+				return;		
+		default:cin.ignore(100, '\n');
+				return;
 	}	
 }
 
