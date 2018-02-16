@@ -9,12 +9,18 @@ using namespace std;
 
 class Hero:public Living{
 	private:
-		int currMagicPower;
-		int maxMagicPower;
 		int strength;
 		int dexterity;
 		int agility;
+<<<<<<< HEAD
 		int maxAgility;	// needed find the probability to avoid an attack from a monster
+=======
+		int maxAgility;
+		int currMagicPower;
+		int maxMagicPower;
+		
+		
+>>>>>>> ab5cad380ab94c03cba7e84f2eb10df7b096279e
 		int money;
 		int experience;
 		int experienceToLevelUp;

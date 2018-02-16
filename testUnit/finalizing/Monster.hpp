@@ -2,8 +2,6 @@
 #define MONSTER
 
 #include "Living.hpp"
-//#include "../Living.hpp"
-
 
 class Monster:public Living{
 	protected:
@@ -31,13 +29,13 @@ class Monster:public Living{
 
 
 		/*Mutators*/
-		void reduceDefense(int defenseToSub) { defense -= defenseToSub; }
-		void reduceProbability(int probabilityToSub) { probability -= probabilityToSub; }
-		void reduceDamageRange(int maxDamageToSub) { maxDamageRange -= maxDamageToSub; }
+		void reduceDefense(int defenseToSub);
+		void reduceProbability(int probabilityToSub);
+		void reduceDamageRange(int maxDamageToSub);
 
-		void increaseDefense(int defenseToAdd) { defense += defenseToAdd; }
-		void increaseProbability(int probabilityToAdd) { probability += probabilityToAdd; }
-		void increaseDamageRange(int maxDamageToAdd) { maxDamageRange += maxDamageToAdd; }
+		void increaseDefense(int defenseToAdd);
+		void increaseProbability(int probabilityToAdd);
+		void increaseDamageRange(int maxDamageToAdd);
 
 		/*Others*/
 		void attackToMonster(int DamageValue);

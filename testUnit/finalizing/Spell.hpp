@@ -23,28 +23,32 @@ class Spell{
 		Spell(string Name,int MinLevel);
 
 		/*Destructor*/
-		~Spell();
+		virtual ~Spell();
 		
-		/*Others*/
-		void printSpell(void);
+		/*Accessors*/
+		int getInUse(int i) const {return inUse[i];} //attention i should be 0-2
+		int getImpactForNRounds() const {return impactForNRounds;}
+		int getMagicPower() const {return magicPower;}
+		int getMinLevel() const {return minLevel;}
+		int getValue() const {return value;}
+
+		/*abstruct functions*/
 		virtual void printTypeOfSpell()=0;
 		virtual void castSpell(Monster& monster)=0;
 		virtual void undoSpell(Monster& monster)=0;
-		int getValue() {return value;}
+
+		/*Others*/
+		void printSpell(void);
+	
 		int generateHit(int Dexterity);
 		void setInUse1(int i) {inUse[i]=1;}
-		void setInUse0(int i) {inUse[i]=0;}
-		int getInUse(int i) const {return inUse[i];} //attention i should be 0-2
-		int getImpactForNRounds(){return impactForNRounds;}
-		int getMagicPower() {return magicPower;}
-		int getMinLevel() const {return minLevel;}
-
+		void setInUse0(int i) {inUse[i]=0;}	
+		
+		/*castSpells*/
 		void castSpell(Hero& hero);
 		virtual void castFireSpell(){};
 		virtual void castIceSpell(){};
 		virtual void castLightingSpell(){};
-		//function to decrease the magicPower from Hero
-		//function to check the dexterity
-		//fuck lalala
+
 };
 #endif

@@ -7,11 +7,11 @@
 
 /*Destructor*/
 Market::~Market(){
-	list<Spell*>::iterator it;
-	for(it = Spells.begin(); it != Spells.end(); it++){
-			delete (*it);
-			it = Spells.erase(it);
-			it--;
+	list<Spell*>::iterator it; //iterator for the list of pointers to spell
+	for(it = Spells.begin(); it != Spells.end(); it++){ //for every item of the list
+			delete (*it); //delete the spell
+			it = Spells.erase(it); erase the pointer from the list
+			it--; 
 	}
 }
 
@@ -35,18 +35,18 @@ void Market::addPotion(string Name,int MinLevel,string WtIncrease){
 
 /*addSpell*/
 void Market::addSpell(string Name,int MinLevel){
-	int randomSpell=rand()%3;
-	Spell *spellPtr=nullptr;
-	switch(randomSpell){
-		case 0:	spellPtr=new IceSpell(Name,MinLevel);
-				Spells.push_back(spellPtr);
-				break;
-		case 1:	spellPtr=new FireSpell(Name,MinLevel);
-				Spells.push_back(spellPtr);
-				break;
-		case 2:	spellPtr=new LightingSpell(Name,MinLevel);
-				Spells.push_back(spellPtr);
-				break;
+	int randomSpell=rand()%3; //give a random number between 0-2 
+	Spell *spellPtr=nullptr; //make a pointer to spell
+	switch(randomSpell){ 
+		case 0:	spellPtr=new IceSpell(Name,MinLevel); //randomly create an icespell
+				Spells.push_back(spellPtr); //push the pointer to the spell in list 
+				break;						//break from switch
+		case 1:	spellPtr=new FireSpell(Name,MinLevel);  //randomly create an firespell
+				Spells.push_back(spellPtr);	//push the pointer to the spell in list 
+				break;						//break from switch
+		case 2:	spellPtr=new LightingSpell(Name,MinLevel);  //randomly create an lightingspell
+				Spells.push_back(spellPtr);	//push the pointer to the spell in list 
+				break;						//break from switch
 	}
 }
 
@@ -57,7 +57,7 @@ void Market::printSpells(void){
 	list<Spell*>::iterator it;
 	cout<<"Spells are:"<<endl;
 	for(it=Spells.begin();it!=Spells.end();it++){ //for every spell
-		cout<<"<------"<<++i<<"------>"<<endl;
+		cout<<"<------"<<++i<<"------>"<<endl;	//print the number for the spell
 		(*it)->printSpell(); //call the print function for the spell
 		cout<<endl; //leave one line empty
 	}
@@ -69,7 +69,7 @@ void Market::printWeapons(void){
 	list<Weapon>::iterator it;
 	cout<<"Weapons are:"<<endl;
 	for(it=Weapons.begin();it!=Weapons.end();it++){ //for every weapon
-		cout<<"<------"<<++i<<"------>"<<endl;
+		cout<<"<------"<<++i<<"------>"<<endl;	//print the number for the weapon
 		it->printWeapon(); //call the print function for the weapon
 		cout<<endl; //leave one line empty
 	}
@@ -81,7 +81,7 @@ void Market::printArmors(void){
 	list<Armor>::iterator it;
 	cout<<"Armors are:"<<endl;
 	for(it=Armors.begin();it!=Armors.end();it++){ //for every Armor
-		cout<<"<------"<<++i<<"------>"<<endl;
+		cout<<"<------"<<++i<<"------>"<<endl; //print the number for the armor
 		it->printArmor(); //call the print function for the Armor
 		cout<<endl; //leave one line empty
 	}
@@ -93,7 +93,7 @@ void Market::printPotions(void){
 	list<Potion>::iterator it;
 	cout<<"Potions are:"<<endl;
 	for(it=Potions.begin();it!=Potions.end();it++){ //for every spell
-		cout<<"<------"<<++i<<"------>"<<endl;
+		cout<<"<------"<<++i<<"------>"<<endl; //print the number for the potion
 		it->printPotion(); //call the print function for the spell
 		cout<<endl; //leave one line empty
 	}
@@ -111,20 +111,20 @@ void Market::checkMarket(void){
 Weapon Market::buyWeapon(int position,int& Money,int LevelOfHero,int& bought){
 	list<Weapon>::iterator it;
 	int counter=1;
-	for(it=Weapons.begin();it!=Weapons.end();it++){
-		if(counter==position){
-			if(it->getMinLevel()<=LevelOfHero){
-				Money=it->getValue();
-				bought=1;
-				return *it;
+	for(it=Weapons.begin();it!=Weapons.end();it++){ //for every weapon in the list of weapons
+		if(counter==position){					//if you find the weapon user chose
+			if(it->getMinLevel()<=LevelOfHero){ //if the hero is in an appropriate level
+				Money=it->getValue();		//take the cost for the weapon
+				bought=1;					//make the bought variable 1
+				return *it;					//return the weapon
 			}
-			else
+			else							//if thw weapon is of higher level
 				{
-					bought=0;
-					return *it;
+					bought=0;			//make bought variable 0
+					return *it;			//return the weapon just because the function returns a weapon
 				}	
 		}
-		counter++;
+		counter++;					
 	}
 }
 
@@ -132,17 +132,17 @@ Weapon Market::buyWeapon(int position,int& Money,int LevelOfHero,int& bought){
 Armor Market::buyArmor(int position,int& Money,int LevelOfHero,int& bought){
 	list<Armor>::iterator it;
 	int counter=1;
-	for(it=Armors.begin();it!=Armors.end();it++){
-		if(counter==position){
-			if(it->getMinLevel()<=LevelOfHero){
-				Money=it->getValue();
-				bought=1;
-				return *it;
+	for(it=Armors.begin();it!=Armors.end();it++){ //for every weapon in the list of weapons
+		if(counter==position){					//if you find the weapon user chose
+			if(it->getMinLevel()<=LevelOfHero){ //if the hero is in an appropriate level
+				Money=it->getValue();			//take the cost for the weapon
+				bought=1;						//make the bought variable 1
+				return *it;						//return the weapon
 			}
-			else
+			else								//if thw weapon is of higher level
 				{
-					bought=0;
-					return *it;
+					bought=0;					//make bought variable 0
+					return *it;					//return the weapon just because the function returns a weapon
 				}	
 		}
 		counter++;
@@ -194,18 +194,18 @@ Spell* Market::buySpell(int position,int& Money,int LevelOfHero,int& bought){
 /*menuMarket*/
 void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 	int ch;
-	printOptionsForMenu();
+	printOptionsForMenu(); 
 	int i;
 	cin>>ch;
 	switch(ch){
-		case 1:
-			cout<<"For which Hero you want to buy?"<<endl;
-			for(i=0;i<numberOfHeroes;i++){
+		case 1:												//if the user choose to buy
+			cout<<"For which Hero you want to buy?"<<endl;	//ask for which hero he want to buy
+			for(i=0;i<numberOfHeroes;i++){				//print all the heroes
 		 	    cout<<i+1<<":"<<endl;
 		 	    heroes[i]->printHero();
 			}
 		    cin>>ch;
-			while(ch<1 || ch>numberOfHeroes || cin.fail()){	
+			while(ch<1 || ch>numberOfHeroes || cin.fail()){	 //check for input
 				if(cin.fail()){ // or if(!cin)
 				    // user didn't input a number
 				    cin.clear(); // reset failbit
@@ -218,6 +218,7 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 					cin>>ch;
 				}
 			}
+								//if everything was great then call buy function for the current hero
 		    Buy(*heroes[ch-1]);
 		    break;
 		case 2:
@@ -227,7 +228,7 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 		 	    heroes[i]->printHero();
 			}
 		    cin>>ch;
-			while(ch<1 || ch>numberOfHeroes || cin.fail()){	
+			while(ch<1 || ch>numberOfHeroes || cin.fail()){	 //check for input
 				if(cin.fail()){ // or if(!cin)
 				    // user didn't input a number
 				    cin.clear(); // reset failbit
@@ -240,6 +241,7 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 					cin>>ch;
 				}
 			}
+								//if everything was great then call buy function for the current hero
 			Sell(*heroes[ch-1]); //attentioooon
 			break;
 
@@ -257,20 +259,20 @@ void Market::menuMarket(Hero**&heroes,int numberOfHeroes){
 void Market::Buy(Hero&hero){
 	int ch, ch1;
 	cout<<"What do you want to buy?"<<endl;
-	printOptionsForSelling();
+	printOptionsForSelling(); 
 	cin >> ch;
 	int Money;
 	int bought;
 	switch(ch){
-		case 1:{
-				this->printWeapons();
-				cout << "Which weapon you want to buy?" << endl;
-				cout << "(Press 0 to quit)" << endl;
-				cin >> ch1;
-				cout << ch1 << endl;
-				if(ch1 == 0)
-					return;
-				while(ch1<1 || ch1>WEAPONS || cin.fail()){
+		case 1:{ 												//if you want to buy weapons
+				this->printWeapons();							//print the weapons
+				cout << "Which weapon you want to buy?" << endl; //ask for user to choose a weapon
+				cout << "(Press 0 to quit)" << endl;			
+				cin >> ch1;										//take 
+				if(ch1 == 0)									//if the user want to quit
+					return;	
+
+				while(ch1<1 || ch1>WEAPONS || cin.fail()){  //check for input
 					if(cin.fail()){ // or if(!cin)
 					    // user didn't input a number
 					    cin.clear(); // reset failbit
@@ -284,31 +286,32 @@ void Market::Buy(Hero&hero){
 					cin >> ch1;
 					}
 				}
-				Weapon weapon = buyWeapon(ch1, Money, hero.getLevel(), bought);
-				if(!bought){
+
+				Weapon weapon = buyWeapon(ch1, Money, hero.getLevel(), bought); //go and buy the weapon
+				if(!bought){													//if the user is not in the appropriate level
 					cout<<"You are not in the appropriate level to buy this yet."<<endl;
-					getchar();
-					getchar();
+					getchar();													//needed for nice UI
+					getchar();													//needed for nice UI
 					return;
 				}
-				if(Money>hero.getMoney()){
-					cout<<"Sorry but the hero doesn't have enough money"<<endl;
-					getchar();
-					getchar();
+				if(Money>hero.getMoney()){									//if the hero doesn't have enough money
+					cout<<"Sorry but the hero doesn't have enough money"<<endl; //print a message
+					getchar();													//needed for nice UI
+					getchar();													//needed for nice UI
 					break;
 				}
-				hero.inventory.addWeapon(weapon);
-				hero.reduceMoney(Money);
+				hero.inventory.addWeapon(weapon);							//add the weapon to the inventory of the hero
+				hero.reduceMoney(Money);									//reduce the money from hero
 				break;
 			}
-		case 2:{
-				this->printArmors();
-				cout<<"Which armor you want to buy?"<<endl;
+		case 2:{														//if the hero want to buy armor
+				this->printArmors();									//print the armors
+				cout<<"Which armor you want to buy?"<<endl;				//ask the hero to choose armor
 				cout<<"press q to quit"<<endl;
 				cin>>ch1;
-				if(ch1=='q')
-					return;
-				while(ch1<1 || ch1>ARMORS || cin.fail()){
+				if(ch1=='q')											//if he presses q then quit
+					return;												
+				while(ch1<1 || ch1>ARMORS || cin.fail()){		//if the input is not correct
 					if(cin.fail()){ // or if(!cin)
 					    // user didn't input a number
 					    cin.clear(); // reset failbit

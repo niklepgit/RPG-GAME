@@ -2,7 +2,7 @@
 
 /*Constructor for Heroes*/
 Living::Living(string Name)
-			  :name(Name),level(1),maxHealthPower(100),currHealthPower(100){}
+			  :name(Name),level(1),currHealthPower(100),maxHealthPower(100){}
 
 /*Constructor for Monsters*/
 Living::Living(string Name,int Level)

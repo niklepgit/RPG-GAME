@@ -2,10 +2,17 @@
 
 /*Constructor*/
 Monster::Monster(string Name,int Level)
-					:Living(Name,Level),undoSpellDamageRange(0),
-						undoSpellDefense(0),undoSpellProbability(0),maxProbability(200){
-    	switch(Level){
+					:Living(Name,Level),
+    			maxProbability(200),
+    			undoSpellDamageRange(0),
+						undoSpellDefense(0),undoSpellProbability(0){
 
+//minDamageRange(rand()%(5+(--Level)*10-(Level)*10)+Level*10+5),maxDamageRange(rand()%(10*Level-5*Level+1)+5*Level),defense(rand()%(10*Level-5*Level+1)+5*Level),
+//   			probability(rand()%(10*Level-5*Level+1)+5*Level)
+
+
+
+   	switch(Level){
 		case 1:probability=rand()%(10-5+1)+5;
 			   minDamageRange=rand()%(5-0+1)+0;
 			   maxDamageRange=rand()%(10-5+1)+5;
@@ -74,4 +81,46 @@ void Monster::attackToMonster(int DamageValue){
 /*generateHit*/
 int Monster::generateHit(){
 	return rand()%((maxDamageRange - minDamageRange) + 1) + minDamageRange;
+}
+
+/*Mutators*/
+
+/*reduceDefense*/
+void Monster::reduceDefense(int defenseToSub){
+	if((defense-defenseToSub)<=0)
+		defense=0;
+	else
+		defense -= defenseToSub; 
+}
+
+/*reduceProbability*/
+void Monster::reduceProbability(int probabilityToSub){
+	if((probability-probabilityToSub)<=0)
+		probability=0;
+	else
+		probability -= probabilityToSub; 
+
+}
+
+/*reduceDamageRange*/
+void Monster::reduceDamageRange(int maxDamageToSub){
+		if((maxDamageRange-maxDamageToSub)<=0)
+		maxDamageRange=0;
+	else
+		maxDamageRange -= maxDamageToSub; 
+}
+
+/*increaseDefense*/
+void Monster::increaseDefense(int defenseToAdd){
+	defense += defenseToAdd;
+}
+
+/*increaseProbability*/
+void Monster::increaseProbability(int probabilityToAdd){
+	probability += probabilityToAdd;
+}
+
+/*increaseDamageRange*/
+void Monster::increaseDamageRange(int maxDamageToAdd){
+	maxDamageRange += maxDamageToAdd; 
 }
