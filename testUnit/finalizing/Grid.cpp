@@ -40,7 +40,7 @@ Grid::Grid(){
 	/*Generate non accessible fields*/
 	for (int i = 1; i < w.ws_row-1; ++i)
 		for (int j = 1; j < w.ws_col-1; ++j){
-			if (rand()%100 < 5){
+			if (rand()%100 < 10){
 				map[i][j] = '#';
 			} else {map[i][j] = ' ';}
 		}
@@ -58,7 +58,7 @@ Grid::Grid(){
 	/*Market*/
 	for (int i = 1; i < w.ws_row-1; ++i)
 		for (int j = 1; j < w.ws_col-1; ++j){
-			if (rand()%100 < 15){
+			if (rand()%100 < 6){
 				if (map[i][j] == ' '){
 					map[i][j] = 'M';
 				}

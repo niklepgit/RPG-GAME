@@ -21,8 +21,9 @@
 #include <cstddef>
 using namespace std;
 
-int getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes); //forward decleration
-void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes);
+ //forward declerations
+int getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes);
+void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes);	
 int monstersAreDead(Monster**&monsters,int NumberOfHeroes);
 int heroesAreDead(Hero**&heroes,int NumberOfHereos);
 void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes);
@@ -57,8 +58,10 @@ int main(void){
 	potions_txt.open("./InputFiles/Potions.txt",fstream::in); //open potions_txt for input
 	spells_txt.open("./InputFiles/Spells.txt",fstream::in); //open spells_txt for input
 
+	/*READ FILES*/
+
 	while(!weapons_txt.eof()){
-		readWeapon(stop,weapons_txt,Name,MinLevel);
+		readWeapon(stop,weapons_txt,Name,MinLevel); //read the weapon from file
 		market->addWeapon(Name,MinLevel); 
 		if(stop)
 			break;	
@@ -167,8 +170,7 @@ Grid* g = new Grid;
 				g->clearScreen();
 				cout << "For which hero you want to see inventory?" << endl;
 				for (int i = 0; i < numberOfHeroes; ++i)
-					Heroes[i]->printHero();
-				//////////////////////////////////////////////// CHECK ///////////////////////////////////////////////////////
+					Heroes[i]->printHero();	
 				cin >> choice;
 				while(choice < 0 || choice > numberOfHeroes || cin.fail()){
 					if(cin.fail()){ // or if(!cin)
@@ -264,7 +266,7 @@ Grid* g = new Grid;
 							 
 							cin>>option;
 				
-							while((option!=1 && option!=2) || cin.fail()){
+							while((option!=1 && option!=2) || cin.fail()){ //check
 								if(cin.fail()){ // or if(!cin)
 								    // user didn't input a number
 								    cin.clear(); // reset failbit
@@ -485,7 +487,6 @@ int heroesAreDead(Hero**&heroes,int NumberOfHeroes){
 
 /*attack*/
 void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
-	cout<<"Normal Attack"<<endl;///////////////////////
 	int option;
 		cout<<" to Monster: (give a number between 1-"<<NumberOfHeroes<<")"<<endl;
 		cin>>option;

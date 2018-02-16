@@ -3,7 +3,7 @@
 /*Constructor*/
 Monster::Monster(string Name,int Level)
 					:Living(Name,Level),
-    			,maxProbability(200),
+    			maxProbability(200),
     			undoSpellDamageRange(0),
 						undoSpellDefense(0),undoSpellProbability(0){
 
