@@ -41,14 +41,14 @@ Grid::Grid(){
 	for (int i = 1; i < w.ws_row-1; ++i)
 		for (int j = 1; j < w.ws_col-1; ++j){
 			if (rand()%100 < 5){
-				map[i][j] = 'x';
+				map[i][j] = '#';
 			} else {map[i][j] = ' ';}
 		}
 
 	/*Hero's start position*/
 	for (int j = 1; j < w.ws_col-1; ++j){
 		if (map[1][j] == ' '){
-			map[1][j] = 'h';
+			map[1][j] = '@';
 			xLoc = 1;
 			yLoc = j;
 			break;
@@ -78,7 +78,7 @@ void Grid::mvUp(){
 	int x2 = xLoc - 1;
 	if (map[x2][yLoc] == ' '){
 		map[xLoc][yLoc] = ' ';
-		map[x2][yLoc] = 'h';
+		map[x2][yLoc] = '@';
 		xLoc = x2;
 	}
 }
@@ -89,7 +89,7 @@ void Grid::mvDown(){
 	int x2 = xLoc + 1;
 	if (map[x2][yLoc] == ' '){
 		map[xLoc][yLoc] = ' ';
-		map[x2][yLoc] = 'h';
+		map[x2][yLoc] = '@';
 		xLoc = x2;
 	}
 }
@@ -99,7 +99,7 @@ void Grid::mvRight(){
 	int y2 = yLoc + 1;
 	if (map[xLoc][y2] == ' '){
 		map[xLoc][yLoc] = ' ';
-		map[xLoc][y2] = 'h';
+		map[xLoc][y2] = '@';
 		yLoc = y2;
 	}
 }
@@ -109,7 +109,7 @@ void Grid::mvLeft(){
 	int y2 = yLoc - 1;
 	if (map[xLoc][y2] == ' '){
 		map[xLoc][yLoc] = ' ';
-		map[xLoc][y2] = 'h';
+		map[xLoc][y2] = '@';
 		yLoc = y2;
 	}
 }

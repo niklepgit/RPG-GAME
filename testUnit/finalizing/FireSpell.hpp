@@ -9,20 +9,15 @@ class FireSpell:public Spell{
 		FireSpell(string Name,int MinLevel):Spell(Name,MinLevel){}
 
 		/*castSpell*/
-		void castSpell(Monster& monster){
-			monster.undoSpellDefense=monster.getDefense();
-			if(monster.getDefense()-monster.getDefense()/2 >0)
-				monster.reduceDefense(monster.getDefense()-monster.getDefense()/2);
-			else
-				monster.reduceDefense(monster.getDefense());
-		}
+		void castSpell(Monster& monster);
 
 		/*undoSpell*/
 		void undoSpell(Monster& monster){
 			monster.increaseDefense(monster.undoSpellDefense-monster.getDefense());
 		}
 
-		
+		/*destructor*/
+
 		/*printTypeOfSpell*/
 		void printTypeOfSpell(){
 			cout<<"Type of Spell:FireSpell"<<endl;

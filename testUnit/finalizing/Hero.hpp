@@ -9,12 +9,14 @@ using namespace std;
 
 class Hero:public Living{
 	private:
-		int currMagicPower;
-		int maxMagicPower;
 		int strength;
 		int dexterity;
 		int agility;
 		int maxAgility;
+		int currMagicPower;
+		int maxMagicPower;
+		
+		
 		int money;
 		int experience;
 		int experienceToLevelUp;

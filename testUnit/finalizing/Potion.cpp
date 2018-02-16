@@ -2,8 +2,8 @@
 #include "Hero.hpp"
 
 Potion::Potion(string Name,int MinLevel,string WtIncrease)
-		 :Item(Name,MinLevel),wtIncrease(WtIncrease),used(0){
-
+		 :Item(Name,MinLevel),used(0),wtIncrease(WtIncrease){
+		 	
 	switch(MinLevel){
 
 		case 1:hmtIncrease=rand()%(10-5+1)+5;
