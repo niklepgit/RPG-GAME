@@ -80,14 +80,14 @@ void Monster::attackToMonster(int DamageValue){
 
 /*generateHit*/
 int Monster::generateHit(){
-	return rand()%((maxDamageRange - minDamageRange) + 1) + minDamageRange;
-}
+	return rand()%((maxDamageRange - minDamageRange) + 1) + minDamageRange; //generate a number between 
+}																			//minDamageRange and maxDamageRange to hit 
 
 /*Mutators*/
 
 /*reduceDefense*/
 void Monster::reduceDefense(int defenseToSub){
-	if((defense-defenseToSub)<=0)
+	if((defense-defenseToSub)<=0) 		//check if the defenseToSub is greater or equal to defense
 		defense=0;
 	else
 		defense -= defenseToSub; 

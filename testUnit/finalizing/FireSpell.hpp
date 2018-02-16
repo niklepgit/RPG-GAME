@@ -12,16 +12,10 @@ class FireSpell:public Spell{
 		void castSpell(Monster& monster);
 
 		/*undoSpell*/
-		void undoSpell(Monster& monster){
-			monster.increaseDefense(monster.undoSpellDefense-monster.getDefense());
-		}
-
-		/*destructor*/
+		void undoSpell(Monster& monster);
 
 		/*printTypeOfSpell*/
-		void printTypeOfSpell(){
-			cout<<"Type of Spell:FireSpell"<<endl;
-		}
+		void printTypeOfSpell();
 };
 
 #endif

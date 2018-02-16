@@ -5,7 +5,6 @@ Weapon::Weapon(string Name,int MinLevel):Item(Name,MinLevel),
 		       hands(rand()%(2-1+1)+1){
 
 		switch(MinLevel){
-
 		case 1:damageValue=rand()%(10-5+1)+5;
 			   break;
 		case 2:damageValue=rand()%(20-10+1)+10;
@@ -29,14 +28,6 @@ Weapon::Weapon(string Name,int MinLevel):Item(Name,MinLevel),
 	}	
 
 }
-
-/*weaponAttack
-void Weapon::weaponAttack(Monster& monster){
-	if(inUse==1){
-		monster.attackToMonster(damageValue);
-	}	
-}
-*/
 
 /*printWeapon*/
 void Weapon::printWeapon(void){

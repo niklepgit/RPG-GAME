@@ -172,7 +172,8 @@ Grid* g = new Grid;
 				for (int i = 0; i < numberOfHeroes; ++i)
 					Heroes[i]->printHero();	
 				cin >> choice;
-				while(choice < 0 || choice > numberOfHeroes || cin.fail()){
+
+				while(choice < 0 || choice > numberOfHeroes || cin.fail()){								//check for wrong input
 					if(cin.fail()){ // or if(!cin)
 					    // user didn't input a number
 					    cin.clear(); // reset failbit

@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <string>
 using namespace std;
+
 class Item{
 	protected:
 		string name;
@@ -13,8 +14,9 @@ class Item{
 	public:
 		/*Constructor*/
 		Item(string Name,int MinLevel);
-		int getValue() {return value;}
 
-		int getMinLevel()const {return minLevel;}
+		/*Mutators*/
+		int getValue() const { return value; }
+		int getMinLevel() const { return minLevel; }
 };
 #endif

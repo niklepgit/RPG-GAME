@@ -6,26 +6,15 @@
 class IceSpell:public Spell{
 	public:
 		/*constructor*/
-		IceSpell(string Name,int MinLevel):Spell(Name,MinLevel){}
+		IceSpell(string Name,int MinLevel);
 
 		/*castSpell*/
-		void castSpell(Monster& monster){
-			monster.undoSpellDamageRange=(monster.getMaxDamageRange()-monster.getMinDamageRange());
-			if((monster.getMaxDamageRange()-monster.getMinDamageRange())/2 > monster.getMinDamageRange())
-				monster.reduceDamageRange((monster.getMaxDamageRange()-monster.getMinDamageRange())/2);
-			else
-				monster.reduceDamageRange(monster.getMinDamageRange());
-		}
-
+		void castSpell(Monster& monster);
 		/*undoSpell*/
-		void undoSpell(Monster& monster){
-			monster.increaseDamageRange(monster.undoSpellDamageRange);
-		}
+		void undoSpell(Monster& monster);
 
 		/*printTypeOfSpell*/
-		void printTypeOfSpell(){
-			cout<<"Type of Spell:IceSpell"<<endl;
-		}
+		void printTypeOfSpell();
 };
 
 #endif

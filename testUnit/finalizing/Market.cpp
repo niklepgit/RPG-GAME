@@ -10,7 +10,7 @@ Market::~Market(){
 	list<Spell*>::iterator it; //iterator for the list of pointers to spell
 	for(it = Spells.begin(); it != Spells.end(); it++){ //for every item of the list
 			delete (*it); //delete the spell
-			it = Spells.erase(it); erase the pointer from the list
+			it = Spells.erase(it); //erase the pointer from the list
 			it--; 
 	}
 }

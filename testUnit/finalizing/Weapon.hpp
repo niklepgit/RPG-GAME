@@ -11,11 +11,12 @@ class Weapon:public Item{
 		/*Constructor*/
 		Weapon(string Name,int MinLevel);
 		
+		/*Accessors*/
+		int getHands() const { return hands; }
+		int getDamageValue() const { return damageValue; }
+
 		/*Others*/
 		void printWeapon(void);
-		int getHands() {return hands;}
-		int getDamageValue() { return damageValue; }
-		//void weaponAttack(void);
 };
 
 #endif

@@ -4,8 +4,7 @@
 #include "Hero.hpp"
 
 class Warrior:public Hero{
-	private:
-
+	
 	public:
 		/*constructor*/
 		Warrior(string);
