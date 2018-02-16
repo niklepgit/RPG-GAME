@@ -14,7 +14,10 @@ class Potion:public Item{
 		/*Constructor*/
 		Potion(string Name,int MinLevel,string WtIncrease);
 		
+		/*usePotion*/
 		void usePotion(Hero& hero);
+
+		/*printPotion*/
 		void printPotion(void);
 
 };

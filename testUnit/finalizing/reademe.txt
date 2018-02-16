@@ -1,11 +1,4 @@
 Files to be commented:
 
-Dragon ->
-Exoskeleton ->
 Grid ->
 main ->
-Paladin ->
-Potion ->
-Sorcerer -> OK
-Spell ->
-Spirit ->

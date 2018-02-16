@@ -11,10 +11,10 @@
 #include <unistd.h>			// needed for getchar_silent
 
 #define MY_MARKET 'M'
-#define NON_ACCESIBLE 'x'
+#define NON_ACCESIBLE '#'
 #define COMMON ' '
 #define BORDERS '*'
-#define PLAYER 'h'
+#define PLAYER '@'
 
 
 class Grid{
