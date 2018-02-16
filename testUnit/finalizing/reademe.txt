@@ -6,6 +6,6 @@ Grid ->
 main ->
 Paladin ->
 Potion ->
-Sorcerer ->
+Sorcerer -> OK
 Spell ->
 Spirit ->

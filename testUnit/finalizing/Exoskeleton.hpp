@@ -10,7 +10,7 @@ class Exoskeleton:public Monster{
 		/*Constructor*/
 		Exoskeleton(string Name,int Level)
 				   :Monster(Name,Level){
-	    defense += 5;
+	   	 defense += 5;
 		}
 
 };
