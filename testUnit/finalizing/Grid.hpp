@@ -1,6 +1,22 @@
 #ifndef _GRID_H_
 #define _GRID_H_
 
+#include <stdio.h>
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+
+#include <sys/ioctl.h>		// needed to get terminal's size (defines winsize structure)
+#include <termios.h>		// needed for getchar_silent
+#include <unistd.h>			// needed for getchar_silent
+
+#define MY_MARKET 'M'
+#define NON_ACCESIBLE 'x'
+#define COMMON ' '
+#define BORDERS '*'
+#define PLAYER 'h'
+
+
 class Grid{
 
 private:

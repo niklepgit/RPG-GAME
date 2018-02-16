@@ -141,11 +141,13 @@ int main(void){
 		}
 	}
 
-/*Grid*/
+/*Creation of our grid*/
 Grid* g = new Grid;
-	char keyInput;
-	int inBattle=0;
-	int battle=0;
+	char keyInput;	// when grid is displayed keyInput takes keyboard's input
+	int inBattle = 0;	// used to know if we are in battle at a specific time unit
+	int battle = 0;	// if battle is about to begin getmv sets battle to 1
+
+	// Game begins!
 	do {
 
 		g->displayMap();
@@ -155,14 +157,19 @@ Grid* g = new Grid;
 				if (!g->nextToMarket())
 					break;
 				g->clearScreen();
-				market->menuMarket(Heroes,numberOfHeroes);
+				market->menuMarket(Heroes,numberOfHeroes);	// let's go to the market
 				break;
 			case 'p':
 				g->clearScreen();
 				for (int i = 0; i < numberOfHeroes; ++i)
 					Heroes[i]->printHero();
-				cout << "Press enter to continue...";
-				getchar();
+				cout << "Press anything to continue...";
+				/////////////////////////////////////////////////////// check if it works /////////////////////////////////////////////////
+				if(cin.fail()){
+					cin.clear(); // reset failbit
+			   		cin.ignore(100, '\n'); //skip bad input
+				}
+				cin.ignore(100, '\n');	
 				break;
 			case 'i':
 				int returnOfCheckInventory;
@@ -173,7 +180,7 @@ Grid* g = new Grid;
 					Heroes[i]->printHero();	
 				cin >> choice;
 
-				while(choice < 0 || choice > numberOfHeroes || cin.fail()){								//check for wrong input
+				while(choice < 0 || choice > numberOfHeroes || cin.fail()){	// while user don't give valid input
 					if(cin.fail()){ // or if(!cin)
 					    // user didn't input a number
 					    cin.clear(); // reset failbit
@@ -186,35 +193,51 @@ Grid* g = new Grid;
 						cin >> choice;
 					}
 				}
+				// If user's input is valid do whatever you have to do...
 				switch(choice){
 					case 1:
 						returnOfCheckInventory = Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
 						if(returnOfCheckInventory!=2)
 							getchar();
-						cout << "Press enter to continue";
-						getchar();
+						cout << "Press anything to continue...";
+						/////////////////////////////////////////////////////// check if it works /////////////////////////////////////////////////
+						if(cin.fail()){
+							cin.clear(); // reset failbit
+					   		cin.ignore(100, '\n'); //skip bad input
+						}
+						cin.ignore(100, '\n');	
 						break;
 					case 2:
 						returnOfCheckInventory=Heroes[1]->inventory.checkInventory(*Heroes[1],inBattle);
 						if(returnOfCheckInventory!=2)
 							getchar();
-						cout << "Press enter to continue";
-						getchar();
+						cout << "Press anything to continue...";
+						/////////////////////////////////////////////////////// check if it works /////////////////////////////////////////////////
+						if(cin.fail()){
+							cin.clear(); // reset failbit
+					   		cin.ignore(100, '\n'); //skip bad input
+						}
+						cin.ignore(100, '\n');	
 						break;
 					case 3:
 						returnOfCheckInventory=Heroes[2]->inventory.checkInventory(*Heroes[2],inBattle);
 						if(returnOfCheckInventory!=2)
 							getchar();
-						cout << "Press enter to continue";
-						getchar();
-						break;
-					default:
+						cout << "Press anything to continue...";
+						/////////////////////////////////////////////////////// check if it works /////////////////////////////////////////////////
+						if(cin.fail()){
+							cin.clear(); // reset failbit
+					   		cin.ignore(100, '\n'); //skip bad input
+						}
+						cin.ignore(100, '\n');	
 						break;
 				}
 				break;
 			case 'b':{
 					if(!battle)
 						break;
+
+					// Creation of monsters (same number as heroes)
 					int levelOfMonsters = getAverageLevelOfHeroes(Heroes, numberOfHeroes);
 					Monster** Monsters = new Monster*[numberOfHeroes];
 					int randomMonster;
@@ -234,26 +257,26 @@ Grid* g = new Grid;
 						}
 					}
 				
-					//call battle function
-					int option;
+					int option;	// attack or check inventory to equip item (or cast spell) or use potion
 					int i;
-					int check; //check if the user used a Potion or casted a Spell in inventory
-					int counter=1; //counter for the rounds
-					inBattle=1;
-					int checkLifeOfSpell[numberOfHeroes];
-					int monsterHitWithSpell[numberOfHeroes];
-					int whichMonsterWasHit[numberOfHeroes];
-					for(int k=0;k<numberOfHeroes;k++){
-						checkLifeOfSpell[k]=0;
-						monsterHitWithSpell[k]=0;
-						whichMonsterWasHit[k]=0;
+					int check; // check if the user used a Potion or casted a Spell in inventory
+					int counter = 1; // counter for the rounds
+					inBattle = 1;	// while we are in battle
+					int checkLifeOfSpell[numberOfHeroes];		// 
+					int monsterHitWithSpell[numberOfHeroes];	// for every monster if it is under the effect of a spell (1) or not (0)
+					int whichMonsterWasHit[numberOfHeroes];		// for every hero; get which monster he attacked with spell (positions of an array: [0,1,2] for example)
+					for(int k = 0; k < numberOfHeroes; k++){
+						checkLifeOfSpell[k] = 0;
+						monsterHitWithSpell[k] = 0;
+						whichMonsterWasHit[k] = 0;
 					}
 					int returnFromAttackWithSpell;
-					int getOutOfdoWhileLoop=0;
+					int getOutOfdoWhileLoop = 0;
 					displayStats(Heroes,Monsters,numberOfHeroes);
+
 					do{
-						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;
-						for(i=0;i<numberOfHeroes;i++){
+						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;		// round of battle (round = heroes do something + monsters do something)
+						for(i=0;i<numberOfHeroes;i++){	// for every hero for every round what do you want to do
 							/*if hero is alive*/
 							if (!Heroes[i]->isAlive()){
 								cout << "Hero " << i+1 << " is dead." << endl;
@@ -352,7 +375,7 @@ Grid* g = new Grid;
 						counter++;
 						endOfSpell(Heroes,Monsters,numberOfHeroes,checkLifeOfSpell,monsterHitWithSpell,counter,whichMonsterWasHit);
 					}while(monstersAreDead(Monsters,numberOfHeroes) && heroesAreDead(Heroes,numberOfHeroes)); //while all heroes or all monsters die
-					inBattle=0;
+					inBattle = 0;
 					getchar();
 					getchar();
 
@@ -436,8 +459,8 @@ void heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
 void heroesAfterRound(Hero**&heroes,int NumberOfHeroes,int round){
 	for(int i=0;i<NumberOfHeroes;i++){
 		if(heroes[i]->getCurrHealthPower()!=0){
-			heroes[i]->regenerateHealthPowerAfterRound(round);
-			heroes[i]->regenerateMagicPowerAfterRound(round);
+			heroes[i]->regenerateHealthPowerAfterRound();
+			heroes[i]->regenerateMagicPowerAfterRound();
 		}
 	}
 }
@@ -445,7 +468,7 @@ void heroesAfterRound(Hero**&heroes,int NumberOfHeroes,int round){
 /*monstersAfterRound*/
 void monstersAfterRound(Monster**&monsters,int NumberOfHeroes,int round){
 	for(int i=0;i<NumberOfHeroes;i++){
-		monsters[i]->regenerateHealthPowerAfterRound(round);
+		monsters[i]->regenerateHealthPowerAfterRound();
 	}
 }
 
