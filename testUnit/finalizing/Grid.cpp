@@ -1,11 +1,4 @@
 #include "Grid.hpp"
-#include <sys/ioctl.h>
-#include <stdio.h>
-#include <iostream>
-#include <cstdlib>
-#include <cstring>
-#include <termios.h>
-#include <unistd.h>
 
 using namespace std;
 
@@ -27,12 +20,12 @@ Grid::Grid(){
 
     /*Making borders*/
 	for (int j = 0; j < w.ws_col; ++j){
-		map[0][j] = '*';
-		map[w.ws_row-1][j] = '*';
+		map[0][j] = BORDERS;
+		map[w.ws_row-1][j] = BORDERS;
 	}
 	for (int i = 1; i < w.ws_row; ++i){
-		map[i][0] = '*';
-		map[i][w.ws_col-1] = '*';
+		map[i][0] = BORDERS;
+		map[i][w.ws_col-1] = BORDERS;
 	}
 
 	/*Generate random map*/
@@ -41,14 +34,14 @@ Grid::Grid(){
 	for (int i = 1; i < w.ws_row-1; ++i)
 		for (int j = 1; j < w.ws_col-1; ++j){
 			if (rand()%100 < 5){
-				map[i][j] = 'x';
-			} else {map[i][j] = ' ';}
+				map[i][j] = NON_ACCESIBLE;
+			} else {map[i][j] = COMMON;}
 		}
 
 	/*Hero's start position*/
 	for (int j = 1; j < w.ws_col-1; ++j){
-		if (map[1][j] == ' '){
-			map[1][j] = 'h';
+		if (map[1][j] == COMMON){
+			map[1][j] = PLAYER;
 			xLoc = 1;
 			yLoc = j;
 			break;
@@ -58,9 +51,9 @@ Grid::Grid(){
 	/*Market*/
 	for (int i = 1; i < w.ws_row-1; ++i)
 		for (int j = 1; j < w.ws_col-1; ++j){
-			if (rand()%100 < 15){
-				if (map[i][j] == ' '){
-					map[i][j] = 'M';
+			if (rand()%100 < 10){
+				if (map[i][j] == COMMON){
+					map[i][j] = MY_MARKET;
 				}
 			}
 		}
@@ -76,9 +69,9 @@ Grid::~Grid(){
 /*mvUp*/
 void Grid::mvUp(){
 	int x2 = xLoc - 1;
-	if (map[x2][yLoc] == ' '){
-		map[xLoc][yLoc] = ' ';
-		map[x2][yLoc] = 'h';
+	if (map[x2][yLoc] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[x2][yLoc] = PLAYER;
 		xLoc = x2;
 	}
 }
@@ -87,9 +80,9 @@ void Grid::mvUp(){
 void Grid::mvDown(){
 	
 	int x2 = xLoc + 1;
-	if (map[x2][yLoc] == ' '){
-		map[xLoc][yLoc] = ' ';
-		map[x2][yLoc] = 'h';
+	if (map[x2][yLoc] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[x2][yLoc] = PLAYER;
 		xLoc = x2;
 	}
 }
@@ -97,9 +90,9 @@ void Grid::mvDown(){
 /*mvRight*/
 void Grid::mvRight(){
 	int y2 = yLoc + 1;
-	if (map[xLoc][y2] == ' '){
-		map[xLoc][yLoc] = ' ';
-		map[xLoc][y2] = 'h';
+	if (map[xLoc][y2] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[xLoc][y2] = PLAYER;
 		yLoc = y2;
 	}
 }
@@ -107,16 +100,16 @@ void Grid::mvRight(){
 /*mvLeft*/
 void Grid::mvLeft(){
 	int y2 = yLoc - 1;
-	if (map[xLoc][y2] == ' '){
-		map[xLoc][yLoc] = ' ';
-		map[xLoc][y2] = 'h';
+	if (map[xLoc][y2] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[xLoc][y2] = PLAYER;
 		yLoc = y2;
 	}
 }
 
 /*getmv*/
 char Grid::getmv(int& battle){
-	char choice = getchar_silent();
+	char choice = getchar_silent();		// get input from user without need of 'enter'
 	switch(choice)
 	{
 		case 'w':
@@ -134,7 +127,7 @@ char Grid::getmv(int& battle){
 		default:
 			break;	
 	}
-	if(choice=='w' || choice=='s'|| choice=='a'|| choice=='d')
+	if(choice=='w' || choice=='s'|| choice=='a'|| choice=='d')	// probability of battle
 		if (rand()%100 < 5){
 			battle=1;
 			choice = 'b';
@@ -154,7 +147,7 @@ void Grid::displayMap(){
 
 /*clearScreen*/
 void Grid::clearScreen(){
-	cout << string( 25, '\n' );
+	cout << string( 100, '\n' );
 }
 
 /*getchar_silent*/
@@ -162,12 +155,29 @@ int Grid::getchar_silent(){  /*I took it ready*/
 	int ch;
 	struct termios oldt,newt;
 
-	tcgetattr(STDIN_FILENO,&oldt);
+	//tcgetattr: gets the parameters associated with the object referred
+    //by fd(STDIN_FILENO) and stores them in the termios structure referenced by termios_p(oldt)
+    //This function may be invoked from a background process.
+    //However, the terminal attributes may be subsequently changed by a foreground process.
+	tcgetattr(STDIN_FILENO,&oldt);	// #define STDIN_FILENO 0 (standard input)
 
 	newt = oldt;
-	newt.c_lflag &= ~( ICANON | ECHO );
+	newt.c_lflag &= ~( ICANON | ECHO );	
+	//c.lflag => (local modes) flag constants:
+	//ECHO => echo input characters
+	//ICANON => canonical mode
+	//The setting of the ICANON canon flag in c_lflag determines whether
+    //the terminal is operating in canonical mode (ICANON set) or noncanon‐
+    //ical mode (ICANON unset).  By default, ICANON is set.
+	//Input is made available line by line. An input line is available
+    //when one of the line delimiters is typed (NL, EOL, EOL2; or EOF at
+    //the start of line).
 
-	tcsetattr(STDIN_FILENO,TCSANOW,&newt);
+	//tcsetattr: sets the parameters associated with the terminal (unless
+    //support is required from the underlying hardware that is not available)
+    //from the termios structure referred to by termios_p(newt).
+    //optional_actions (TCSANOW) specifies when the changes take effect.
+	tcsetattr(STDIN_FILENO,TCSANOW,&newt);	// TCSANOW => the change occurs immediately
 
 	ch = getchar();
 	tcsetattr(STDIN_FILENO,TCSANOW,&oldt);
@@ -177,7 +187,7 @@ int Grid::getchar_silent(){  /*I took it ready*/
 
 /*nextToMarket*/
 int Grid::nextToMarket(){
-	if ((map[xLoc-1][yLoc] == 'M') || (map[xLoc][yLoc-1] == 'M') || (map[xLoc+1][yLoc] == 'M') || (map[xLoc][yLoc+1] == 'M'))
+	if ((map[xLoc-1][yLoc] == MY_MARKET) || (map[xLoc][yLoc-1] == MY_MARKET) || (map[xLoc+1][yLoc] == MY_MARKET) || (map[xLoc][yLoc+1] == MY_MARKET))
 		return 1;
 	return 0;
 }

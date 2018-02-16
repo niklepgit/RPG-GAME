@@ -4,7 +4,7 @@
 #include "Living.hpp"
 #include "Inventory.hpp"
 #include <list>
-#include <cstddef>
+#include <cstddef>	// needed for nullptr
 using namespace std;
 
 class Hero:public Living{
@@ -14,7 +14,7 @@ class Hero:public Living{
 		int strength;
 		int dexterity;
 		int agility;
-		int maxAgility;
+		int maxAgility;	// needed find the probability to avoid an attack from a monster
 		int money;
 		int experience;
 		int experienceToLevelUp;
@@ -54,12 +54,12 @@ class Hero:public Living{
 		void increaseAgility(int agilityToIncrease) { agility += agilityToIncrease; }
 		virtual void increaseAttributes(){}
 
-		void regenerateHealthPowerAfterLosing(void);
-		void reduceMoneyAfterLosing(void);
+		void regenerateHealthPowerAfterLosing();
+		void reduceMoneyAfterLosing();
 		void attackToHero(int DamageValue);
 		void weaponEquip(int position);
 		void armorEquip(int position);
-		void regenerateMagicPowerAfterRound(int round);
+		void regenerateMagicPowerAfterRound();
 		int checkIfLevelUp();
 
 		void findAndUsePotion(int position);

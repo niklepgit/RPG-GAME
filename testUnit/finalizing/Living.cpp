@@ -9,7 +9,7 @@ Living::Living(string Name,int Level)
 			  :name(Name),level(Level),maxHealthPower(100),currHealthPower(100){}
 
 /*healthPowerReduce*/
-void Living::healthPowerReduce(int healthPowerToReduce){
+void Living::healthPowerReduce(int healthPowerToReduce){	// healthPower is reduced by healthPowerToReduce
 	if (healthPowerToReduce < currHealthPower){
 		currHealthPower -= healthPowerToReduce;
 		return;
@@ -18,22 +18,21 @@ void Living::healthPowerReduce(int healthPowerToReduce){
 }
 
 /*healthPowerIncrease*/
-void Living::healthPowerIncrease(int healthPowerToIncrease){
-	if (healthPowerToIncrease > maxHealthPower){
-		//maxHealthPower sto curr stin if
+void Living::healthPowerIncrease(int healthPowerToIncrease){	// healthPower is increased by healthPowerToIncrease
+	if (currHealthPower + healthPowerToIncrease > maxHealthPower){
 		currHealthPower = maxHealthPower;
 		return;
 	}
 	currHealthPower += healthPowerToIncrease;
 }
 
-/*setCurrHealthPower*/
+/*setCurrHealthPower
 void Living::setCurrHealthPower(){
 	currHealthPower = maxHealthPower;
 }
-
+*/
 /*regenerateHealthPowerAfterRound*/
-void Living::regenerateHealthPowerAfterRound(int round){
+void Living::regenerateHealthPowerAfterRound(){
 	currHealthPower += rand()%10;
 	if (currHealthPower > maxHealthPower)
 		currHealthPower = maxHealthPower;
