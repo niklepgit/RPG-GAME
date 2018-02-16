@@ -12,15 +12,10 @@ class Hero:public Living{
 		int strength;
 		int dexterity;
 		int agility;
-<<<<<<< HEAD
-		int maxAgility;	// needed find the probability to avoid an attack from a monster
-=======
-		int maxAgility;
+
+		int maxAgility;	// to needed find the probability to avoid an attack from a monster
 		int currMagicPower;
 		int maxMagicPower;
-		
-		
->>>>>>> ab5cad380ab94c03cba7e84f2eb10df7b096279e
 		int money;
 		int experience;
 		int experienceToLevelUp;

@@ -6,7 +6,7 @@
 class FireSpell:public Spell{
 	public:
 		/*constructor*/
-		FireSpell(string Name,int MinLevel):Spell(Name,MinLevel){}
+		FireSpell(string Name,int MinLevel);
 
 		/*castSpell*/
 		void castSpell(Monster& monster);
