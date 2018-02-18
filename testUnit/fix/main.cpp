@@ -29,8 +29,8 @@ int heroesAreDead(Hero**&heroes,int NumberOfHereos);
 void attack(Hero& hero,Monster**& monsters,int NumberOfHeroes);
 void destroyMonsters(Monster**& monsters,int NumberOfHeroes);
 void heroesAfterLosing(Hero**& heroes,int NumberOfHeroes);
-void heroesAfterRound(Hero**&heroes,int NumberOfHeroes);
-void monstersAfterRound(Monster**&monsters,int NumberOfHeroes);
+void heroesAfterRound(Hero**&heroes,int NumberOfHeroes,int round);
+void monstersAfterRound(Monster**&monsters,int NumberOfHeroes,int round);
 int attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const& monsterHitWithSpell,int whoHitTheMonster,int*const&whichMonsterWasHit);
 void endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&checkLifeOfSpell,int*const&monsterHitWithSpell,int counter,int*const&whichMonsterWasHit);
 void heroesAfterWinning(Hero**& heroes,int NumberOfHeroes);
@@ -369,8 +369,8 @@ Grid* g = new Grid;
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
 						
-						monstersAfterRound(Monsters,numberOfHeroes);
-						heroesAfterRound(Heroes,numberOfHeroes);
+						monstersAfterRound(Monsters,numberOfHeroes,counter);
+						heroesAfterRound(Heroes,numberOfHeroes,counter);
 						
 						counter++;
 						endOfSpell(Heroes,Monsters,numberOfHeroes,checkLifeOfSpell,monsterHitWithSpell,counter,whichMonsterWasHit);
@@ -411,7 +411,6 @@ Grid* g = new Grid;
 	for (int i = 0; i < numberOfHeroes; ++i)
 		delete Heroes[i];
 	delete[] Heroes;
-	
 	/*delete market*/
 	delete market;
 	/*delete grid*/
@@ -457,9 +456,9 @@ void heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
 }
 
 /*heroesAfterRound*/
-void heroesAfterRound(Hero**&heroes,int NumberOfHeroes){
+void heroesAfterRound(Hero**&heroes,int NumberOfHeroes,int round){
 	for(int i=0;i<NumberOfHeroes;i++){
-		if(heroes[i]->isAlive()){
+		if(heroes[i]->getCurrHealthPower()!=0){
 			heroes[i]->regenerateHealthPowerAfterRound();
 			heroes[i]->regenerateMagicPowerAfterRound();
 		}
@@ -467,10 +466,9 @@ void heroesAfterRound(Hero**&heroes,int NumberOfHeroes){
 }
 
 /*monstersAfterRound*/
-void monstersAfterRound(Monster**&monsters,int NumberOfHeroes){
+void monstersAfterRound(Monster**&monsters,int NumberOfHeroes,int round){
 	for(int i=0;i<NumberOfHeroes;i++){
-		if (monsters[i]->isAlive())
-			monsters[i]->regenerateHealthPowerAfterRound();
+		monsters[i]->regenerateHealthPowerAfterRound();
 	}
 }
 

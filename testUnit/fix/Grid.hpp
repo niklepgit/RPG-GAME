@@ -10,13 +10,17 @@
 #include <termios.h>		// needed for getchar_silent
 #include <unistd.h>			// needed for getchar_silent
 
-#include "typeOfGrid.hpp"
+#define MY_MARKET 'M'
+#define NON_ACCESIBLE '#'
+#define COMMON ' '
+#define BORDERS '*'
+#define PLAYER '@'
 
 
 class Grid{
 
 private:
-	typeOfGrid **map;
+	char **map;
 	int xLoc;
 	int yLoc;
 	int xMax;

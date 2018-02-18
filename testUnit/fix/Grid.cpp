@@ -12,20 +12,20 @@ Grid::Grid(){
     yMax = w.ws_col;
 
     /*Allocate memory for grid*/
-    map = new typeOfGrid*[w.ws_row];
+    map = new char*[w.ws_row];
     for (int i = 0; i < w.ws_row; ++i)
-    	map[i] = new typeOfGrid[w.ws_col];
+    	map[i] = new char[w.ws_col];
 
     /*Initialization grid*/
 
     /*Making borders*/
 	for (int j = 0; j < w.ws_col; ++j){
-		map[0][j] = typeOfGrid(0,0,0,1,0);
-		map[w.ws_row-1][j] = typeOfGrid(0,0,0,1,0);
+		map[0][j] = BORDERS;
+		map[w.ws_row-1][j] = BORDERS;
 	}
 	for (int i = 1; i < w.ws_row; ++i){
-		map[i][0] = typeOfGrid(0,0,0,1,0);
-		map[i][w.ws_col-1] = typeOfGrid(0,0,0,1,0);
+		map[i][0] = BORDERS;
+		map[i][w.ws_col-1] = BORDERS;
 	}
 
 	/*Generate random map*/
@@ -34,14 +34,14 @@ Grid::Grid(){
 	for (int i = 1; i < w.ws_row-1; ++i)
 		for (int j = 1; j < w.ws_col-1; ++j){
 			if (rand()%100 < 5){
-				map[i][j] = typeOfGrid(0,1,0,0,0);
-			} else {map[i][j] = typeOfGrid(1,0,0,0,0);}
+				map[i][j] = NON_ACCESIBLE;
+			} else {map[i][j] = COMMON;}
 		}
 
 	/*Hero's start position*/
 	for (int j = 1; j < w.ws_col-1; ++j){
-		if (map[1][j].isCommon()){
-			map[1][j] = typeOfGrid(0,0,0,0,1);
+		if (map[1][j] == COMMON){
+			map[1][j] = PLAYER;
 			xLoc = 1;
 			yLoc = j;
 			break;
@@ -52,8 +52,8 @@ Grid::Grid(){
 	for (int i = 1; i < w.ws_row-1; ++i)
 		for (int j = 1; j < w.ws_col-1; ++j){
 			if (rand()%100 < 10){
-				if (map[i][j].isCommon()){
-					map[i][j] = typeOfGrid(0,0,1,0,0);
+				if (map[i][j] == COMMON){
+					map[i][j] = MY_MARKET;
 				}
 			}
 		}
@@ -61,7 +61,6 @@ Grid::Grid(){
 
 /*Destructor*/
 Grid::~Grid(){
-	
 	for (int i = 0; i < xMax; i++)
 		delete map[i];
 	delete[] map;
@@ -70,9 +69,9 @@ Grid::~Grid(){
 /*mvUp*/
 void Grid::mvUp(){
 	int x2 = xLoc - 1;
-	if (map[x2][yLoc].isCommon()){
-		map[xLoc][yLoc] = typeOfGrid(1,0,0,0,0);
-		map[x2][yLoc] = typeOfGrid(0,0,0,0,1);
+	if (map[x2][yLoc] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[x2][yLoc] = PLAYER;
 		xLoc = x2;
 	}
 }
@@ -81,9 +80,9 @@ void Grid::mvUp(){
 void Grid::mvDown(){
 	
 	int x2 = xLoc + 1;
-	if (map[x2][yLoc].isCommon()){
-		map[xLoc][yLoc] = typeOfGrid(1,0,0,0,0);
-		map[x2][yLoc] = typeOfGrid(0,0,0,0,1);
+	if (map[x2][yLoc] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[x2][yLoc] = PLAYER;
 		xLoc = x2;
 	}
 }
@@ -91,9 +90,9 @@ void Grid::mvDown(){
 /*mvRight*/
 void Grid::mvRight(){
 	int y2 = yLoc + 1;
-	if (map[xLoc][y2].isCommon()){
-		map[xLoc][yLoc] = typeOfGrid(1,0,0,0,0);
-		map[xLoc][y2] = typeOfGrid(0,0,0,0,1);
+	if (map[xLoc][y2] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[xLoc][y2] = PLAYER;
 		yLoc = y2;
 	}
 }
@@ -101,9 +100,9 @@ void Grid::mvRight(){
 /*mvLeft*/
 void Grid::mvLeft(){
 	int y2 = yLoc - 1;
-	if (map[xLoc][y2].isCommon()){
-		map[xLoc][yLoc] = typeOfGrid(1,0,0,0,0);
-		map[xLoc][y2] = typeOfGrid(0,0,0,0,1);
+	if (map[xLoc][y2] == COMMON){
+		map[xLoc][yLoc] = COMMON;
+		map[xLoc][y2] = PLAYER;
 		yLoc = y2;
 	}
 }
@@ -141,7 +140,7 @@ void Grid::displayMap(){
 	clearScreen();
 	for (int x = 0; x < xMax; ++x){
 		for (int y = 0; y < yMax; ++y)
-			map[x][y].displayTypeOfGrid();
+			cout << map[x][y];
 		cout << endl;
 	}
 }
@@ -188,7 +187,7 @@ int Grid::getchar_silent(){  /*I took it ready*/
 
 /*nextToMarket*/
 int Grid::nextToMarket(){
-	if ((map[xLoc-1][yLoc].isMarket()) || (map[xLoc][yLoc-1].isMarket()) || (map[xLoc+1][yLoc].isMarket()) || (map[xLoc][yLoc+1].isMarket()))
+	if ((map[xLoc-1][yLoc] == MY_MARKET) || (map[xLoc][yLoc-1] == MY_MARKET) || (map[xLoc+1][yLoc] == MY_MARKET) || (map[xLoc][yLoc+1] == MY_MARKET))
 		return 1;
 	return 0;
 }
