@@ -2,7 +2,7 @@
 
 /* Constructor */
 Paladin::Paladin(string Name)
-				:Hero(Name,15,12,8,124){}
+				:Hero(Name,15,12,8,250,250,200){}
 
 /* increase attributes */
 void Paladin::increaseAttributes(){

@@ -1,1 +1,3 @@
 1) Afto pou elega me tis deleteWeapon, deleteArmor klp telika to katalava ti paizei. Prepei na einai OK, alla rikse kai esy mia matia.
+
+2) episis, otan kaneis cast ena spell meta gia tous gyrous poy isxyei to spell den se afhnei na kaneis kanoniko attack. afto theloume?

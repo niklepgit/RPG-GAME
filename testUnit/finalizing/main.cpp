@@ -270,7 +270,7 @@ Grid* g = new Grid;
 						monsterHitWithSpell[k] = 0;
 						whichMonsterWasHit[k] = 0;
 					}
-					int returnFromAttackWithSpell;
+					int returnFromAttackWithSpell = 0;
 					int getOutOfdoWhileLoop = 0;
 					displayStats(Heroes,Monsters,numberOfHeroes);
 
@@ -282,44 +282,45 @@ Grid* g = new Grid;
 								cout << "Hero " << i+1 << " is dead." << endl;
 								continue;
 							}
-
-							//print options
-							cout<<"For hero " << i+1 << ":"<<endl;
-							cout<<"If you want to check the inventory press 1"<<endl;
-							cout<<"If you want to start the Attack press 2"<<endl;
-							 
-							cin>>option;
-				
-							while((option!=1 && option!=2) || cin.fail()){ //check
-								if(cin.fail()){ // or if(!cin)
-								    // user didn't input a number
-								    cin.clear(); // reset failbit
-								    cin.ignore(100, '\n'); //skip bad input
-									cout<<"Give a valid option."<<endl;
-								    cin>>option;
-								}
-								else{	
-									cout<<"Give a valid option."<<endl;
-								    cin>>option;
-								}
-							}		
 							
 							getOutOfdoWhileLoop=0;
 							do{
 								/*HEROES' TURN*/
+								//print options
+								cout<<"For hero " << i+1 << ":"<<endl;
+								cout<<"If you want to check the inventory press 1"<<endl;
+								cout<<"If you want to start the Attack press 2"<<endl;
+								 
+								cin>>option;
+					
+								while((option!=1 && option!=2) || cin.fail()){ //check
+									if(cin.fail()){ // or if(!cin)
+									    // user didn't input a number
+									    cin.clear(); // reset failbit
+									    cin.ignore(100, '\n'); //skip bad input
+										cout<<"Give a valid option."<<endl;
+									    cin>>option;
+									}
+									else{	
+										cout<<"Give a valid option."<<endl;
+									    cin>>option;
+									}
+								}
 								switch(option){
 									case 1:
-										    check=Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
-											if(check!=2)
-												getchar();
-											cout << "Press enter to continue";
-											getchar();
-											if(check){
+										    check = Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
+											
+											if(check == 2){
+												getOutOfdoWhileLoop = returnFromAttackWithSpell = 0;
+												break;
+											}
+											else if(check){
 												getOutOfdoWhileLoop=1;
 												break;
 											}
 									case 2: cout << "Attack of Hero " << i+1 << endl;
 											if(Heroes[i]->MySpell!=nullptr){
+												cout << "A spell is equiped" << endl;
 												if(!Heroes[i]->MySpell->getInUse(i)){
 													returnFromAttackWithSpell=attackWithSpell(*Heroes[i],Monsters,numberOfHeroes,monsterHitWithSpell,i,whichMonsterWasHit);
 													if(returnFromAttackWithSpell==0){
@@ -345,6 +346,10 @@ Grid* g = new Grid;
 													} else if (returnFromAttackWithSpell == -1) { break; }
 													checkLifeOfSpell[i]=counter+returnFromAttackWithSpell;
 												}
+												else {
+													getOutOfdoWhileLoop=1;
+													attack(*Heroes[i],Monsters,numberOfHeroes); //attack with the current hero
+												}
 											}
 											else{
 												getOutOfdoWhileLoop=1;
@@ -352,7 +357,7 @@ Grid* g = new Grid;
 											}
 											
 								}
-							}while(returnFromAttackWithSpell==0 && getOutOfdoWhileLoop==0);
+							}while(returnFromAttackWithSpell == 0 && getOutOfdoWhileLoop == 0);
 						}
 
 						if(!monstersAreDead(Monsters,numberOfHeroes))
@@ -427,7 +432,7 @@ Grid* g = new Grid;
 	return 0;
 }
 void endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&checkLifeOfSpell,int*const&monsterHitWithSpell,int counter,int*const&whichMonsterWasHit){
-	cout<<"End of spell"<<endl;////////////////////
+	//cout<<"End of spell"<<endl;////////////////////
 	for(int i=0;i<NumberOfHeroes;i++){		
 		if(heroes[i]->MySpell!=nullptr)
 			if(heroes[i]->MySpell->getInUse(i))

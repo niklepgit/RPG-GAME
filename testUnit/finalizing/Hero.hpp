@@ -12,8 +12,9 @@ class Hero:public Living{
 		int strength;
 		int dexterity;
 		int agility;
-
-		int maxAgility;	// to needed find the probability to avoid an attack from a monster
+		int maxStrength;
+		int maxDexterity;
+		int maxAgility;
 		int currMagicPower;
 		int maxMagicPower;
 		int money;
@@ -29,7 +30,7 @@ class Hero:public Living{
 
 	public:
 		/*constructor*/
-		Hero(string,int,int,int,int);
+		Hero(string,int,int,int,int,int,int);
 
 		/*Accessors*/
 		int getCurrMagicPower() const { return currMagicPower; }
@@ -50,21 +51,21 @@ class Hero:public Living{
 		void reduceMoney(int moneyLosted);
 		void increaseMoney(int moneyGained) { money += moneyGained; }
 		void increaseMagicPower(int);
-		void increaseStrength(int strengthToIncrease) { strength += strengthToIncrease; }
-		void increaseDexterity(int dexterityToIncrease) { dexterity += dexterityToIncrease; }
-		void increaseAgility(int agilityToIncrease) { agility += agilityToIncrease; }
+		void increaseStrength(int strengthToIncrease);
+		void increaseDexterity(int dexterityToIncrease);
+		void increaseAgility(int agilityToIncrease);
 		virtual void increaseAttributes(){}
 
 		void regenerateHealthPowerAfterLosing();
 		void reduceMoneyAfterLosing();
 		void attackToHero(int DamageValue);
-		void weaponEquip(int position);
-		void armorEquip(int position);
+		int weaponEquip(int position);
+		int armorEquip(int position);
 		void regenerateMagicPowerAfterRound();
 		int checkIfLevelUp();
 
-		void findAndUsePotion(int position);
-		void spellEquip(int position);
+		int findAndUsePotion(int position);
+		int spellEquip(int position);
 };
 
 #endif

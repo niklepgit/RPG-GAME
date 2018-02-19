@@ -310,6 +310,7 @@ Grid* g = new Grid;
 								switch(option){
 									case 1:
 										    check=Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
+											cout << "check = " << check << endl;
 											if(check!=2)
 												getchar();
 											cout << "Press enter to continue";

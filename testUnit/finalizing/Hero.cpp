@@ -2,10 +2,11 @@
 #include "Potion.hpp"
 
 /* Constructor */
-Hero::Hero(string Name,int Strength,int Dexterity,int Agility,int MaxAgility)
+Hero::Hero(string Name,int Strength,int Dexterity,int Agility,int MaxStrength,int MaxDexterity,int MaxAgility)
 		  :Living(Name),strength(Strength),dexterity(Dexterity),
-		  agility(Agility),maxAgility(MaxAgility),currMagicPower(100),maxMagicPower(100),money(25),experience(0),
-		  experienceToLevelUp(10),Rhand(nullptr),Lhand(nullptr),MyArmor(nullptr),MySpell(nullptr){}
+		  agility(Agility),maxStrength(MaxStrength),maxDexterity(MaxDexterity),maxAgility(MaxAgility),currMagicPower(100),
+		  maxMagicPower(100),money(25),experience(0),experienceToLevelUp(10),
+		  Rhand(nullptr),Lhand(nullptr),MyArmor(nullptr),MySpell(nullptr){}
 	
 /*printHero*/
 void Hero::printHero()const{
@@ -16,9 +17,9 @@ void Hero::printHero()const{
 	cout << "HP: " << currHealthPower << "/" << maxHealthPower << endl
 		 << "MP: " << currMagicPower << "/" << maxMagicPower << endl
 		 << "Money: " << money << endl
-		 << "Strength: " << getStrength() << endl //na bgalw tis sinartisis
-		 << "Dexterity: " << getDexterity() << endl
-		 << "Agility: " << getAgility() << endl << endl;
+		 << "Strength: " << strength << endl //na bgalw tis sinartisis
+		 << "Dexterity: " << dexterity << endl
+		 << "Agility: " << agility << endl << endl;
 
 	//If I have equiped an armor print
 	if(MyArmor != nullptr){
@@ -83,7 +84,7 @@ int Hero::checkIfLevelUp(){
 }
 
 /*weaponEquip*/
-void Hero::weaponEquip(int position){	// position => position of the weapon you want to equip
+int Hero::weaponEquip(int position){	// position => position of the weapon you want to equip
 	list<Weapon>::iterator it;
 	int counter = 1;
 	int Hands;
@@ -92,7 +93,7 @@ void Hero::weaponEquip(int position){	// position => position of the weapon you 
 			Hands = it->getHands(); //get how many hands it requires
 			if(Hands == 1) //if the weapon uses 1 hand
 				if(Lhand == &(*it) || Rhand == &(*it)) //if the hero has it already in his hand
-					return;	//don't equip it again & exit
+					return 2;	//don't equip it again & exit
 			if(Hands == 2) //if it requires 2 hands
 				Lhand = Rhand = &(*it); 
 			else //if it requires 1 hand
@@ -105,14 +106,15 @@ void Hero::weaponEquip(int position){	// position => position of the weapon you 
 					Rhand = &(*it); //take weapon in the right hand
 				} else	// if the weapon requires 1 hand and the hero uses two different weapons just throw one of them and use the new one
 					Rhand = &(*it);
-			return;
+			return 1;
 		}
 		counter++;
 	}
+	return 2;
 }
 
 /*findPotion*/
-void Hero::findAndUsePotion(int position){ // position => position of the potion you want to use
+int Hero::findAndUsePotion(int position){ // position => position of the potion you want to use
 	list<Potion>::iterator it;
 	int counter = 1; // counter to find "position" of potion in the list of potions
 	for(it = inventory.Potions.begin(); it != inventory.Potions.end(); it++){
@@ -120,38 +122,42 @@ void Hero::findAndUsePotion(int position){ // position => position of the potion
 			it->usePotion(*this);	// use potions
 			it = inventory.Potions.erase(it);	// and erase it from your inventory
 			it--;
-			return;
+			return 1;
 		}
 		counter++;
 	}
+	return 2;
 }
 
 /*spellEquip*/
-void Hero::spellEquip(int position){ // position => position of the spell you want to equip
+int Hero::spellEquip(int position){ // position => position of the spell you want to equip
 	list<Spell*>::iterator it;
 	int counter = 1; // counter to find "position" of spell in the list of spells
 	for(it = inventory.Spells.begin(); it != inventory.Spells.end(); it++){
 		if(counter == position){	// if you find it
 			MySpell = (*it);	// "equip" spell
-			return;
+			cout << "To ekana equip!!!!" << endl;
+			return 0;
 		}
 		counter++;
 	}
+	return 2;
 }
 
 
 
 /*armorEquip*/
-void Hero::armorEquip(int position){ // position => position of armor you want to equip
+int Hero::armorEquip(int position){ // position => position of armor you want to equip
 	list<Armor>::iterator it;
 	int counter = 1;	// counter to find "position" of armor in the list of armors
 	for(it = inventory.Armors.begin(); it != inventory.Armors.end(); it++){
 		if(counter == position){	// if you find it
 			MyArmor = &(*it);	// equip armor
-			return;
+			return 1;
 		}
 		counter++;
 	}
+	return 2;
 }
 
 /*attackToHero*/
@@ -195,4 +201,28 @@ int Hero::reduceMagicPower(int magicPowerToSub){	// return 1 or 0 to check if yo
 /*reduceMoney*/
 void Hero::reduceMoney(int moneySpented){ // after you buy an item for example
 	money -= moneySpented;
+}
+
+/*increaseStrength*/
+void Hero::increaseStrength(int strengthToIncrease){
+	if (strength + strengthToIncrease >= maxStrength)
+		strength = maxStrength;
+	else
+		strength += strengthToIncrease;
+}
+
+/*increaseDexterity*/
+void Hero::increaseDexterity(int dexterityToIncrease){
+	if (dexterity + dexterityToIncrease >= maxDexterity)
+		dexterity = maxDexterity;
+	else
+		dexterity += dexterityToIncrease;
+}
+
+/*increaseAgility*/
+void Hero::increaseAgility(int agilityToIncrease){
+	if (agility + agilityToIncrease >= maxAgility)
+		agility = maxAgility;
+	else
+		agility += agilityToIncrease;
 }
