@@ -1,4 +1,1 @@
-Files to be commented:
-
-Grid ->
-main ->
+1) Afto pou elega me tis deleteWeapon, deleteArmor klp telika to katalava ti paizei. Prepei na einai OK, alla rikse kai esy mia matia.

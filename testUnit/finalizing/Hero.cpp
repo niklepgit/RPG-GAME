@@ -100,10 +100,11 @@ void Hero::weaponEquip(int position){	// position => position of the weapon you 
 					Lhand = &(*it);
 				else if(Rhand == nullptr) //if right is empty put it there
 					Rhand = &(*it);
-				else{ //if the weapon requires 1 hand but the hero uses a weapon with his 2 hands
+				else if(Rhand->getHands() == 2){ //if the weapon requires 1 hand but the hero uses a weapon with his 2 hands
 					Lhand = nullptr; //throw the weapon
 					Rhand = &(*it); //take weapon in the right hand
-				}
+				} else	// if the weapon requires 1 hand and the hero uses two different weapons just throw one of them and use the new one
+					Rhand = &(*it);
 			return;
 		}
 		counter++;
