@@ -119,40 +119,64 @@ void Inventory::printPotions(void){
 int Inventory::checkInventory(Hero&hero,int inBattle){
 	int ch,ch1;
 	printOptionsForSeeing();
-	cin>>ch;
+	cin >> ch;
 	switch(ch){
 		case 1:printWeapons();															//if you want to see weapons print the weapons
-			   cout<<"If you want to equip give weapon's number or anything else to exit."<<endl;
-			   cin>>ch1;																//take input from user
-			   if(ch1==0)																//if he wants to exit then break
-			    break;																	//break from switch statement
+			   cout << "If you want to equip give weapon's number or anything else to exit." << endl;
+			   cin >> ch1;
+
+			   // leave check inventory for bad input															
+			   if(cin.fail()){
+				   cin.clear(); // reset failbit
+			   	   cin.ignore(100, '\n'); //skip bad input
+			   	   break;
+			   }
+
 			   hero.weaponEquip(ch1);													//else equip the weapon
 			   break;																	//break from switch statement
 		case 2:printArmors();															//if you want to see armors print the armors
-			   cout<<"If you want to equip give armor's number or anything else to exit."<<endl;
-			   cin>>ch1;																//take input from user
-			   if(ch1==0)																//if he wants to exit then break
-			   	break;																	//break from switch statement	
+			   cout << "If you want to equip give armor's number or anything else to exit." << endl;
+			   cin >> ch1;
+			   
+			   // leave check inventory for bad input															
+			   if(cin.fail()){
+				   cin.clear(); // reset failbit
+			   	   cin.ignore(100, '\n'); //skip bad input
+			   	   break;
+			   }
+
 			   hero.armorEquip(ch1);
 			   break;																	//break from switch statement
 		case 3:printPotions();															//if you want to see potions print the potions
-			   cout<<"If you want to use a Potion give it's number or anything else to exit."<<endl;
-			   cin>>ch1;																//take input from user
-			   if(ch1==0)																//if he wants to exit then break
-			   	break;																	//break from switch statement
+			   cout << "If you want to use a Potion give it's number or anything else to exit." << endl;
+			   cin >> ch1;
+			  
+			   // leave check inventory for bad input															
+			   if(cin.fail()){
+				   cin.clear(); // reset failbit
+			   	   cin.ignore(100, '\n'); //skip bad input
+			   	   break;
+			   }
+			   
 			   hero.findAndUsePotion(ch1); //find and use Potion
 			   return 1;																//returns 1 which means that the hero used a potion
 		case 4:printSpells();															//if you want to see spells print the spells
 			   if(inBattle){															//if the hero is in a battle then
-				   cout<<"If you want to cast a Spell give it's number or anything else to exit."<<endl; //ask if he want to cast a spell
-				   cin>>ch1;															//take input from user
-				   if(ch1==0)															//if he wants to exit then break
-				   		break;															//break from switch statement
+				   cout << "If you want to cast a Spell give it's number or anything else to exit." << endl; //ask if he want to cast a spell
+				   cin >> ch1;
+				   
+				   // leave check inventory for bad input															
+				   if(cin.fail()){
+					   cin.clear(); // reset failbit
+				   	   cin.ignore(100, '\n'); //skip bad input
+				   	   break;
+				   }
+			   
 				   //cast spell
-				   if(hero.MySpell==nullptr)											//if the hero doesn't have a spell
+				   if(hero.MySpell == nullptr)											//if the hero doesn't have a spell
 				   	hero.spellEquip(ch1);												//equip the spell
 				   else																	//else
-				   	cout<<"You can't use a spell right now."<<endl;						//print message
+				   	cout << "You can't use a spell right now." << endl;						//print message
 				}
 	    	   break;																	//break from switch statement
 	    default:																		//if the user put an other string or number
@@ -164,7 +188,7 @@ int Inventory::checkInventory(Hero&hero,int inBattle){
 				}
 
 	    		cin.ignore(100, '\n');													//ignore the bad input
-	    		cout<<"Wrong option."<<endl;											//print message
+	    		cout << "Wrong option." << endl;											//print message
 	    		return 2;																//return 2 which means that something wrong happened
 	}
 	return 0;																			//the hero didn't use a potion and everything was great

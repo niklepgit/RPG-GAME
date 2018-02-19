@@ -1,6 +1,12 @@
 #ifndef _TYPE_OF_GRID_
 #define _TYPE_OF_GRID_
 
+#define MY_MARKET 'M'
+#define NON_ACCESIBLE '#'
+#define COMMON ' '
+#define BORDERS '*'
+#define PLAYER '@'
+
 #include <iostream>
 
 using namespace std;
@@ -25,15 +31,15 @@ public:
 	/*displayTypeOfGrid*/
 	void displayTypeOfGrid(){
 		if (common)
-			cout << ' ';
+			cout << COMMON;
 		else if (nonAccessible)
-			cout << '#';
+			cout << NON_ACCESIBLE;
 		else if (market)
-			cout << 'M';
+			cout << MY_MARKET;
 		else if (borders)
-			cout << '*';
+			cout << BORDERS;
 		else
-			cout << '@';
+			cout << PLAYER;
 	}
 };
 
