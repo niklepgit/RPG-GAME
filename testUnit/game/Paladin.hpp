@@ -11,7 +11,7 @@ class Paladin:public Hero{
 		Paladin(string);
 
 		/*Destructor*/
-		~Paladin();
+		//~Paladin();
 
 		/*Mutators*/
 		void increaseAttributes();

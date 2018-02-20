@@ -9,7 +9,7 @@ Hero::Hero(string Name,int Strength,int Dexterity,int Agility,int MaxStrength,in
 		  Rhand(nullptr),Lhand(nullptr),MyArmor(nullptr),MySpell(nullptr){}
 
 /*Destructor*/
-Hero::~Hero(){}
+//Hero::~Hero(){}
 	
 /*printHero*/
 void Hero::printHero()const{
