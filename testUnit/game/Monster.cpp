@@ -3,14 +3,9 @@
 /*Constructor*/
 Monster::Monster(string Name,int Level)
 					:Living(Name,Level),
-    			maxProbability(200),
-    			undoSpellDamageRange(0),
-						undoSpellDefense(0),undoSpellProbability(0){
-
-//minDamageRange(rand()%(5+(--Level)*10-(Level)*10)+Level*10+5),maxDamageRange(rand()%(10*Level-5*Level+1)+5*Level),defense(rand()%(10*Level-5*Level+1)+5*Level),
-//   			probability(rand()%(10*Level-5*Level+1)+5*Level)
-
-
+    				maxProbability(200),
+    				undoSpellDamageRange(0),
+					undoSpellDefense(0),undoSpellProbability(0){
 
    	switch(Level){
 		case 1:probability=rand()%(10-5+1)+5;

@@ -231,10 +231,11 @@ Grid* g = new Grid;
 												getOutOfdoWhileLoop = returnFromAttackWithSpell = 0;
 												break;
 											}
-											else if(check){
+											else if(check == 1){
 												getOutOfdoWhileLoop=1;
 												break;
 											}
+
 									case 2: cout << "Attack of Hero " << i+1 << endl;
 											if(Heroes[i]->MySpell!=nullptr){
 												cout << "A spell is equiped" << endl;
@@ -279,8 +280,10 @@ Grid* g = new Grid;
 
 						if(!monstersAreDead(Monsters,numberOfHeroes))
 							break;
+
 						/*MONSTERS' TURN*/
 						for(i=0;i<numberOfHeroes;i++){
+							//////////////////////////////////////////////////////////////////////check if hero is dead
 							int whoToHit=rand()%numberOfHeroes; //generate a random number between 0-2 to choose the hero
 							/*probability(agility) for hero to avoid an attack from a monster*/
 							if(((double) Heroes[whoToHit]->getAgility()/Heroes[whoToHit]->getMaxAgility())>((double) rand() / (RAND_MAX))){
@@ -428,11 +431,20 @@ void Game::attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 		cout<<" to Monster: (give a number between 1-"<<NumberOfHeroes<<")"<<endl;
 		cin>>option;
 
-		while(option<1 || option>NumberOfHeroes || monsters[option-1]->getCurrHealthPower()==0){
-			if(option<1 || option>NumberOfHeroes){
+		while(option<1 || option>NumberOfHeroes || monsters[option-1]->getCurrHealthPower()==0 || cin.fail()){
+			if(cin.fail()){
+				 // user didn't input a number
+			    cin.clear(); // reset failbit
+			    cin.ignore(100, '\n'); //skip bad input
+				cout << "Give a valid option." << endl;
+			    cin >> option;
+			}
+			else if(option<1 || option>NumberOfHeroes){
 				cout<<"Wrong input please give a number between 1-"<<NumberOfHeroes<<")"<<endl;	
 				cin>>option;
 			}
+			else if(!monstersAreDead(monsters,NumberOfHeroes))
+				return;
 			else if(monsters[option-1]->getCurrHealthPower()==0){
 				cout<<"This monster has no life. Choose another one."<<endl;
 				cin>>option;
@@ -473,8 +485,15 @@ int Game::attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*
 		cout<<" to Monster: (give a number between 1-"<<NumberOfHeroes<<")"<<endl;
 		cin>>option;
 
-		while(option<1 || option>NumberOfHeroes || monsters[option-1]->getCurrHealthPower()==0 || monsterHitWithSpell[option-1]!=0){
-			if(option<1 || option>NumberOfHeroes){
+		while(option<1 || option>NumberOfHeroes || monsters[option-1]->getCurrHealthPower()==0 || monsterHitWithSpell[option-1]!=0 || cin.fail()){
+			if(cin.fail()){
+				 // user didn't input a number
+			    cin.clear(); // reset failbit
+			    cin.ignore(100, '\n'); //skip bad input
+				cout << "Give a valid option." << endl;
+			    cin >> option;
+			}
+			else if(option<1 || option>NumberOfHeroes){
 				cout<<"Wrong input please give a number between 1-"<<NumberOfHeroes<<")"<<endl;	
 				cin>>option;
 			}
@@ -528,8 +547,9 @@ void Game::displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 		cout << "Agility: "<< heroes[i]->getAgility(); cout<<'\t'<<'\t'<<"Defense: "<<monsters[i]->getDefense(); cout<<endl;
 		cout << "Strength: "<< heroes[i]->getStrength(); cout<< endl; // cout<<'\t'<<'\t'<<
 		
-		if(heroes[i]->MyArmor!=nullptr)
-			cout << "Armor: " << heroes[i]->MyArmor->getDamageSave();cout<<endl;
+		if(heroes[i]->MyArmor!=nullptr){
+			cout << "Armor: " << heroes[i]->MyArmor->getDamageSave();cout<<endl; /////////attention
+		}
 		
 		if(heroes[i]->Lhand==heroes[i]->Rhand && heroes[i]->Rhand!=nullptr)
 			cout << "Weapon's damage: " << heroes[i]->Rhand->getDamageValue()<<endl<<endl; 

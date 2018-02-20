@@ -9,9 +9,6 @@ class Sorcerer:public Hero{
 	public:
 		/*Constructor*/
 		Sorcerer(string);
-
-		/*Destructor*/
-		~Sorcerer();
 		
 		/*Mutators*/
 		void increaseAttributes();
