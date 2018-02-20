@@ -4,9 +4,6 @@
 Paladin::Paladin(string Name)
 				:Hero(Name,15,12,8,250,250,200){}
 
-/*Destructor*/
-Paladin::~Paladin(){}
-
 /* increase attributes */
 void Paladin::increaseAttributes(){
 	increaseStrength(getLevel()*2); 

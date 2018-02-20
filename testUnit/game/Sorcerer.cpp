@@ -3,8 +3,6 @@
 /* Constructor */
 Sorcerer::Sorcerer(string Name)
 				:Hero(Name,8,15,12,200,250,250){}
-/*Destructor*/
-Sorcerer::~Sorcerer(){}
 
 /* increase attributes */
 void Sorcerer::increaseAttributes(){

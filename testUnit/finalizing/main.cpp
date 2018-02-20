@@ -622,8 +622,11 @@ void displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 		cout << "Agility: "<< heroes[i]->getAgility(); cout<<'\t'<<'\t'<<"Defense: "<<monsters[i]->getDefense(); cout<<endl;
 		cout << "Strength: "<< heroes[i]->getStrength(); cout<< endl; // cout<<'\t'<<'\t'<<
 		
-		if(heroes[i]->MyArmor!=nullptr)
-			cout << "Armor: " << heroes[i]->MyArmor->getDamageSave();cout<<endl;
+		if(heroes[i]->MyArmor!=nullptr){
+			cout << "Armor: " << heroes[i]->MyArmor->getDamageSave();
+			cout<<endl;
+		}
+		
 		
 		if(heroes[i]->Lhand==heroes[i]->Rhand && heroes[i]->Rhand!=nullptr)
 			cout << "Weapon's damage: " << heroes[i]->Rhand->getDamageValue()<<endl<<endl; 

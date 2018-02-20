@@ -126,27 +126,33 @@ Weapon Market::buyWeapon(int position,int& Money,int LevelOfHero,int& bought){
 		}
 		counter++;					
 	}
+	it=Weapons.begin();
+	bought=0;			//make bought variable 0
+	return *it;			//return the weapon just because the function returns a weapon
 }
 
 /*buyArmor*/
 Armor Market::buyArmor(int position,int& Money,int LevelOfHero,int& bought){
 	list<Armor>::iterator it;
 	int counter=1;
-	for(it=Armors.begin();it!=Armors.end();it++){ //for every weapon in the list of weapons
-		if(counter==position){					//if you find the weapon user chose
+	for(it=Armors.begin();it!=Armors.end();it++){ //for every armor in the list of armors
+		if(counter==position){					//if you find the armor user chose
 			if(it->getMinLevel()<=LevelOfHero){ //if the hero is in an appropriate level
-				Money=it->getValue();			//take the cost for the weapon
+				Money=it->getValue();			//take the cost for the armor
 				bought=1;						//make the bought variable 1
-				return *it;						//return the weapon
+				return *it;						//return the armor
 			}
-			else								//if thw weapon is of higher level
+			else								//if thw armor is of higher level
 				{
 					bought=0;					//make bought variable 0
-					return *it;					//return the weapon just because the function returns a weapon
+					return *it;					//return the armor just because the function returns a armor
 				}	
 		}
 		counter++;
 	}
+	it=Armors.begin();
+	bought=0;			//make bought variable 0
+	return *it;			//return the armors just because the function returns a armors
 }
 
 /*buyPotion*/
@@ -168,6 +174,9 @@ Potion Market::buyPotion(int position,int& Money,int LevelOfHero,int& bought){
 		}
 		counter++;
 	}
+	it=Potions.begin();
+	bought=0;			//make bought variable 0
+	return *it;			//return the potion just because the function returns a potion
 }
 
 /*buySpell*/
@@ -189,6 +198,9 @@ Spell* Market::buySpell(int position,int& Money,int LevelOfHero,int& bought){
 		}
 		counter++;
 	}
+	it=Spells.begin();
+	bought=0;			//make bought variable 0
+	return *it;			//return the spell just because the function returns a spell
 }
 
 /*menuMarket*/

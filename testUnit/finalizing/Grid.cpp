@@ -63,7 +63,7 @@ Grid::Grid(){
 Grid::~Grid(){
 	
 	for (int i = 0; i < xMax; i++)
-		delete map[i];
+		delete[] map[i];
 	delete[] map;
 }
 
