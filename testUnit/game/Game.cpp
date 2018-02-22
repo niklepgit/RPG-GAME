@@ -74,16 +74,16 @@ Grid* g = new Grid;
 		g->displayMap();
 		keyInput = g->getmv(battle);
 		switch(keyInput){
-			case 'm':
-					if (!g->nextToMarket())
+			case 'm':											// keyboard's input is 'm'
+					if (!g->nextToMarket())						// if not next to market -> next keyboard's input
 						break;
 					g->clearScreen();
-					market.menuMarket(Heroes,numberOfHeroes);	// let's go to the market
+					market.menuMarket(Heroes,numberOfHeroes);	// otherwise enter the market
 					break;
 			case 'p':
-					g->clearScreen();
-					for (int i = 0; i < numberOfHeroes; ++i)
-						Heroes[i]->printHero();
+					g->clearScreen();							// keyboard's input is 'p'
+					for (int i = 0; i < numberOfHeroes; ++i)	// for every hero
+						Heroes[i]->printHero();					// print statistics and gear
 					cout << "Press anything to continue...";
 					if(cin.fail()){
 						cin.clear(); // reset failbit
@@ -91,12 +91,12 @@ Grid* g = new Grid;
 					}
 					cin.ignore(100, '\n');	
 					break;
-			case 'i':
+			case 'i':											// keyboard's input is 'i'
 					int choice;
 					g->clearScreen();
 					cout << "For which hero you want to see inventory?" << endl;
 					for (int i = 0; i < numberOfHeroes; ++i)
-						Heroes[i]->printHero();	
+						Heroes[i]->printHero();
 					cin >> choice;
 
 					/*START: CHECK FOR VALID INPUT*/
@@ -118,13 +118,13 @@ Grid* g = new Grid;
 					// If user's input is valid do whatever you have to do...
 					Heroes[choice-1]->inventory.checkInventory(*Heroes[choice-1],inBattle);
 					cout << "Press anything to continue...";
-							if(cin.fail()){
-								cin.clear(); // reset failbit
-						   		cin.ignore(100, '\n'); //skip bad input
-							}
-							cin.ignore(100, '\n');	
-							break;
-			case 'b':{
+					if(cin.fail()){
+						cin.clear(); // reset failbit
+				   		cin.ignore(100, '\n'); //skip bad input
+					}
+					cin.ignore(100, '\n');	
+					break;
+			case 'b':{								// return from getmv is 'b' when you have to face monsters
 					if(!battle)
 						break;
 
@@ -134,7 +134,7 @@ Grid* g = new Grid;
 					int randomMonster;
 					for(int j = 0; j < numberOfHeroes; j++){
 						randomMonster = rand()%3;
-						switch(randomMonster){
+						switch(randomMonster){				// randomly creation of monsters
 							case 0:
 								Monsters[j] = new Dragon("Dragon", levelOfMonsters); 
 								break;
@@ -171,8 +171,7 @@ Grid* g = new Grid;
 					do{
 						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;		// round of battle (round = heroes do something + monsters do something)
 						for(i=0;i<numberOfHeroes;i++){	// for every hero for every round what do you want to do
-							/*if hero is alive*/
-							if (!Heroes[i]->isAlive()){
+							if (!Heroes[i]->isAlive()){	// 
 								cout << "Hero " << i+1 << " is dead." << endl;
 								continue;
 							}
