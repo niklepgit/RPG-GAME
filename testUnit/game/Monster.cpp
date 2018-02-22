@@ -64,13 +64,13 @@ Monster::Monster(string Name,int Level)
 
 /*attackToMonster*/
 void Monster::attackToMonster(int DamageValue){
-	if(DamageValue > defense)
-		DamageValue -= defense;
+	if(DamageValue > defense)				//if damage is greater than defense
+		DamageValue -= defense;				//make damageValue= damageValue-defense
 	else{
-		defense-= DamageValue;
-		return;
+		defense-= DamageValue;				//else just decrease defense
+		return;								//and return
 	}
-	healthPowerReduce(DamageValue);
+	healthPowerReduce(DamageValue); 		//reduce health from monster the new damageValue
 }
 
 /*generateHit*/

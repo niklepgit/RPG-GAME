@@ -173,12 +173,13 @@ Grid* g = new Grid;
 					displayStats(Heroes,Monsters,numberOfHeroes);
 
 					do{
-						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;		// round of battle (round = heroes do something + monsters do something)
-						for(i=0;i<numberOfHeroes;i++){	// for every hero for every round what do you want to do
+
+						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;	// round of battle (round = heroes do something + monsters do something)
+						for(i=0;i<numberOfHeroes;i++){												// for every hero for every round what do you want to do
 							
-							if (!Heroes[i]->isAlive()){	// check if he's dead
-								cout << "Hero " << i+1 << " is dead." << endl;
-								continue;
+							if (!Heroes[i]->isAlive()){												//if hero is not alive
+								cout << "Hero " << i+1 << " is dead." << endl;						//print appropriate message
+								continue;															//continue for the next hero
 							}
 							
 							getOutOfdoWhileLoop = 0;
@@ -304,7 +305,7 @@ Grid* g = new Grid;
 						heroesAfterWinning(Heroes,numberOfHeroes);
 					}
 
-					destroyMonsters(Monsters,numberOfHeroes);																			// delete all monsters when the battle is over
+					destroyMonsters(Monsters,numberOfHeroes);			// delete all monsters when the battle is over
 					battle = 0;
 					break;
 				}
@@ -313,7 +314,7 @@ Grid* g = new Grid;
 		}
 		g->clearScreen();
 
-	} while (keyInput != 'q');																											// quit game when keyboard's input is 'q'	
+	} while (keyInput != 'q');											// quit game when keyboard's input is 'q'	
 
 	/*memory frees*/
 	/*delete heroes*/
