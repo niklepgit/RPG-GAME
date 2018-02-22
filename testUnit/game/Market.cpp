@@ -92,7 +92,7 @@ void Market::printPotions(void){
 	int i = 0;
 	list<Potion>::iterator it;
 	cout << "Potions are:" << endl;
-	for(it = Potions.begin(); it != Potions.end(); it++){ 	/ / for every spell
+	for(it = Potions.begin(); it != Potions.end(); it++){ 	// for every spell
 		cout << "<------" << ++i << "------>" << endl; 		// print the number for the potion
 		it->printPotion(); 									// call the print function for the spell
 		cout << endl; 										// leave one line empty
@@ -213,7 +213,7 @@ void Market::menuMarket(Hero**& heroes,int numberOfHeroes){
 		case 1:													// if the user choose to buy
 			cout << "For which Hero you want to buy?" << endl;	// ask for which hero he want to buy
 			for(i = 0; i < numberOfHeroes; i++){				// print all the heroes
-		 	    cout < i+1 << ":" << endl;
+		 	    cout << i+1 << ":" << endl;
 		 	    heroes[i]->printHero();
 			}
 		    cin >> ch;
