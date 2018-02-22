@@ -305,7 +305,7 @@ Grid* g = new Grid;
 						heroesAfterWinning(Heroes,numberOfHeroes);
 					}
 
-					destroyMonsters(Monsters,numberOfHeroes);																			// delete all monsters when the battle is over
+					destroyMonsters(Monsters,numberOfHeroes);			// delete all monsters when the battle is over
 					battle = 0;
 					break;
 				}
@@ -314,7 +314,7 @@ Grid* g = new Grid;
 		}
 		g->clearScreen();
 
-	} while (keyInput != 'q');																											// quit game when keyboard's input is 'q'	
+	} while (keyInput != 'q');											// quit game when keyboard's input is 'q'	
 
 	/*memory frees*/
 	/*delete heroes*/
