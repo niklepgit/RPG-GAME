@@ -365,9 +365,9 @@ void Game::heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
 
 /*heroesAfterRound*/
 // just regenerate quantum of health & magic power
-void Game::heroesAfterRound(Hero**&heroes,int NumberOfHeroes){
-	for(int i=0;i<NumberOfHeroes;i++){
-		if(heroes[i]->isAlive()){
+void Game::heroesAfterRound(Hero**& heroes,int NumberOfHeroes){
+	for(int i = 0; i < NumberOfHeroes; i++){
+		if(heroes[i]->isAlive()){					// hero is alive
 			heroes[i]->regenerateHealthPowerAfterRound();
 			heroes[i]->regenerateMagicPowerAfterRound();
 		}
@@ -375,67 +375,72 @@ void Game::heroesAfterRound(Hero**&heroes,int NumberOfHeroes){
 }
 
 /*monstersAfterRound*/
-void Game::monstersAfterRound(Monster**&monsters,int NumberOfHeroes){
-	for(int i=0;i<NumberOfHeroes;i++){
-		if (monsters[i]->isAlive())
+// just regenerate quantum of health power
+void Game::monstersAfterRound(Monster**& monsters,int NumberOfHeroes){
+	for(int i = 0; i < NumberOfHeroes; i++){
+		if (monsters[i]->isAlive())								// monster is alive
 			monsters[i]->regenerateHealthPowerAfterRound();
 	}
 }
 
 /*destroyMonsters*/
+// delete monsters when the battle ends
 void Game::destroyMonsters(Monster**& monsters,int NumberOfHeroes){
-	for(int i=0;i<NumberOfHeroes;i++){
+	for(int i = 0; i < NumberOfHeroes; i++){
 		delete monsters[i];
-		monsters[i]=nullptr;
+		monsters[i] = nullptr;
 	}
 	delete[] monsters;
-	monsters=nullptr;
+	monsters = nullptr;
 }
 
 /*heroesAfterLosing*/
 void Game::heroesAfterLosing(Hero**& heroes,int NumberOfHeroes){
-	for(int i=0;i<NumberOfHeroes;i++){
-		heroes[i]->reduceMoneyAfterLosing();
-		if(heroes[i]->getCurrHealthPower()==0)
-			heroes[i]->regenerateHealthPowerAfterLosing();
+	for(int i = 0; i < NumberOfHeroes; i++){
+		heroes[i]->reduceMoneyAfterLosing();					// reduce hero's money to the half after losing the battle
+		heroes[i]->regenerateHealthPowerAfterLosing();			// regenerate heroes' health power after losing a battle to the half of max health power
 	}
 }
 
 /*monstersAreDead*/
-int Game::monstersAreDead(Monster**&monsters,int NumberOfHeroes){
-	int life=0;
-	for(int i=0;i<NumberOfHeroes;i++){ //for every monster
-		life += monsters[i]->getCurrHealthPower(); //add the health
+// returns sum of life of all monsters
+int Game::monstersAreDead(Monster**& monsters,int NumberOfHeroes){
+	int life = 0;
+	for(int i = 0; i < NumberOfHeroes; i++){ 					// for every monster
+		life += monsters[i]->getCurrHealthPower(); 				// add the health
 	}
-	return life; //return 0 if all monsters are dead else != 0
+	return life; 												// return 0 if all monsters are dead else != 0
 }
 
 /*heroesAreDead*/
+// returns sum of life of all heroes
 int Game::heroesAreDead(Hero**&heroes,int NumberOfHeroes){
-	int life=0;
-	for(int i=0;i<NumberOfHeroes;i++){ //for every monster
-		life += heroes[i]->getCurrHealthPower(); //add the health
+	int life = 0;
+	for(int i = 0; i < NumberOfHeroes; i++){ 					// for every monster
+		life += heroes[i]->getCurrHealthPower(); 				// add the health
 	}
-	return life; //return 0 if all monsters are dead else != 0
+	return life; 												// return 0 if all monsters are dead else != 0
 }
 
 /*attack*/
+// normal attack
 void Game::attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 	int option;
-		cout<<" to Monster: (give a number between 1-"<<NumberOfHeroes<<")"<<endl;
-		cin>>option;
+		cout << " to Monster: (give a number between 1-" << NumberOfHeroes << ")" << endl;
+		cin >> option;
 
-		while(option<1 || option>NumberOfHeroes || monsters[option-1]->getCurrHealthPower()==0 || cin.fail()){
+		/*START: CHECK FOR VALID INPUT*/
+		while(option < 1 || option > NumberOfHeroes || monsters[option-1]->getCurrHealthPower() == 0 || cin.fail()){
 			if(cin.fail()){
-				 // user didn't input a number
-			    cin.clear(); // reset failbit
-			    cin.ignore(100, '\n'); //skip bad input
+				// user didn't input a number
+			    cin.clear(); 													// reset failbit
+			    cin.ignore(100, '\n'); 											//skip bad input
 				cout << "Give a valid option." << endl;
 			    cin >> option;
 			}
-			else if(option<1 || option>NumberOfHeroes){
-				cout<<"Wrong input please give a number between 1-"<<NumberOfHeroes<<")"<<endl;	
-				cin>>option;
+			else if(option < 1 || option > NumberOfHeroes){
+				cout << "Wrong input please give a number between 1-" << NumberOfHeroes << ")" << endl;	
+				cin >> option;
 			}
 			else if(!monstersAreDead(monsters,NumberOfHeroes))
 				return;
@@ -444,6 +449,7 @@ void Game::attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 				cin>>option;
 			}
 		}
+		/*END: CHECK FOR VALID INPUT*/
 
 		/*Probability for monster to avoid a normal attack from hero*/
 		if(((double) monsters[option-1]->getProbability()/monsters[option-1]->getMaxProbability())>((double) rand() / RAND_MAX)){
@@ -451,6 +457,7 @@ void Game::attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 			return;
 		}
 
+		// Different cases. How many weapons hero equips and etc.
 		if(hero.Lhand==hero.Rhand && hero.Rhand!=nullptr)
 			monsters[option-1]->attackToMonster(hero.Rhand->getDamageValue()+hero.getStrength()); 
 		else if(hero.Lhand==nullptr && hero.Rhand==nullptr)			
@@ -466,14 +473,14 @@ void Game::attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 
 
 /*attackWithSpell*/
-int Game::attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const& monsterHitWithSpell,int whoHitTheMonster,int*const&whichMonsterWasHit){
+int Game::attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const& monsterHitWithSpell,int whoHitTheMonster,int*const& whichMonsterWasHit){
 	cout<<"Attack with spell"<<endl;
-	if(!hero.reduceMagicPower(hero.MySpell->getMagicPower())){ 						//check if the hero has enough magic power to make the attack
-		cout << "Your magic power is not enough... Better luck next time!" << endl; //if the hero doesn't have the magic power print a message
-		hero.MySpell=nullptr;														//make the MySpell  point to null - throw the spell in inventory
+	if(!hero.reduceMagicPower(hero.MySpell->getMagicPower())){ 									//check if the hero has enough magic power to make the attack
+		cout << "Your magic power is not enough... Better luck next time!" << endl; 			//if the hero doesn't have the magic power print a message
+		hero.MySpell=nullptr;																	//make the MySpell  point to null - throw the spell in inventory
 		return 0;
 	}
-	hero.MySpell->setInUse1(whoHitTheMonster); 										//if everything are ok then set inUse 1 in spell 
+	hero.MySpell->setInUse1(whoHitTheMonster); 													//if everything are ok then set inUse 1 in spell 
 	//check if magicPower of hero goes bellow 0
 	int option;
 		cout<<" to Monster: (give a number between 1-"<<NumberOfHeroes<<")"<<endl;
