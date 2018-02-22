@@ -4,11 +4,8 @@ FireSpell::FireSpell(string Name,int MinLevel):Spell(Name,MinLevel){}
 
 /*castSpell*/
 void FireSpell::castSpell(Monster& monster){
-	monster.undoSpellDefense=monster.getDefense();
-	if(monster.getDefense()-monster.getDefense()/2 >0)
-		monster.reduceDefense(monster.getDefense()-monster.getDefense()/2);
-	else
-		monster.reduceDefense(monster.getDefense());
+	monster.undoSpellDefense=monster.getDefense();	//save current defense to undo the spell
+	monster.reduceDefense(monster.getDefense()/2);	//reduce the defense of the monster by almost half
 }
 
 /*undoSpell*/

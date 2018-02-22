@@ -27,7 +27,7 @@ int main(void){
 
 	while(!weapons_txt.eof()){
 		readWeapon(stop,weapons_txt,Name,MinLevel); //read the weapon from file
-		market->addWeapon(Name,MinLevel); 
+		market->addWeapon(Name,MinLevel); 			//add it to market
 		if(stop)
 			break;	
 	}

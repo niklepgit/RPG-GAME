@@ -5,12 +5,9 @@ LightingSpell::LightingSpell(string Name,int MinLevel):Spell(Name,MinLevel){}
 
 /*castSpell*/
 void LightingSpell::castSpell(Monster& monster){
-	monster.undoSpellProbability=monster.getProbability();
 
-	if(monster.getProbability()-monster.getProbability()/2 > 0)
-		monster.reduceProbability(monster.getProbability()-monster.getProbability()/2);
-	else
-		monster.reduceProbability(monster.getProbability());
+	monster.undoSpellProbability=monster.getProbability(); //save current probability to undo spell
+	monster.reduceProbability(monster.getProbability()/2); //reduce almost half probability of monster
 }
 
 /*undoSpell*/

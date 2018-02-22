@@ -4,8 +4,7 @@
 #include "Hero.hpp"
 
 class Paladin:public Hero{
-	private:
-
+	
 	public:
 		/*Constructor*/
 		Paladin(string);

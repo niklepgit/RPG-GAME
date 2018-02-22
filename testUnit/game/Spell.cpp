@@ -102,8 +102,8 @@ void Spell::castSpell(Hero&hero){
 /*generateHit*/
 int Spell::generateHit(int Dexterity){
 	int hit;
-	if((hit=rand()%((maxDamage - minDamage) + 1) + minDamage+Dexterity)>maxDamage)
-		return maxDamage;
-	else
-		return hit;
+	if((hit=rand()%((maxDamage - minDamage) + 1) + minDamage+Dexterity)>maxDamage) //generate a random hit between minDamage and 
+		return maxDamage;														//maxDamage but also add Dexterity and if this is greater than the maxDamage
+	else																		//return maxDamage
+		return hit;																//else return the generated hit
 }
