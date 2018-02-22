@@ -123,12 +123,12 @@ Grid* g = new Grid;
 					Heroes[choice-1]->inventory.checkInventory(*Heroes[choice-1],inBattle);
 					cout << "Press anything to continue...";
 					if(cin.fail()){
-						cin.clear(); // reset failbit
-				   		cin.ignore(100, '\n'); //skip bad input
+						cin.clear(); 							// reset failbit
+				   		cin.ignore(100, '\n'); 					//skip bad input
 					}
 					cin.ignore(100, '\n');	
 					break;
-			case 'b':{								// return from getmv is 'b' when you have to face monsters
+			case 'b':{											// return from getmv is 'b' when you have to face monsters
 					if(!battle)
 						break;
 
@@ -138,7 +138,7 @@ Grid* g = new Grid;
 					int randomMonster;
 					for(int j = 0; j < numberOfHeroes; j++){
 						randomMonster = rand()%3;
-						switch(randomMonster){				// randomly creation of monsters
+						switch(randomMonster){					// randomly creation of monsters
 							case 0:
 								Monsters[j] = new Dragon("Dragon", levelOfMonsters); 
 								break;
@@ -152,11 +152,11 @@ Grid* g = new Grid;
 						}
 					}
 				
-					int option;	// attack or check inventory to equip item (or cast spell) or use potion
+					int option;									// attack or check inventory to equip item (or cast spell) or use potion
 					int i;
-					int check; // check if the user used a Potion or casted a Spell in inventory
-					int counter = 1; // counter for the rounds
-					inBattle = 1;	// while we are in battle
+					int check; 									// check if the user used a Potion or casted a Spell in inventory
+					int counter = 1; 							// counter for the rounds
+					inBattle = 1;								// while we are in battle
 					int checkLifeOfSpell[numberOfHeroes];		// for every hero has his spell's round that expires
 					int monsterHitWithSpell[numberOfHeroes];	// for every monster if it is under the effect of a spell (1) or not (0)
 					int whichMonsterWasHit[numberOfHeroes];		// for every hero, get which monster he attacked with spell (positions of an array: [0,1,2] for example)
@@ -435,7 +435,7 @@ void Game::attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 			if(cin.fail()){
 				// user didn't input a number
 			    cin.clear(); 													// reset failbit
-			    cin.ignore(100, '\n'); 											//skip bad input
+			    cin.ignore(100, '\n'); 											// skip bad input
 				cout << "Give a valid option." << endl;
 			    cin >> option;
 			}
@@ -548,7 +548,7 @@ void Game::displayStats(Hero**& heroes, Monster**& monsters,int NumberOfHeroes){
 		cout << "MP: "<< heroes[i]->getCurrMagicPower(); cout<< "/"<<heroes[i]->getMaxMagicPower(); cout<<'\t'<<'\t'<<"DamageRange: "<< monsters[i]->getMinDamageRange(); cout<< "-"<< monsters[i]->getMaxDamageRange(); cout<<endl;
 		cout << "Dexterity: "<<heroes[i]->getDexterity(); cout<<'\t'<<'\t'<<"Probability: "<< monsters[i]->getProbability(); cout<<endl;
 		cout << "Agility: "<< heroes[i]->getAgility(); cout<<'\t'<<'\t'<<"Defense: "<<monsters[i]->getDefense(); cout<<endl;
-		cout << "Strength: "<< heroes[i]->getStrength(); cout<< endl; // cout<<'\t'<<'\t'<<
+		cout << "Strength: "<< heroes[i]->getStrength(); cout<< endl;
 		
 		if(heroes[i]->MyArmor!=nullptr){ 															//if the hero has armor
 			cout << "Armor: " << heroes[i]->MyArmor->getDamageSave();   							//display the damage of the armor
