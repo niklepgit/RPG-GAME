@@ -193,16 +193,15 @@ Grid* g = new Grid;
 					
 								/*START: CHECK FOR VALID INPUT*/
 								while((option!=1 && option!=2) || cin.fail()){ 
-									if(cin.fail()){ // or if(!cin)
-									    // user didn't input a number
-									    cin.clear(); // reset failbit
-									    cin.ignore(100, '\n'); //skip bad input
-										cout<<"Give a valid option."<<endl;
-									    cin>>option;
+									if(cin.fail()){ 						//or if(!cin)
+									    cin.clear(); 						//reset failbit
+									    cin.ignore(100, '\n'); 				//skip bad input
+										cout<<"Give a valid option."<<endl; //print appropriate message
+									    cin>>option;						//take a new input
 									}
-									else{	
-										cout<<"Give a valid option."<<endl;
-									    cin>>option;
+									else{									//if the user gave wrong number		
+										cout<<"Give a valid option."<<endl; //print appropriate message
+									    cin>>option;						//take a new input
 									}
 								}
 								/*END: CHECK FOR VALID INPUT*/
