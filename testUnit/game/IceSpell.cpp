@@ -5,7 +5,7 @@ IceSpell::IceSpell(string Name,int MinLevel):Spell(Name,MinLevel){}
 
 /*castSpell*/
 void IceSpell::castSpell(Monster& monster){
-	monster.undoSpellDamageRange=(monster.getMaxDamageRange()-monster.getMinDamageRange());
+	monster.undoSpellDamageRange = (monster.getMaxDamageRange()-monster.getMinDamageRange());
 	if((monster.getMaxDamageRange()-monster.getMinDamageRange())/2 > monster.getMinDamageRange())
 		monster.reduceDamageRange((monster.getMaxDamageRange()-monster.getMinDamageRange())/2);
 	else
@@ -19,5 +19,5 @@ void IceSpell::undoSpell(Monster& monster){
 
 /*printTypeOfSpell*/
 void IceSpell::printTypeOfSpell(){
-	cout<<"Type of Spell:IceSpell"<<endl;
+	cout << "Type of Spell:IceSpell" << endl;
 }

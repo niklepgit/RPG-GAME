@@ -20,7 +20,6 @@ private:
 	int player;
 public:
 	/*Constructor*/
-	//typeOfGrid(int Common, int NonAccessible, int Market, int Borders, int Player): common(Common), nonAccessible(NonAccessible), market(Market), borders(Borders), player(Player) {}
 	typeOfGrid(): common(0), nonAccessible(0), market(0), borders(0), player(0) {}
 
 	/*Destructor*/

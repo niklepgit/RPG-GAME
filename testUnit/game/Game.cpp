@@ -12,10 +12,10 @@ void Game::gameplay(Market& market){
 		<<"give a number between 1-3"<<endl;
 	cin>>numberOfHeroes;
 	while((numberOfHeroes!=1 && numberOfHeroes!=2 && numberOfHeroes!=3) || cin.fail()){
-			if(cin.fail()){ // or if(!cin)
-			    // user didn't input a number
-			    cin.clear(); // reset failbit
-			    cin.ignore(100, '\n'); //skip bad input
+			if(cin.fail()){ 									// or if(!cin)
+			    												// user didn't input a number
+			    cin.clear(); 									// reset failbit
+			    cin.ignore(100, '\n'); 							//skip bad input
 				cout<<"Give a valid number (1-3). Please try again."<<endl;
 				cin>>numberOfHeroes;	
 			}
@@ -42,10 +42,10 @@ void Game::gameplay(Market& market){
 
 		/*START: CHECK FOR VALID INPUT*/
 		while((typeOfHero!=1 && typeOfHero!=2 && typeOfHero!=3)|| cin.fail()){
-			if(cin.fail()){ // or if(!cin)
-			    // user didn't input a number
-			    cin.clear(); // reset failbit
-			    cin.ignore(100, '\n'); //skip bad input
+		if(cin.fail()){ 										// or if(!cin)
+		    													// user didn't input a number
+		    	cin.clear(); 									// reset failbit
+		    	cin.ignore(100, '\n');							//skip bad input
 				cout<<"Give a valid number (1-3). Please try again."<<endl;
 				cin>>typeOfHero;	
 			}
@@ -68,11 +68,11 @@ void Game::gameplay(Market& market){
 
 /*Creation of our grid*/
 Grid* g = new Grid;
-	char keyInput;	// when grid is displayed keyInput takes keyboard's input
-	int inBattle = 0;	// used to know if we are in battle at a specific time unit
-	int battle = 0;	// if battle is about to begin getmv sets battle to 1
+	char keyInput;												// when grid is displayed keyInput takes keyboard's input
+	int inBattle = 0;											// used to know if we are in battle at a specific time unit
+	int battle = 0;												// if battle is about to begin getmv sets battle to 1
 
-	// Game begins!
+																// Game begins!
 	do {
 
 		g->displayMap();
@@ -90,8 +90,8 @@ Grid* g = new Grid;
 						Heroes[i]->printHero();					// print statistics and gear
 					cout << "Press anything to continue...";
 					if(cin.fail()){
-						cin.clear(); // reset failbit
-				   		cin.ignore(100, '\n'); //skip bad input
+						cin.clear(); 							// reset failbit
+				   		cin.ignore(100, '\n'); 					//skip bad input
 					}
 					cin.ignore(100, '\n');	
 					break;
@@ -105,10 +105,10 @@ Grid* g = new Grid;
 
 					/*START: CHECK FOR VALID INPUT*/
 					while(choice <= 0 || choice > numberOfHeroes || cin.fail()){	// while user don't give valid input
-						if(cin.fail()){ // or if(!cin)
-						    // user didn't input a number
-						    cin.clear(); // reset failbit
-						    cin.ignore(100, '\n'); //skip bad input
+						if(cin.fail()){ 						// or if(!cin)
+						    									// user didn't input a number
+						    cin.clear(); 						// reset failbit
+						    cin.ignore(100, '\n'); 				//skip bad input
 							cout << "Give a valid number (1-" << numberOfHeroes << "). Please try again." << endl;
 							cin >> choice;	
 						}
@@ -368,7 +368,7 @@ void Game::heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
 // just regenerate quantum of health & magic power
 void Game::heroesAfterRound(Hero**& heroes,int NumberOfHeroes){
 	for(int i = 0; i < NumberOfHeroes; i++){
-		if(heroes[i]->isAlive()){					// hero is alive
+		if(heroes[i]->isAlive()){														// hero is alive
 			heroes[i]->regenerateHealthPowerAfterRound();
 			heroes[i]->regenerateMagicPowerAfterRound();
 		}
@@ -379,7 +379,7 @@ void Game::heroesAfterRound(Hero**& heroes,int NumberOfHeroes){
 // just regenerate quantum of health power
 void Game::monstersAfterRound(Monster**& monsters,int NumberOfHeroes){
 	for(int i = 0; i < NumberOfHeroes; i++){
-		if (monsters[i]->isAlive())								// monster is alive
+		if (monsters[i]->isAlive())														// monster is alive
 			monsters[i]->regenerateHealthPowerAfterRound();
 	}
 }
@@ -532,10 +532,10 @@ int Game::attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*
 /*getAverageLevelOfHeroes*/
 int Game::getAverageLevelOfHeroes(Hero**& heroes,int NumberOfHeroes){
 	int averageLevel=0;
-	for(int i=0;i<NumberOfHeroes;i++){ 			//for every hero
-		averageLevel += heroes[i]->getLevel(); //add the level of the hero
+	for(int i=0;i<NumberOfHeroes;i++){ 						//for every hero
+		averageLevel += heroes[i]->getLevel(); 				//add the level of the hero
 	}
-	return averageLevel/NumberOfHeroes;			//return average level of heroes
+	return averageLevel/NumberOfHeroes;						//return average level of heroes
 }
 
 /*displayStats*/

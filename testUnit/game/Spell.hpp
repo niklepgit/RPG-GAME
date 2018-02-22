@@ -41,8 +41,8 @@ class Spell{
 		void printSpell(void);
 	
 		int generateHit(int Dexterity);
-		void setInUse1(int i) {inUse[i]=1;}
-		void setInUse0(int i) {inUse[i]=0;}	
+		void setInUse1(int i) {inUse[i] = 1;}
+		void setInUse0(int i) {inUse[i] = 0;}	
 		
 		/*castSpells*/
 		void castSpell(Hero& hero);

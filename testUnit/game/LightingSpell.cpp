@@ -6,7 +6,7 @@ LightingSpell::LightingSpell(string Name,int MinLevel):Spell(Name,MinLevel){}
 /*castSpell*/
 void LightingSpell::castSpell(Monster& monster){
 
-	monster.undoSpellProbability=monster.getProbability(); //save current probability to undo spell
+	monster.undoSpellProbability = monster.getProbability(); //save current probability to undo spell
 	monster.reduceProbability(monster.getProbability()/2); //reduce almost half probability of monster
 }
 
@@ -17,5 +17,5 @@ void LightingSpell::undoSpell(Monster& monster){
 
 /*printTypeOfSpell*/
 void LightingSpell::printTypeOfSpell(){
-	cout<<"Type of Spell:LightingSpell"<<endl;
+	cout << "Type of Spell:LightingSpell" << endl;
 }
