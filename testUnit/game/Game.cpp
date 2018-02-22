@@ -173,12 +173,12 @@ Grid* g = new Grid;
 					displayStats(Heroes,Monsters,numberOfHeroes);
 
 					do{
-						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;		// round of battle (round = heroes do something + monsters do something)
-						for(i=0;i<numberOfHeroes;i++){	// for every hero for every round what do you want to do
-							/*if hero is alive*/
-							if (!Heroes[i]->isAlive()){
-								cout << "Hero " << i+1 << " is dead." << endl;
-								continue;
+						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;	// round of battle (round = heroes do something + monsters do something)
+						for(i=0;i<numberOfHeroes;i++){												// for every hero for every round what do you want to do
+							
+							if (!Heroes[i]->isAlive()){												//if hero is not alive
+								cout << "Hero " << i+1 << " is dead." << endl;						//print appropriate message
+								continue;															//continue for the next hero
 							}
 							
 							getOutOfdoWhileLoop=0;
