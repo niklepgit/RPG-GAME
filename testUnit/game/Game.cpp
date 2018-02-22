@@ -29,7 +29,8 @@ void Game::gameplay(Market& market){
 
 /*UI for creation of heroes*/
 
-/*Ask the user for the number of heroes and for every hero ask the name and the type.
+/*
+* Ask the user for the number of heroes and for every hero ask the name and the type.
 * Make an array of pointers to the heroes and make them dynamically on heap.
 */
 	Hero**Heroes=new Hero*[numberOfHeroes];
@@ -38,6 +39,8 @@ void Game::gameplay(Market& market){
 			<<"1)Warrior, 2)Paladin, 3)Sorcerer"<<endl;
 		cin>>nameOfHero;	
 		cin>>typeOfHero;
+
+		/*START: CHECK FOR VALID INPUT*/
 		while((typeOfHero!=1 && typeOfHero!=2 && typeOfHero!=3)|| cin.fail()){
 			if(cin.fail()){ // or if(!cin)
 			    // user didn't input a number
@@ -51,7 +54,8 @@ void Game::gameplay(Market& market){
 				cin>>typeOfHero;
 			}
 		}
-		
+		/*END: CHECK FOR VALID INPUT*/
+
 		switch(typeOfHero){
 			case 1:Heroes[i]=new Warrior(nameOfHero);
 				   break;
@@ -114,7 +118,7 @@ Grid* g = new Grid;
 						}
 					}
 					/*END: CHECK FOR VALID INPUT*/
-					
+
 					// If user's input is valid do whatever you have to do...
 					Heroes[choice-1]->inventory.checkInventory(*Heroes[choice-1],inBattle);
 					cout << "Press anything to continue...";
@@ -284,7 +288,8 @@ Grid* g = new Grid;
 					getchar();
 					getchar();
 
-					/*heroesAreDead returns life of heroes (if it is 0, monsters won)*/
+					/*heroesAreDead*/ 
+					//returns life of heroes (if it is 0, monsters won)
 					if(!heroesAreDead(Heroes,numberOfHeroes)){
 						cout<<"The monsters won!!!!"<<endl;
 						cout<<"Press enter to continue...!!"<<endl;
@@ -325,16 +330,17 @@ Grid* g = new Grid;
 
 /*
 *This function searches for every hero if has used a spell. If the answer is yes then check if it was the last round of the spell and if yes undo the spell.
-*I pass by reference an array called checkLifeOfSpell
-*
+*I pass by reference an array called checkLifeOfSpell that has the round the spell will expire.
+*I pass by reference an array called whichMonsterWasHit that has for every hero, get which monster he attacked with spell (positions of an array: [0,1,2] for example).
+*I pass by reference an arary called monsterHitWithSpell that has for every monster if it is under the effect of a spell (1) or not (0).
 */
 void Game::endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&checkLifeOfSpell,int*const&monsterHitWithSpell,int counter,int*const&whichMonsterWasHit){
-	for(int i=0;i<NumberOfHeroes;i++){		
-		if(heroes[i]->MySpell!=nullptr)
-			if(heroes[i]->MySpell->getInUse(i))
-				if(counter==checkLifeOfSpell[i]){
+	for(int i=0;i<NumberOfHeroes;i++){													//for every hero
+		if(heroes[i]->MySpell!=nullptr)													//if the hero has a spell
+			if(heroes[i]->MySpell->getInUse(i))											//and has use it
+				if(counter==checkLifeOfSpell[i]){										//check the life of the spell
 					cout<<"End of spell for hero "<<i<<endl;/////////////////////
-					if (monsterHitWithSpell[whichMonsterWasHit[i]]==1){
+					if (monsterHitWithSpell[whichMonsterWasHit[i]]==1){					//if			
 						heroes[i]->MySpell->undoSpell(*monsters[whichMonsterWasHit[i]]);
 						monsterHitWithSpell[whichMonsterWasHit[i]] = 0;
 					}
