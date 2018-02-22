@@ -20,7 +20,7 @@ void Hero::printHero()const{
 	cout << "HP: " << currHealthPower << "/" << maxHealthPower << endl
 		 << "MP: " << currMagicPower << "/" << maxMagicPower << endl
 		 << "Money: " << money << endl
-		 << "Strength: " << strength << endl //na bgalw tis sinartisis
+		 << "Strength: " << strength << endl 
 		 << "Dexterity: " << dexterity << endl
 		 << "Agility: " << agility << endl << endl;
 

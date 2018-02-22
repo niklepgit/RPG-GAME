@@ -99,6 +99,7 @@ Grid* g = new Grid;
 						Heroes[i]->printHero();	
 					cin >> choice;
 
+					/*START: CHECK FOR VALID INPUT*/
 					while(choice <= 0 || choice > numberOfHeroes || cin.fail()){	// while user don't give valid input
 						if(cin.fail()){ // or if(!cin)
 						    // user didn't input a number
@@ -108,10 +109,12 @@ Grid* g = new Grid;
 							cin >> choice;	
 						}
 						else{
-							cout << "Give a valid number (1-" << numberOfHeroes << "). Please try again." << endl;
-							cin >> choice;
+						cout << "Give a valid number (1-" << numberOfHeroes << "). Please try again." << endl;
+						cin >> choice;
 						}
 					}
+					/*END: CHECK FOR VALID INPUT*/
+					
 					// If user's input is valid do whatever you have to do...
 					Heroes[choice-1]->inventory.checkInventory(*Heroes[choice-1],inBattle);
 					cout << "Press anything to continue...";

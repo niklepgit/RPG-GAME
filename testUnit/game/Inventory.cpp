@@ -133,7 +133,6 @@ int Inventory::checkInventory(Hero&hero,int inBattle){
 			   }
 
 			   return hero.weaponEquip(ch1);													//else equip the weapon
-			// break;																	//break from switch statement
 		case 2:printArmors();															//if you want to see armors print the armors
 			   cout << "If you want to equip give armor's number or anything else to exit." << endl;
 			   cin >> ch1;
@@ -146,7 +145,6 @@ int Inventory::checkInventory(Hero&hero,int inBattle){
 			   }
 
 			   return hero.armorEquip(ch1);
-			  // break;																	//break from switch statement
 		case 3:printPotions();															//if you want to see potions print the potions
 			   cout << "If you want to use a Potion give it's number or anything else to exit." << endl;
 			   cin >> ch1;
@@ -159,7 +157,6 @@ int Inventory::checkInventory(Hero&hero,int inBattle){
 			   }
 			   
 			   return hero.findAndUsePotion(ch1); //find and use Potion
-			  // return 1;																//returns 1 which means that the hero used a potion
 		case 4:printSpells();															//if you want to see spells print the spells
 			   if(inBattle){															//if the hero is in a battle then
 				   cout << "If you want to cast a Spell give it's number or anything else to exit." << endl; //ask if he want to cast a spell
@@ -214,7 +211,7 @@ void Inventory::addPotion(Potion potion){
 }
 
 /*addSpell*/
-void Inventory::addSpell(Spell* spell){//i *&
+void Inventory::addSpell(Spell* spell){
 	Spells.push_back(spell);
 }
 
