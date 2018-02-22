@@ -175,20 +175,20 @@ Grid* g = new Grid;
 					do{
 						cout<<"<-------------------ROUND "<<counter<<"------------------->"<<endl;		// round of battle (round = heroes do something + monsters do something)
 						for(i=0;i<numberOfHeroes;i++){	// for every hero for every round what do you want to do
-							if (!Heroes[i]->isAlive()){	// 
+							
+							if (!Heroes[i]->isAlive()){	// check if he's dead
 								cout << "Hero " << i+1 << " is dead." << endl;
 								continue;
 							}
 							
-							getOutOfdoWhileLoop=0;
+							getOutOfdoWhileLoop = 0;
 							do{
 								/*HEROES' TURN*/
-								//print options
-								cout<<"For hero " << i+1 << ":"<<endl;
-								cout<<"If you want to check the inventory press 1"<<endl;
-								cout<<"If you want to start the Attack press 2"<<endl;
+								cout << "For hero " << i+1 << ":" << endl;
+								cout << "If you want to check the inventory press 1" << endl;
+								cout << "If you want to start the Attack press 2" << endl;
 								 
-								cin>>option;
+								cin >> option;
 					
 								/*START: CHECK FOR VALID INPUT*/
 								while((option!=1 && option!=2) || cin.fail()){ 
@@ -196,40 +196,41 @@ Grid* g = new Grid;
 									    // user didn't input a number
 									    cin.clear(); // reset failbit
 									    cin.ignore(100, '\n'); //skip bad input
-										cout<<"Give a valid option."<<endl;
-									    cin>>option;
+										cout << "Give a valid option." << endl;
+									    cin >> option;
 									}
 									else{	
-										cout<<"Give a valid option."<<endl;
-									    cin>>option;
+										cout << "Give a valid option." << endl;
+									    cin >> option;
 									}
 								}
 								/*END: CHECK FOR VALID INPUT*/
 
 								switch(option){
 									case 1:
-										    check = Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); //checkInventory for the current hero
+										    check = Heroes[i]->inventory.checkInventory(*Heroes[i],inBattle); // checkInventory for the current hero
 											
-											if(check == 2){
+											if(check == 2){													  // user didn't equip or use or cast item so have to choose again what to do in this round
 												getOutOfdoWhileLoop = returnFromAttackWithSpell = 0;
 												break;
 											}
-											else if(check == 1){
+											else if(check == 1){											  // user equiped, used, or casted item in this round
 												getOutOfdoWhileLoop=1;
 												break;
 											}
 
 									case 2: cout << "Attack of Hero " << i+1 << endl;
-											if(Heroes[i]->MySpell!=nullptr){ 									//if the hero has equiped a spell
+											if(Heroes[i]->MySpell != nullptr){ 									// if the hero has equiped a spell
 												cout << "A spell is equiped" << endl;
-												if(!Heroes[i]->MySpell->getInUse(i)){							//if it is the first time the hero is going to use the spell
-													returnFromAttackWithSpell=attackWithSpell(*Heroes[i],Monsters,numberOfHeroes,monsterHitWithSpell,i,whichMonsterWasHit); //attack with the spell
-													if(returnFromAttackWithSpell==0){							
+												if(!Heroes[i]->MySpell->getInUse(i)){							// if it is the first time the hero is going to use the spell
+													returnFromAttackWithSpell = attackWithSpell(*Heroes[i],Monsters,numberOfHeroes,monsterHitWithSpell,i,whichMonsterWasHit); // attack with the spell
+													if(returnFromAttackWithSpell == 0){							// if failed to cast a spell print again options for user
 														cout << "For hero " << i+1 << ":" << endl;
 														cout << "If you want to check the inventory press 1" << endl;
 														cout << "If you want to start the Attack press 2" << endl;
 														cin >> option;
-														while((option!=1 && option!=2)|| cin.fail()){
+														/*START: CHECK FOR VALID INPUT*/
+														while((option != 1 && option != 2)|| cin.fail()){
 															if(cin.fail()){ // or if(!cin)
 															    // user didn't input a number
 															    cin.clear(); // reset failbit
@@ -242,70 +243,70 @@ Grid* g = new Grid;
 															    cin >> option;
 															}
 														}
-														Heroes[i]->MySpell=nullptr;	
+														/*END: CHECK FOR VALID INPUT*/
+														Heroes[i]->MySpell = nullptr;	
 														break;
 													} else if (returnFromAttackWithSpell == -1) { break; }
-													checkLifeOfSpell[i]=counter+returnFromAttackWithSpell;
+													checkLifeOfSpell[i] = counter + returnFromAttackWithSpell;
 												}
-												else {
-													getOutOfdoWhileLoop=1;
-													attack(*Heroes[i],Monsters,numberOfHeroes); //attack with the current hero
+												else {															// you have already cast this spell your hero equips
+													getOutOfdoWhileLoop = 1;
+													attack(*Heroes[i],Monsters,numberOfHeroes); 				// attack with the current hero
 												}
 											}
-											else{
-												getOutOfdoWhileLoop=1;
-												attack(*Heroes[i],Monsters,numberOfHeroes); //attack with the current hero
+											else{																// none of hero's spells has been equiped
+												getOutOfdoWhileLoop = 1;
+												attack(*Heroes[i],Monsters,numberOfHeroes); 					// attack with the current hero
 											}
 											
 								}
 							}while(returnFromAttackWithSpell == 0 && getOutOfdoWhileLoop == 0);
 						}
 
-						if(!monstersAreDead(Monsters,numberOfHeroes))
+						if(!monstersAreDead(Monsters,numberOfHeroes))											// returns sum of monsters' life (if they are all dead is true)
 							break;
 
 						/*MONSTERS' TURN*/
-						for(i=0;i<numberOfHeroes;i++){
-							//////////////////////////////////////////////////////////////////////check if hero is dead
-							int whoToHit=rand()%numberOfHeroes; //generate a random number between 0-2 to choose the hero
+						for(i = 0; i < numberOfHeroes; i++){
+							int whoToHit = rand()%numberOfHeroes; 												// generate a random number between 0-2 to choose the hero
 							/*probability(agility) for hero to avoid an attack from a monster*/
 							if(((double) Heroes[whoToHit]->getAgility()/Heroes[whoToHit]->getMaxAgility())>((double) rand() / (RAND_MAX))){
 								cout << "Hero " << whoToHit+1 << " avoid the attack!" << endl;
-								continue;	// next monster please...
+								continue;																		// next monster please...
 							}
-							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); //hit the chosen hero
+							Heroes[whoToHit]->attackToHero(Monsters[i]->generateHit()); 						//hit the chosen hero
 						}	
 						displayStats(Heroes,Monsters,numberOfHeroes);
 						
-						monstersAfterRound(Monsters,numberOfHeroes);
-						heroesAfterRound(Heroes,numberOfHeroes);
+						monstersAfterRound(Monsters,numberOfHeroes);											// regenerate health power for alive monsters
+						heroesAfterRound(Heroes,numberOfHeroes);												// regenerate health power & magic power for alive heroes
 						
 						counter++;
-						endOfSpell(Heroes,Monsters,numberOfHeroes,checkLifeOfSpell,monsterHitWithSpell,counter,whichMonsterWasHit);
-					}while(monstersAreDead(Monsters,numberOfHeroes) && heroesAreDead(Heroes,numberOfHeroes)); //while all heroes or all monsters die
+						endOfSpell(Heroes,Monsters,numberOfHeroes,checkLifeOfSpell,monsterHitWithSpell,counter,whichMonsterWasHit);		// check if is the last round for a specific spell
+					}while(monstersAreDead(Monsters,numberOfHeroes) && heroesAreDead(Heroes,numberOfHeroes)); 	// go away when all heroes or all monsters die
 					inBattle = 0;
 					getchar();
 					getchar();
 
 					/*heroesAreDead*/ 
-					//returns life of heroes (if it is 0, monsters won)
+					// returns life of heroes (if it is 0, monsters won)
 					if(!heroesAreDead(Heroes,numberOfHeroes)){
-						cout<<"The monsters won!!!!"<<endl;
-						cout<<"Press enter to continue...!!"<<endl;
+						cout << "The monsters won!!!!" << endl;
+						cout << "Press enter to continue...!!" << endl;
 						getchar();
 						heroesAfterLosing(Heroes,numberOfHeroes);
 					}
 
 					/*monstersAreDead returns life of monsters (if it is 0, heroes won)*/
 					if(!monstersAreDead(Monsters,numberOfHeroes)){
-						cout<<"The heroes won!!!!"<<endl;
-						cout<<"Press enter to continue...!!"<<endl;
+						cout << "The heroes won!!!!" << endl;
+						cout << "Press enter to continue...!!" << endl;
 						getchar();
 						heroesAfterWinning(Heroes,numberOfHeroes);
 					}
 
-					destroyMonsters(Monsters,numberOfHeroes);
-					battle=0;
+					destroyMonsters(Monsters,numberOfHeroes);																			// delete all monsters when the battle is over
+					battle = 0;
 					break;
 				}
 			default:
@@ -313,7 +314,7 @@ Grid* g = new Grid;
 		}
 		g->clearScreen();
 
-	} while (keyInput != 'q');	
+	} while (keyInput != 'q');																											// quit game when keyboard's input is 'q'	
 
 	/*memory frees*/
 	/*delete heroes*/
