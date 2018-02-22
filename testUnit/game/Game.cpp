@@ -70,16 +70,16 @@ Grid* g = new Grid;
 		g->displayMap();
 		keyInput = g->getmv(battle);
 		switch(keyInput){
-			case 'm':
-				if (!g->nextToMarket())
+			case 'm':										// keyboard's input is 'm'
+				if (!g->nextToMarket())						// if you are next to a market
 					break;
 				g->clearScreen();
-				market.menuMarket(Heroes,numberOfHeroes);	// let's go to the market
+				market.menuMarket(Heroes,numberOfHeroes);	// enter market
 				break;
-			case 'p':
+			case 'p':										// keyboard's input is 'p'
 				g->clearScreen();
-				for (int i = 0; i < numberOfHeroes; ++i)
-					Heroes[i]->printHero();
+				for (int i = 0; i < numberOfHeroes; ++i)	// for every hero
+					Heroes[i]->printHero();					// see statistics and gear
 				cout << "Press anything to continue...";
 				/////////////////////////////////////////////////////// check if it works /////////////////////////////////////////////////
 				if(cin.fail()){
@@ -111,7 +111,7 @@ Grid* g = new Grid;
 					}
 				}
 				// If user's input is valid do whatever you have to do...
-				switch(choice){
+				switch(choice){		// let's see inventory for 'choice' hero
 					case 1:
 						returnOfCheckInventory = Heroes[0]->inventory.checkInventory(*Heroes[0],inBattle);
 						if(returnOfCheckInventory!=2)
