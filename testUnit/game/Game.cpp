@@ -333,36 +333,38 @@ Grid* g = new Grid;
 *I pass by reference an array called whichMonsterWasHit that has for every hero, get which monster he attacked with spell (positions of an array: [0,1,2] for example).
 *I pass by reference an arary called monsterHitWithSpell that has for every monster if it is under the effect of a spell (1) or not (0).
 */
-void Game::endOfSpell(Hero**&heroes,Monster**&monsters,int NumberOfHeroes,int*const&checkLifeOfSpell,int*const&monsterHitWithSpell,int counter,int*const&whichMonsterWasHit){
-	for(int i=0;i<NumberOfHeroes;i++){													//for every hero
-		if(heroes[i]->MySpell!=nullptr)													//if the hero has a spell
-			if(heroes[i]->MySpell->getInUse(i))											//and has use it
-				if(counter==checkLifeOfSpell[i]){										//check the life of the spell
-					cout<<"End of spell for hero "<<i<<endl;/////////////////////
-					if (monsterHitWithSpell[whichMonsterWasHit[i]]==1){					//if			
+void Game::endOfSpell(Hero**& heroes,Monster**& monsters,int NumberOfHeroes,int*const& checkLifeOfSpell,int*const& monsterHitWithSpell,int counter,int*const& whichMonsterWasHit){
+	for(int i = 0; i < NumberOfHeroes; i++){											// for every hero
+		if(heroes[i]->MySpell != nullptr)												// if the hero has a spell
+			if(heroes[i]->MySpell->getInUse(i))											// and has use it
+				if(counter == checkLifeOfSpell[i]){										// check if the spell is time to go away
+					cout << "End of spell for hero " << i+1 << endl;
+					if (monsterHitWithSpell[whichMonsterWasHit[i]] == 1){				// undo spell from monster that was hitted			
 						heroes[i]->MySpell->undoSpell(*monsters[whichMonsterWasHit[i]]);
 						monsterHitWithSpell[whichMonsterWasHit[i]] = 0;
 					}
-					heroes[i]->MySpell->setInUse0(i);
-					heroes[i]->MySpell=nullptr;
+					heroes[i]->MySpell->setInUse0(i);									// undo situation
+					heroes[i]->MySpell = nullptr;										// hero don't equip spell
 				}
 			
 	}
 }
+
 /*heroesAfterWinning*/
 void Game::heroesAfterWinning(Hero**& heroes,int NumberOfHeroes){
-	for(int i=0;i<NumberOfHeroes;i++){
+	for(int i = 0; i < NumberOfHeroes; i++){
 		heroes[i]->increaseMoney(heroes[i]->getLevel()*4+NumberOfHeroes*2);
-		if (heroes[i]->getLevel() < 10){				// otan ftasei level 10 no more experience kai mhn elegxeis kan gia level up
+		if (heroes[i]->getLevel() < 10){												// when hero reach level 10 no more level up and no more experience
 			heroes[i]->increaseExperience(heroes[i]->getLevel()*3+NumberOfHeroes*3);
 			if(heroes[i]->checkIfLevelUp())
-				heroes[i]->levelUp();
+				heroes[i]->levelUp();													// else while hero's level < 10 => level up
 		}
 	}
 
 }
 
 /*heroesAfterRound*/
+// just regenerate quantum of health & magic power
 void Game::heroesAfterRound(Hero**&heroes,int NumberOfHeroes){
 	for(int i=0;i<NumberOfHeroes;i++){
 		if(heroes[i]->isAlive()){
