@@ -158,6 +158,7 @@ int Inventory::checkInventory(Hero&hero,int inBattle){
 			   
 			   return hero.findAndUsePotion(ch1); 			// find and use Potion
 		case 4:printSpells();								// if you want to see spells print the spells
+				getchar();
 			   if(inBattle){								// if the hero is in a battle then
 				   cout << "If you want to cast a Spell give it's number or anything else to exit." << endl; // ask if he want to cast a spell
 				   cin >> ch1;

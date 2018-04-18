@@ -219,9 +219,9 @@ Grid* g = new Grid;
 												break;
 											}
 
-									case 2: cout << "Attack of Hero " << i+1 << endl;
+									case 2: cout << "Attack of Hero " << i+1;
 											if(Heroes[i]->MySpell != nullptr){ 									// if the hero has equiped a spell
-												cout << "A spell is equiped" << endl;
+												cout <<endl<< "A spell is equiped." << endl;
 												if(!Heroes[i]->MySpell->getInUse(i)){							// if it is the first time the hero is going to use the spell
 													returnFromAttackWithSpell = attackWithSpell(*Heroes[i],Monsters,numberOfHeroes,monsterHitWithSpell,i,whichMonsterWasHit); // attack with the spell
 													if(returnFromAttackWithSpell == 0){							// if failed to cast a spell print again options for user
@@ -475,7 +475,7 @@ void Game::attack(Hero& hero,Monster**& monsters,int NumberOfHeroes){
 
 /*attackWithSpell*/
 int Game::attackWithSpell(Hero& hero,Monster**& monsters,int NumberOfHeroes,int*const& monsterHitWithSpell,int whoHitTheMonster,int*const& whichMonsterWasHit){
-	cout<<"Attack with spell"<<endl;
+	cout<<"Attack with spell";
 	if(!hero.reduceMagicPower(hero.MySpell->getMagicPower())){ 									//check if the hero has enough magic power to make the attack
 		cout << "Your magic power is not enough... Better luck next time!" << endl; 			//if the hero doesn't have the magic power print a message
 		hero.MySpell=nullptr;																	//make the MySpell  point to null - throw the spell in inventory
