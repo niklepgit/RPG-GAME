@@ -1,1 +1,0 @@
-g++ -o prog Armor.cpp Dragon.cpp Exoskeleton.cpp FireSpell.cpp Grid.cpp Hero.cpp IceSpell.cpp Inventory.cpp iofunctions.cpp Item.cpp LightingSpell.cpp Living.cpp main.cpp Market.cpp Monster.cpp Paladin.cpp Potion.cpp Sorcerer.cpp Spell.cpp Spirit.cpp Warrior.cpp Weapon.cpp
